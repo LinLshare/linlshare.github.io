@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>編舟堂</title>
+  <icon>https://tsunhua@github.io/favicon.ico</icon>
+  <subtitle>語言 · 人文 · 科技</subtitle>
+  <link href="https://tsunhua@github.io/atom.xml" rel="self"/>
+  
+  <link href="https://tsunhua@github.io/"/>
+  <updated>2021-02-05T16:21:17.000Z</updated>
+  <id>https://tsunhua@github.io/</id>
+  
+  <author>
+    <name>Hua</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>聆聽音樂：蕭邦之「雨滴」</title>
+    <link href="https://tsunhua@github.io/2021/02/06/music/listen-chopin-raindrop/"/>
+    <id>https://tsunhua@github.io/2021/02/06/music/listen-chopin-raindrop/</id>
+    <published>2021-02-05T16:21:17.846Z</published>
+    <updated>2021-02-05T16:21:17.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;我發現聆聽音樂在提高自身的音樂素養的同時還可以提高自己的想像力，進而提高記憶力，實在是一舉多得。從今往後，我要多多聆聽，多多分享有感覺的音樂吶。&lt;/p&gt;
+&lt;p&gt;今天點到蕭邦的「雨滴」，其全名爲 Prelude Op. 28 No. 15 Db major (Raindrop)，網易雲音樂上又寫成 Prélude in D:Flat Major, Op. 28, No. 15，是同樣的（繼續讀下去就知道爲什麼），翻譯成中文就是：降 D 大調前奏曲, 作品28之15。先來與君共賞。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="聆聽音樂" scheme="https://tsunhua@github.io/tags/%E8%81%86%E8%81%BD%E9%9F%B3%E6%A8%82/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在潮劇中學之《玉堂春》</title>
+    <link href="https://tsunhua@github.io/2021/02/06/language/min/teochew-opera-ghe%CC%82gdengcung/"/>
+    <id>https://tsunhua@github.io/2021/02/06/language/min/teochew-opera-ghe%CC%82gdengcung/</id>
+    <published>2021-02-05T16:21:17.702Z</published>
+    <updated>2021-02-05T16:21:17.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;潮劇自明朝已然形成，發展到現在有近 500 年的歷史，據統計截止 2007 年 6 月已有超過 5000 個劇目。明朝嘉靖丙寅年（1566年）刊本的《荔鏡記》，是迄今所能見到的最早一個運用「泉潮腔」演唱的演出劇本。它於 2006 年被列入首批國家級非物質文化遺產保護名錄。&lt;/p&gt;
+&lt;p&gt;潮劇的語音特點是：最早的潮劇基本上是以潮州府城音爲主要音系來表演的，但迴避了潮州音的最明顯的特徵音韻母——潮州府城話的 iêng/iêg、uêng/uêg、iêm/iêb 等韻母，換成了跟其他方言相同的 iang/iag、uang/uag 和 iam/iab 韻母。然後，還參雜了揭陽話的一些特點。（引自林倫倫《潮劇是用哪個地方的方言來演唱的？》）&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="閩南語" scheme="https://tsunhua@github.io/tags/%E9%96%A9%E5%8D%97%E8%AA%9E/"/>
+    
+    <category term="潮州話" scheme="https://tsunhua@github.io/tags/%E6%BD%AE%E5%B7%9E%E8%A9%B1/"/>
+    
+    <category term="潮劇" scheme="https://tsunhua@github.io/tags/%E6%BD%AE%E5%8A%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>潮州話與甲子話韻母差異（稿）</title>
+    <link href="https://tsunhua@github.io/2021/02/06/language/min/teochew-kahtsi-vowel/"/>
+    <id>https://tsunhua@github.io/2021/02/06/language/min/teochew-kahtsi-vowel/</id>
+    <published>2021-02-05T16:21:17.675Z</published>
+    <updated>2021-02-05T16:21:17.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2021/02/06/language/min/teochew-kahtsi-vowel/202010042112.png&quot; alt&gt;&lt;/p&gt;
+&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;本文所說的潮州話指的是狹義的潮州話，即潮州市內通行的閩南語，甲子話則是指陸豐市甲子鎮內通行的閩南語。&lt;br&gt;通過比較，發現甲子話沒有潮州話中的 e、eh、eng、ou、iou、iouh、uê、uêh、uên、uêng、uêg、iê、iêh、iên、iêng、iêg 等韻，而與之相對應的是 u、uh、ng、ao、iao、iaoh、oi、oih、oin、uang、êng、iang、oig、io、ioh、ion、iang、iag 等等韻。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="甲子話" scheme="https://tsunhua@github.io/tags/%E7%94%B2%E5%AD%90%E8%A9%B1/"/>
+    
+    <category term="閩南語" scheme="https://tsunhua@github.io/tags/%E9%96%A9%E5%8D%97%E8%AA%9E/"/>
+    
+    <category term="潮州話" scheme="https://tsunhua@github.io/tags/%E6%BD%AE%E5%B7%9E%E8%A9%B1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>詩經·秦風‧蒹葭 (甲子話注音版)</title>
+    <link href="https://tsunhua@github.io/2021/02/06/language/min/sige%CC%82ng-giamgia/"/>
+    <id>https://tsunhua@github.io/2021/02/06/language/min/sige%CC%82ng-giamgia/</id>
+    <published>2021-02-05T16:21:17.652Z</published>
+    <updated>2021-02-05T16:21:17.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2021/02/06/language/min/sige%CC%82ng-giamgia/202010060948.jpg&quot; alt&gt;&lt;/p&gt;
+
+        &lt;div id=&quot;aplayer-EoyOhhBP&quot; class=&quot;aplayer aplayer-tag-marker&quot; style=&quot;margin-bottom: 20px;&quot;&gt;
+            &lt;pre class=&quot;aplayer-lrc-content&quot;&gt;&lt;/pre&gt;
+        &lt;/div&gt;
+        &lt;script&gt;
+          var ap = new APlayer({
+            element: document.getElementById(&quot;aplayer-EoyOhhBP&quot;),
+            narrow: false,
+            autoplay: false,
+            showlrc: false,
+            music: {
+              title: &quot;蒹葭&quot;,
+              author: &quot;Hua&quot;,
+              url: &quot;2020/10/06/language/min/sigêng-giamgia/蒹葭.m4a&quot;,
+              pic: &quot;/music.png&quot;,
+              lrc: &quot;&quot;
+            }
+          });
+          window.aplayers || (window.aplayers = []);
+          window.aplayers.push(ap);
+        &lt;/script&gt;
+
+&lt;p&gt;蒹葭&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;    「蒹」，荻草；「葭」，蘆草。&quot;&gt;[1]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;蒼蒼&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;    按今讀應爲「cang¹」，但根據韻腳應讀「cng¹」，且「倉」字甲子話亦讀作「cng¹」。&quot;&gt;[2]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;，白露爲霜。所謂伊人，在水一方。溯洄&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;    逆著河流走。&quot;&gt;[3]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;從之，道阻且長。溯游&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;    順著河流走。&quot;&gt;[4]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;從之，宛在水中央。&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;    蒼、霜、方、長、央，陽部。&quot;&gt;[5]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;&lt;br&gt;giam¹ gia¹ cng¹ cng¹, bêh⁸ lao³ ui⁵ sng¹. so² ui³ i¹ ring⁵‚ do¹ zui² zêg⁸ hng¹. sog⁴ hoi⁵ ciong⁵ zu¹‚ dao⁶ zo² cian² dng⁵. sog⁴ iu⁵ ciong⁵ zu¹‚ uang² do¹ zui² dang¹ ng¹.&lt;/p&gt;
+&lt;p&gt;蒹葭萋萋，白露未晞&lt;sup id=&quot;fnref:6&quot;&gt;&lt;a href=&quot;#fn:6&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;    露水未乾。&quot;&gt;[6]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;。所謂伊人，在水之湄&lt;sup id=&quot;fnref:7&quot;&gt;&lt;a href=&quot;#fn:7&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;    水草交接處，即岸邊。&quot;&gt;[7]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;。溯洄從之，道阻且躋。溯游從之，宛在水中坻&lt;sup id=&quot;fnref:8&quot;&gt;&lt;a href=&quot;#fn:8&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;    水中小沙洲。&quot;&gt;[8]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;。&lt;sup id=&quot;fnref:9&quot;&gt;&lt;a href=&quot;#fn:9&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;    萋、晞、湄、躋、坻，脂部。&quot;&gt;[9]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;&lt;br&gt;giam¹ gia¹ ci¹ ci¹‚ bêh⁸ lao³ bhoi⁷ hi¹. so² ui³ i¹ ring⁵‚ do¹ zui² zu¹ mi⁵. sog⁴ hoi⁵ ciong⁵ zu¹‚ dao⁶ zo² cian² zi³. sog⁴ iu⁵ ciong¹ zu¹‚ uang² do¹ zui² dang¹ di².&lt;/p&gt;
+&lt;p&gt;蒹葭采采，白露未已&lt;sup id=&quot;fnref:10&quot;&gt;&lt;a href=&quot;#fn:10&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;    「已」完全。言露水還未完全乾。&quot;&gt;[10]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;。所謂伊人，在水之涘&lt;sup id=&quot;fnref:11&quot;&gt;&lt;a href=&quot;#fn:11&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;    岸邊。&quot;&gt;[11]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;。溯洄從之，道阻且右&lt;sup id=&quot;fnref:12&quot;&gt;&lt;a href=&quot;#fn:12&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;    水路彎曲。&quot;&gt;[12]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;。溯游從之，宛在水中沚&lt;sup id=&quot;fnref:13&quot;&gt;&lt;a href=&quot;#fn:13&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;    水中小沙洲。&quot;&gt;[13]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;。&lt;sup id=&quot;fnref:14&quot;&gt;&lt;a href=&quot;#fn:14&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;    采、已、涘、右、沚，之部。&quot;&gt;[14]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;_ giam¹ gia¹ cai² cai²‚ bêh⁸ lao³ bhoi⁷ in². so² ui³ i¹ ring⁵‚ do¹ zui² zu¹ su⁶. sog⁴ hoi⁵ ciong⁵ zu¹‚ dao⁶ zo² cian² iu⁶. sog⁴ iu⁵ ciong¹ zu¹‚ uang² do¹ zui² dang¹ zi².&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="詩經" scheme="https://tsunhua@github.io/tags/%E8%A9%A9%E7%B6%93/"/>
+    
+    <category term="甲子話" scheme="https://tsunhua@github.io/tags/%E7%94%B2%E5%AD%90%E8%A9%B1/"/>
+    
+    <category term="閩南語" scheme="https://tsunhua@github.io/tags/%E9%96%A9%E5%8D%97%E8%AA%9E/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>甲子話分類辭表（2020.12）</title>
+    <link href="https://tsunhua@github.io/2021/02/06/language/min/gahzi-oi-hung-lui-ci-biao/"/>
+    <id>https://tsunhua@github.io/2021/02/06/language/min/gahzi-oi-hung-lui-ci-biao/</id>
+    <published>2021-02-05T16:21:16.892Z</published>
+    <updated>2021-02-05T16:21:16.000Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;序言-su⁶-ngiang⁵&quot;&gt;&lt;a href=&quot;#序言-su⁶-ngiang⁵&quot; class=&quot;headerlink&quot; title=&quot;序言(su⁶ ngiang⁵)&quot;&gt;&lt;/a&gt;序言(su⁶ ngiang⁵)&lt;/h2&gt;&lt;p&gt;甲子鎮處在陸豐市，與惠來縣交界，語言文化上偏惠來（其實五百年前與惠來交界處同屬海豐縣）。甲子話是三甲地區（甲子、甲西、甲東三鎮）通行的語言，是甲子地方文化的重要載體之一。在學術上，甲子話被歸入粵東閩南語潮汕話片。 &lt;/p&gt;
+&lt;p&gt;甲子話保留了好㩼中古乃至上古的漢語詞彙，比如：汝、諸母、新婦、箸、鼎、匏桸、雅、翹楚等等，還有極具地方特色的表達，比如：𨑨迌、走漆、理唔直、孤獨死相等等。然而無會寫甚至無會呾甲子話的人實在㩼，其中不少是受過義務教育其。 有鑑於此，本人草創此表，力求詞雅正且其音形義有所考據，權當拋磚引玉，歡迎大家儂做蜀討論改進。 &lt;/p&gt;
+&lt;p&gt;另附本表主要參考資料：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;《潮汕方言詞考釋》（林倫倫）&lt;/li&gt;
+&lt;li&gt;《海豐話分類辭表》（羅志海、鍾顯坤）&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.mogher.com/baike&quot;&gt;《潮典》&lt;/a&gt; &lt;/li&gt;
+&lt;li&gt;《新潮汕字典》（張曉山）&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://twblg.dict.edu.tw/holodict%5C_new/index.html&quot;&gt;《台灣閩南語常用詞辭典》&lt;/a&gt; &lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://xiaoxue.iis.sinica.edu.tw/minyu&quot;&gt;《小學堂閩語》&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;阿華&lt;br&gt;2020年10月成稿，12月修訂&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="甲子話" scheme="https://tsunhua@github.io/tags/%E7%94%B2%E5%AD%90%E8%A9%B1/"/>
+    
+    <category term="閩南語" scheme="https://tsunhua@github.io/tags/%E9%96%A9%E5%8D%97%E8%AA%9E/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>携帯で日本語（手机上的日语）</title>
+    <link href="https://tsunhua@github.io/2021/02/06/language/jp/keitai-de-nihongo/"/>
+    <id>https://tsunhua@github.io/2021/02/06/language/jp/keitai-de-nihongo/</id>
+    <published>2021-02-05T16:21:16.891Z</published>
+    <updated>2021-02-05T16:21:16.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;有一天，我把手机上的系统语言设定为日语，觉得读手机上的日语读起来很有趣。边读边猜边查字典认识了不少，于是整理了本文以飨读者。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="日本語" scheme="https://tsunhua@github.io/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM</title>
+    <link href="https://tsunhua@github.io/2021/02/06/it/java/java-jvm/"/>
+    <id>https://tsunhua@github.io/2021/02/06/it/java/java-jvm/</id>
+    <published>2021-02-05T16:21:16.845Z</published>
+    <updated>2021-02-05T16:21:16.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;JVM(Java Virtual Machine)，即 Java 虛擬機，是操作系統上的一個程序，用於編譯、運行Java程序，使得 Java程序可以跨平台。關於 JVM 我們著重在內存區域、類的加載、對象的創建和內存管理四個部分。&lt;/p&gt;
+&lt;p&gt;內存區域分爲堆、方法區、程序計數器、虛擬機棧和本地方法棧。其中堆和方法區是線程共享的，程序計數器、虛擬機棧和本地方法棧則是線程私有的。堆是一大塊內存，幾乎所有的對象實例都在這裡分配；方法區在JVM 規範中是堆的一部分，不同的 JVM 可以有不同的實現，就 HotSpot VM 而言，在 JDK1.8 之前使用永久代實現方法區，在JDK1.8及之後使用直接內存上的元空間實現；程序計數器存放下一條指令的地址；虛擬機棧的每一個棧幀保存著方法的局部變量表、操作數棧、動態連接和方法返回地址；本地方法棧類似虛擬機棧，不過是調用 native 方法，在 HotSpot VM中虛擬機棧和本地方法棧合而爲一。&lt;/p&gt;
+&lt;p&gt;類的生命週期分爲加載、連接、初始化、使用和卸載四個過程，其中：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;加載：將 .class 文件以二進制字節流方式讀入虛擬機，並在方法區給靜態變量分配空間，在堆中生成 Class 對象作爲訪問靜態變量的入口。&lt;/li&gt;
+&lt;li&gt;連接：分爲驗證、準備和解析三個階段，驗證階段驗證字節碼文件的合規性，準備階段將類變量賦予初始零值，解析階段將常量池中的符號引用轉爲直接引用。&lt;/li&gt;
+&lt;li&gt;初始化：執行 &lt;code&gt;&amp;lt;clinit&amp;gt;&lt;/code&gt; 方法。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;對象的創建過程依次是類加載檢查、分配內存、初始化零值、設置對象頭和執行&lt;code&gt;&amp;lt;init&amp;gt;&lt;/code&gt; 方法。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;類加載檢查：檢查類是否加載完畢。&lt;/li&gt;
+&lt;li&gt;分配內存：對象實例一般會分配在堆中，根據採用的垃圾回收器會選擇指針碰撞或空閒類表方式分配。JDK1.7之後啟用逃逸分析可以將未逃逸的對象分配到棧中。&lt;/li&gt;
+&lt;li&gt;初始化零值：給對象的成員變量設置初始的零值。&lt;/li&gt;
+&lt;li&gt;設置對象頭：對象頭包括所屬的類、對象哈希碼、GC分代年齡和鎖信息。&lt;/li&gt;
+&lt;li&gt;執行 &lt;code&gt;&amp;lt;init&amp;gt;&lt;/code&gt; 方法。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Java 是自動內存管理的，內存的分配和回收由JVM進行控制。通常使用分代內存管理，分新生代、老年代和永久代(JDK1.8及之後無永久代)，新對象優先在新生代 Eden 區分配，大對象直接分配到老年代，持續存活的對象也會被轉移到老年代。&lt;/p&gt;
+&lt;p&gt;內存回收涉及垃圾的判定、垃圾收集算法和垃圾收集器。&lt;/p&gt;
+&lt;p&gt;判定垃圾通常有引用計數法和可達性分析算法。&lt;/p&gt;
+&lt;p&gt;垃圾收集(GC)通常分部分收集(Partial GC)和整堆收集(Full GC)，部分收集分新生代收集(Minor GC / Young GC)、老年代收集(Major GC / Old GC)和混合收集(Mixed GC)&lt;/p&gt;
+&lt;p&gt;垃圾收集算法通常有標記-清除算法、複製算法、標記-整理算法和分代收集算法。&lt;/p&gt;
+&lt;p&gt;垃圾收集器中 ParNew 最早採用並行收集，CMS 最早採用並發收集。JDK1.8 中默認使用 Parallel Scavenge(新生代) + Parallel Old(老年代) 收集器，JDK9之後默認使用 G1 收集器。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Java" scheme="https://tsunhua@github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java 多線程</title>
+    <link href="https://tsunhua@github.io/2021/02/06/it/java/java-concurrent/"/>
+    <id>https://tsunhua@github.io/2021/02/06/it/java/java-concurrent/</id>
+    <published>2021-02-05T16:21:16.757Z</published>
+    <updated>2021-02-05T16:21:16.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;首先區分進程和線程。進程是程序運行的基本單位，也是系統分配資源的最小單位；而線程是 CPU 調度的最小單位，一個進程可以有多個線程，而各個線程擁有獨立的程序計數器、虛擬機棧和本地方法棧，但共享同一個堆和方法區。爲著充分利用系統資源，減少 CPU 空等，多線程技術應運而生。系統使用時間片輪轉法分配 CPU 資源到各個線程，如果線程在分配的時間片內未能處理完任務，則會導致上下文切換。&lt;/p&gt;
+&lt;p&gt;Java 中線程類爲 &lt;code&gt;Thread&lt;/code&gt; ，其 &lt;code&gt;start&lt;/code&gt; 方法會使線程進入 Runnable 狀態；其 &lt;code&gt;sleep&lt;/code&gt; 方法會阻塞線程而不釋放鎖，跟 &lt;code&gt;Object.wait&lt;/code&gt; 有別；其 &lt;code&gt;interrupt&lt;/code&gt; 方法並不停止線程，而是設置一個標誌位通知線程應當關閉，線程可以根據該標誌位決定是否要停止運行。&lt;/p&gt;
+&lt;p&gt;多個線程可以通過線程池進行統一管理，好處是還可以提前 Ready 好一些線程避免等待線程創建的時間損耗；還可以使用舊的線程，減少線程的頻繁創建和銷毀的資源損耗。線程池推薦直接使用 &lt;code&gt;ThreadPoolExecutor&lt;/code&gt; 的構造方法去創建，以便設置合適的構造參數。調用 &lt;code&gt;ThreadPoolExecutor.execute&lt;/code&gt; 可以將一個 &lt;code&gt;Runnable&lt;/code&gt; 任務放入線程池處理； 調用&lt;code&gt;ThreadPoolExecutor.submit&lt;/code&gt;  可以將一個 &lt;code&gt;Callable&lt;/code&gt; 任務放入線程池處理，返回一個 &lt;code&gt;Future&lt;/code&gt; 代表處理結果，後續通過調用 &lt;code&gt;Future.get&lt;/code&gt; 獲取處理結果，其過程是阻塞的。&lt;/p&gt;
+&lt;p&gt;Java 1.5 開始提供&lt;code&gt;AbstractQueuedSynchronizer&lt;/code&gt;，用於創建多線程訪問共享資源的同步器，其內部使用一個名爲 CLH 的 FIFO 的雙向隊列進行資源分配。其常見實現類有：&lt;code&gt;ReentrantLock&lt;/code&gt;、&lt;code&gt;ReadWriteLock&lt;/code&gt; 和 &lt;code&gt;CountDownLatch&lt;/code&gt; 。其中 &lt;code&gt;ReadWriteLock&lt;/code&gt; 性能優於 &lt;code&gt;ReentrantLock&lt;/code&gt; ，因爲兩個讀操作在 &lt;code&gt;ReadWriteLock&lt;/code&gt; 中不互斥而在 &lt;code&gt;ReentrantLock&lt;/code&gt; 中互斥。&lt;/p&gt;
+&lt;p&gt;Java 1.8 開始提供了 &lt;code&gt;CompletableFuture&lt;/code&gt; ，其實現了 &lt;code&gt;Future&lt;/code&gt; 接口，並提供了基於回調的函數式異步編程方式和對&lt;code&gt;CompletableFuture&lt;/code&gt; 的組合，使用者可以不關心底層的線程池，大大簡便了異步編程。&lt;/p&gt;
+&lt;p&gt;Java 還提供了 ThreadLocal 類可以使得各個線程擁有變量的副本而不會相互影響，底層是使用 Thread 類的 &lt;code&gt;ThreadLocalMap&lt;/code&gt;，一個類似 HashMap 的結構，其 Key 爲 ThreadLocal 對象的弱引用。&lt;/p&gt;
+&lt;p&gt;多線程因會有多個線程操作共享的資源而引發了線程安全的擔憂。線程安全要求&lt;strong&gt;原子性、可見性和有序性&lt;/strong&gt;。Java 提供了多種方式可以保證線程安全：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;synchronized 同步鎖，這是一個重量級鎖。可以使用當前類的 class 對象，當前類的對象或者任意對象對方法和代碼塊進行加鎖，方法結束或代碼塊結束則鎖自動釋放。當使用非靜態同步方法時，會使用當前對象爲鎖，因此多個非靜態同步方法共享同一鎖。Java 1.6 後引入&lt;strong&gt;偏向鎖&lt;/strong&gt;和&lt;strong&gt;輕量級鎖&lt;/strong&gt;的概念，使得 synchronized 不那麼「重」了。&lt;/li&gt;
+&lt;li&gt;volatile 關鍵字。使用該關鍵字修飾的變量在編譯時不會有寄存器緩存而是直接使用主存、不會進行代碼重排序優化，保證了可見性和有序性；在解釋執行時使用 CPU 內存屏障技術防止指令重排序。&lt;/li&gt;
+&lt;li&gt;CAS(Compare and Swap) 技術，相比於 synchronized，其假定操作是不會產生衝突的，將舊的預期值和內存中的值進行比較，若相同則更新內存中的值，否則自旋。因此被稱之爲「樂觀鎖」，而 synchronized 被稱之爲「悲觀鎖」。Java 中的 Atomic 類是典型的 CAS 實現。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;多線程操作共享資源還會出現死鎖。死鎖產生的條件是：&lt;strong&gt;互斥、請求/等待、不可剝奪和循環等待&lt;/strong&gt;。解決死鎖問題的關鍵是破壞死鎖產生的條件。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Java" scheme="https://tsunhua@github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java 集合</title>
+    <link href="https://tsunhua@github.io/2021/02/06/it/java/java-collection/"/>
+    <id>https://tsunhua@github.io/2021/02/06/it/java/java-collection/</id>
+    <published>2021-02-05T16:21:16.664Z</published>
+    <updated>2021-02-05T16:21:16.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Java 集合分 List、Set、Map 三大類，其中 List 和 Set 實現了 Collection 接口。List 的特點是數據有序、可重複；Set 的特點是數據無序、不可重複；Map 存儲鍵值映射，Key 不可重複，Value 可重複，且一個 Key 只能對應一個 Value。&lt;/p&gt;
+&lt;p&gt;List 有一實現 &lt;code&gt;ArrayList&lt;/code&gt;，其底層實現是對象數組，默認容量是 10，但等到首次添加元素時才分配內存，每次遞增爲上次容量的 1.5 倍。在添加大量元素之前，建議調用 &lt;code&gt;ensureCapacity&lt;/code&gt; 方法擴容，以減少遞增式再分配內存的次數。&lt;/p&gt;
+&lt;p&gt;Set 有一實現 &lt;code&gt;HashSet&lt;/code&gt;，其底層實現是 &lt;code&gt;HashMap&lt;/code&gt; ，其檢查重複的機制有賴於 &lt;code&gt;hashCode&lt;/code&gt; 和 &lt;code&gt;equals&lt;/code&gt; 方法。&lt;/p&gt;
+&lt;p&gt;Map 有一實現 &lt;code&gt;HashMap&lt;/code&gt; ，JDK 1.8 之後其底層實現是：&lt;strong&gt;數組 + 鏈表 + 紅黑二叉樹&lt;/strong&gt;。紅黑樹是爲了減少搜索時間，默認當鏈表長度大於 8 且當前數組長度大於等於 64 時，鏈表會轉爲紅黑樹。數組默認容量是 16，通過帶參構造方法傳入的容量值如非 2 的幂次會自動向上轉爲 2 的幂次，以便元素散列存儲（元素位置才可通過 &lt;code&gt;hash &amp;amp; (length-1)&lt;/code&gt; 確定）。添加元素時，若元素數量大於數組長度的 75% 且該元素存在哈希衝突，則觸發擴容機制，數組容量翻倍。&lt;/p&gt;
+&lt;p&gt;總結下 HashMap 中解決哈希衝突的方式：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;使用鏈表 — 拉鍊法；&lt;/li&gt;
+&lt;li&gt;使用紅黑二叉樹；&lt;/li&gt;
+&lt;li&gt;擴容底層數組；&lt;/li&gt;
+&lt;li&gt;強制數組容量爲 2 之幂次；&lt;/li&gt;
+&lt;li&gt;將元素的 hash 值的高位分散到低位等等。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;ArrayList&lt;/code&gt;、&lt;code&gt;HashSet&lt;/code&gt;、&lt;code&gt;HashMap&lt;/code&gt; 都是線程不安全的。在多線程環境下應使用 J.U.C 包下的對應的並發類 &lt;code&gt;CopyOnWriteArrayList&lt;/code&gt; 、&lt;code&gt;ConcurrentHashMap&lt;/code&gt; （&lt;code&gt;HashSet&lt;/code&gt; 用&lt;code&gt;ConcurrentHashMap&lt;/code&gt; 的 keySet 可得 Set 視圖）。&lt;code&gt;CopyOnWriteArrayList&lt;/code&gt; 會在寫時加鎖並複製集合進行操作；&lt;code&gt;ConcurrentHashMap&lt;/code&gt; 在 JDK 1.7 使用分段鎖，在 JDK 1.8 取消分段鎖採用 CAS（樂觀鎖） 和 synchronized（悲觀鎖） 只對鏈表或紅黑二叉樹的節點加鎖。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Java" scheme="https://tsunhua@github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java 基礎</title>
+    <link href="https://tsunhua@github.io/2021/02/06/it/java/java-basic/"/>
+    <id>https://tsunhua@github.io/2021/02/06/it/java/java-basic/</id>
+    <published>2021-02-05T16:21:16.565Z</published>
+    <updated>2021-06-14T15:54:20.179Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Java 自 95 年誕生至今，已有 25 年的歷史。它是一種半編譯的語言，先將代碼編譯成字節碼，然後在 JVM 中解釋執行。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;它是一種面向對象的語言，封裝、繼承和多態它都有，類可以多實現但不支持多繼承，而接口可以多繼承。&lt;/li&gt;
+&lt;li&gt;它支持 8 種基本數據類型，同時還提供了其包裝類型，另外還提供了 BigDecimal 精確處理浮點數、提供了 BigInteger 處理大整數。&lt;/li&gt;
+&lt;li&gt;它的方法只有值傳遞，傳遞對象時它是淺拷貝而非深拷貝。類的方法可以被子類重寫，同個類可以有多個同名的重載方法。&lt;/li&gt;
+&lt;li&gt;它支持泛型，一種將類型參數化的技術。不過，也有人稱之爲「僞泛型」，因爲類型會在編譯時被擦除。&lt;/li&gt;
+&lt;li&gt;它支持反射，一種在運行時操作任意對象的方法和屬性的技術，這在框架應用中很常見。&lt;/li&gt;
+&lt;li&gt;它提供了豐富的集合類、迭代器及工具類。&lt;/li&gt;
+&lt;li&gt;它支持多線程，一種在程序進程中同時執行多個任務的技術，同時還有豐富的鎖類型，所有對象的頭信息裏都有一個鎖標識。&lt;/li&gt;
+&lt;li&gt;它支持異常處理，Exception 分編譯時異常和運行時異常，編譯時異常可以被編譯器檢查到，而運行時異常只能在程序運行時發生。&lt;/li&gt;
+&lt;li&gt;它有豐富的 I/O API，派生自 4 個抽象類，InputStream、OutputStream、Reader、Writer，字符流的出現是爲了減少 JVM 進行字符編碼解碼的資源損耗和編解碼錯誤。&lt;/li&gt;
+&lt;li&gt;另外，目前有兩大項目管理工具，Maven 和 Gradle。&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    
+    <category term="Java" scheme="https://tsunhua@github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>十二生肖、干支紀年法與Go語言編程</title>
+    <link href="https://tsunhua@github.io/2021/02/06/it/go/zodiac-ganzhi-go/"/>
+    <id>https://tsunhua@github.io/2021/02/06/it/go/zodiac-ganzhi-go/</id>
+    <published>2021-02-05T16:21:16.558Z</published>
+    <updated>2021-02-05T16:21:16.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;如無特殊說明，本文標音採用甲子話拼音方案。甲子話系陸豐市甲子鎮通行的語言，屬閩南語潮汕話三甲片。&lt;/p&gt;
+&lt;h2 id=&quot;十二生肖&quot;&gt;&lt;a href=&quot;#十二生肖&quot; class=&quot;headerlink&quot; title=&quot;十二生肖&quot;&gt;&lt;/a&gt;十二生肖&lt;/h2&gt;&lt;p&gt;十二生肖本地讀音爲：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;鼠牛虎兔 /cu² ngu⁵ hao² tao³/&lt;/li&gt;
+&lt;li&gt;龍蛇馬羊 /lêng⁵ zua⁵ bhê² ion⁵/&lt;/li&gt;
+&lt;li&gt;猴雞狗豬 /gao⁵ goi¹ gao² du¹/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;干支紀年法&quot;&gt;&lt;a href=&quot;#干支紀年法&quot; class=&quot;headerlink&quot; title=&quot;干支紀年法&quot;&gt;&lt;/a&gt;干支紀年法&lt;/h2&gt;&lt;p&gt;「干」是天干，有 10：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;甲乙丙丁 /gah⁴ ig⁴ bian² dêng¹/&lt;/li&gt;
+&lt;li&gt;戊己庚辛 /bhao⁷ gi² gên¹ sing¹/&lt;/li&gt;
+&lt;li&gt;壬癸 /rim⁶ gui³/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;「支」是地支，有 12：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;子丑寅卯 /zu² tiu² ing⁵ bhao²/&lt;/li&gt;
+&lt;li&gt;辰巳午未 /sing⁵ zi⁶ ngao² bhi⁷/&lt;/li&gt;
+&lt;li&gt;申酉戌亥 /sing¹ iu² sug⁴ hai⁶/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;天干從甲開始，地支從子開始，天干地支相配形成 60 種組合，用來紀年。從甲子出發，60 年後又回到甲子，因此稱 60 年爲「一甲子」。&lt;/p&gt;
+&lt;p&gt;十二地支與十二生肖相對應，因此也用生肖紀年。如甲子年，地支爲「子」，對應生肖「鼠」，因此甲子年也稱之為「鼠年」。&lt;/p&gt;
+&lt;h2 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;問題1：已知 2020 年是鼠年，請問 2021 年是什麼年？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;排在鼠之後的生肖是牛，因此 2021 年是牛年。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;問題2：已知 2020 年是庚子年 /gên¹ zu² ni⁵/，請問 2021 年是什麼年？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;庚之後爲辛，子之後爲丑，因此 2021 年是辛丑年 /sing¹ tiu² ni⁵/。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;問題3：已知 1024 年是甲子年，問最近過去的甲子年和將要到來的甲子年是公元多少年？&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="甲子話" scheme="https://tsunhua@github.io/tags/%E7%94%B2%E5%AD%90%E8%A9%B1/"/>
+    
+    <category term="Go" scheme="https://tsunhua@github.io/tags/Go/"/>
+    
+    <category term="十二生肖" scheme="https://tsunhua@github.io/tags/%E5%8D%81%E4%BA%8C%E7%94%9F%E8%82%96/"/>
+    
+    <category term="干支紀年法" scheme="https://tsunhua@github.io/tags/%E5%B9%B2%E6%94%AF%E7%B4%80%E5%B9%B4%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《Go 設計與實現》筆記之第二章 編譯原理</title>
+    <link href="https://tsunhua@github.io/2021/02/06/it/go/go-design-and-implementation-02/"/>
+    <id>https://tsunhua@github.io/2021/02/06/it/go/go-design-and-implementation-02/</id>
+    <published>2021-02-05T16:21:16.536Z</published>
+    <updated>2021-02-05T16:21:16.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;編譯原理這一章講 Go 的源代碼是如何變成二進制碼的，可分爲四個過程：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;詞法和語法分析 lexical and grammar analysis&lt;/li&gt;
+&lt;li&gt;類型檢查 type check&lt;/li&gt;
+&lt;li&gt;中間代碼生成 IR(intermediate representation) generation&lt;/li&gt;
+&lt;li&gt;機器碼生成 machine code generation&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;詞法分析是將源代碼視爲字符串序列，對各個字符串進行標記，生成 Token 序列。&lt;/p&gt;
+&lt;p&gt;語法分析是將 Token 序列按照 LALR(1)（向前查看和自底向上解析）的解析文法進行解析，生成一棵AST (抽象語法樹 )。&lt;/p&gt;
+&lt;p&gt;類型檢查分靜態類型檢查和動態類型檢查，靜態類型檢查會在編譯期對變量賦值、返回值和函數參數進行類型檢查；動態類型檢查在代碼運行時進行，可以實現向下類型轉換、延遲綁定和反射等功能。&lt;/p&gt;
+&lt;p&gt;中間代碼生成階段首先會進行 ssaconfig 的初始化，緩存可能需要用到的類型和指針；然後進行遍歷和替換，將內建函數 make、map、channel、new、select、panic、recover 等等替換成 runtime 包的函數。最後不斷地進行中間代碼生成，優化代碼，生成類似彙編代碼的代碼。&lt;/p&gt;
+&lt;p&gt;機器碼生成階段分兩個部分：一是 SSA 中間代碼降級、針對特定CPU架構的中間代碼優化和重寫，最後生成相當接近特定架構彙編代碼的指令；二是將特定架構的指令轉成二進制代碼。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Go" scheme="https://tsunhua@github.io/tags/Go/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《Go 設計與實現》筆記之第一章 準備工作</title>
+    <link href="https://tsunhua@github.io/2021/02/06/it/go/go-design-and-implementation-01/"/>
+    <id>https://tsunhua@github.io/2021/02/06/it/go/go-design-and-implementation-01/</id>
+    <published>2021-02-05T16:21:16.474Z</published>
+    <updated>2021-02-05T16:21:16.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;深入學習 Go 語言的設計與實現之前要準備以下工作：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;克隆 Go 倉庫源代碼並編譯它。&lt;/li&gt;
+&lt;li&gt;了解 Plan 9 彙編，知道 Go 的棧結構並能分析代碼的執行過程。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;彙編者，二進制代碼的文本形式也，其最大的特點就是不可移植。Plan 9 彙編是貝爾實驗室的九號計劃的產物，目前被用於 Go 程序編譯的中間代碼，因爲 Go 的作者 Rob Pike，同時也是 Plan 9 彙編的作者。&lt;/p&gt;
+&lt;p&gt;Plan 9 彙編指令與 Intel 等彙編等的不同在於：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;一般情況下，命令的源操作數在先，目的操作數在後。 如同樣是將十六進制的 10 傳送到 AX寄存器，在 Plan 9 中是 &lt;code&gt;MOVQ $0x10, AX&lt;/code&gt; ，而在 Intel 彙編中是 &lt;code&gt;mov rax, 0x10&lt;/code&gt; 。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;棧的調整通過硬件 SP 寄存器進行加減運算實現。而 Intel 彙編中通過 push 和 pop 命令實現。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;操作的數據長度取決於命令的後綴。而 Intel 彙編取決於寄存器。&lt;/p&gt;
+ &lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// plan 9 彙編&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;MOVB $&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, DI      &lt;span class=&quot;comment&quot;&gt;// 1 byte&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;MOVW $&lt;span class=&quot;number&quot;&gt;0x10&lt;/span&gt;, BX   &lt;span class=&quot;comment&quot;&gt;// 2 bytes&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;MOVD $&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, DX      &lt;span class=&quot;comment&quot;&gt;// 4 bytes&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;MOVQ $&lt;span class=&quot;number&quot;&gt;-10&lt;/span&gt;, AX     &lt;span class=&quot;comment&quot;&gt;// 8 bytes&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// intel 彙編&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;mov rax, &lt;span class=&quot;number&quot;&gt;0x1&lt;/span&gt;   &lt;span class=&quot;comment&quot;&gt;// 8 bytes&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;mov eax, &lt;span class=&quot;number&quot;&gt;0x100&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;// 4 bytes&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;mov ax, &lt;span class=&quot;number&quot;&gt;0x22&lt;/span&gt;   &lt;span class=&quot;comment&quot;&gt;// 2 bytes&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;mov ah, &lt;span class=&quot;number&quot;&gt;0x33&lt;/span&gt;   &lt;span class=&quot;comment&quot;&gt;// 1 byte&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;mov al, &lt;span class=&quot;number&quot;&gt;0x44&lt;/span&gt;   &lt;span class=&quot;comment&quot;&gt;// 1 byte&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;通過分析 Plan 9 彙編代碼我們可以繪製出如下的棧結構：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2021/02/06/it/go/go-design-and-implementation-01/Untitled.png&quot; alt&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Go" scheme="https://tsunhua@github.io/tags/Go/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Go 基礎</title>
+    <link href="https://tsunhua@github.io/2021/02/06/it/go/go-basic/"/>
+    <id>https://tsunhua@github.io/2021/02/06/it/go/go-basic/</id>
+    <published>2021-02-05T16:21:16.428Z</published>
+    <updated>2021-02-05T16:21:16.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Go 又稱 Golang，是 Google 公司 2009 年發佈的一款開源編程語言，以簡潔而高效的代碼著稱。Go 目前使用 GOPATH 或 Go modules 管理項目中的第三方依賴，且不支持循環依賴。&lt;/p&gt;
+&lt;p&gt;Go 的基本數據類型有 16 種(不包含別名)，可謂豐富。要注意的是 string 也是基本數據類型，表示一個 UTF-8 字符串，底層是 byte 數組。單個字符使用一個 int32 的別名 rune 表示，其值爲 Unicode 字符碼點。&lt;/p&gt;
+&lt;p&gt;Go 的變量使用 var 關鍵字聲明，也可以使用短變量聲明；常量則是使用 const 關鍵字聲明。&lt;/p&gt;
+&lt;p&gt;Go 有 if 條件語句、for 循環語句、switch 選擇語句和 defer 延遲執行語句。Go 的 for 語句兼具其他語言的 while 語句；switch 語句每個 case 條件都支持運算，且默認自動 break；defer 語句可以立即計算參數值，然後在函數 return 前執行。&lt;/p&gt;
+&lt;p&gt;Go 的可見性跟標識符的首字母是否大寫相關，大寫則是導出的，包外可見；小寫則是非導出的，包外不可見。&lt;/p&gt;
+&lt;p&gt;Go 有指針，要注意 &lt;code&gt;&amp;amp;&lt;/code&gt; 是生成指向操作數的指針，而 &lt;code&gt;*&lt;/code&gt; 是獲取指針指向的底層值。&lt;/p&gt;
+&lt;p&gt;Go 將一些字段組合成一個結構體(struct) 。結構體支持隱式間接調用，即 p.X 等價於 (*p).X（p 爲結構體指針）。&lt;/p&gt;
+&lt;p&gt;Go 支持數組，更重要的是支持一種名爲切片(slice) 的動態數組。切片是一個數組片段的描述，包含指向數組的指針、片段的長度和容量。&lt;/p&gt;
+&lt;p&gt;Go 支持映射(map)。&lt;/p&gt;
+&lt;p&gt;Go 支持函數(function)的命名返回值、多值返回、作爲值傳遞和閉包。還有一種稱爲方法(method)的特殊函數，其帶有接收者參數，接收者可以是值接收者也可以是指針接收者，指針接收者可以更改接收者的值。&lt;/p&gt;
+&lt;p&gt;Go 支持將一些方法簽名組成接口(interface)。接口的實現是隱式的，不需要「implements」。一個結構體作爲接收者定義了接口中的所有方法，那麼該結構體就是實現了該接口。因爲隱式的緣故，建議接口方法盡可能少，以便管理。接口是值，可以傳遞。底層值是 nil 的接口，其方法可以被調用；接口本身爲 nil ，則意味著其不保存值也不保存具體類型；空接口(interface{})是包含零個函數的接口，不是爲 nil 接口。&lt;/p&gt;
+&lt;p&gt;Go 的異常處理很簡單，只有 Error，沒有 throws。&lt;/p&gt;
+&lt;p&gt;Go 支持 Go 程，一種 Go運行時管理的輕量級線程。Go 程之間可以通過信道(channel) 通信，通過 Mutex 或 RWMutex 共享互斥變量，通過 WaitGroup 等待執行完成。 &lt;/p&gt;
+&lt;p&gt;Go 中的信道還支持通過 for-range 循環讀取數據，當信道關閉時該循環自動退出。記住，只有發送方可以關閉信道，接收方不能。信道還支持 select 語句，其會&lt;strong&gt;阻塞到某一分支可以執行爲止&lt;/strong&gt;，如沒有分支可以執行且設定了default 語句，會一直執行 default 語句。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Go" scheme="https://tsunhua@github.io/tags/Go/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://tsunhua@github.io/2019/09/01/Hello/"/>
+    <id>https://tsunhua@github.io/2019/09/01/Hello/</id>
+    <published>2019-09-01T09:02:23.000Z</published>
+    <updated>2021-02-05T16:21:16.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Hello" scheme="https://tsunhua@github.io/tags/Hello/"/>
+    
+  </entry>
+  
+</feed>

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <html lang="en"></html>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-128207704-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>JVM | 編舟堂</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="JVM(Java Virtual Machine)，即 Java 虛擬機，是操作系統上的一個程序，用於編譯、運行Java程序，使得 Java程序可以跨平台。關於 JVM 我們著重在內存區域、類的加載、對象的創建和內存管理四個部分。 內存區域分爲堆、方法區、程序計數器、虛擬機棧和本地方法棧。其中堆和方法區是線程共享的，程序計數器、虛擬機棧和本地方法棧則是線程私有的。堆是一大塊內存，幾乎所有的對象實例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM">
+<meta property="og:url" content="https://tsunhua@github.io/2021/02/06/it/java/java-jvm/index.html">
+<meta property="og:site_name" content="編舟堂">
+<meta property="og:description" content="JVM(Java Virtual Machine)，即 Java 虛擬機，是操作系統上的一個程序，用於編譯、運行Java程序，使得 Java程序可以跨平台。關於 JVM 我們著重在內存區域、類的加載、對象的創建和內存管理四個部分。 內存區域分爲堆、方法區、程序計數器、虛擬機棧和本地方法棧。其中堆和方法區是線程共享的，程序計數器、虛擬機棧和本地方法棧則是線程私有的。堆是一大塊內存，幾乎所有的對象實例">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-jvm/Untitled.png">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-jvm/Untitled%201.png">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-jvm/Untitled%202.png">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-jvm/Untitled%203.png">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-jvm/Untitled%204.png">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-jvm/Untitled%205.png">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-jvm/Untitled%206.png">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-jvm/Untitled%207.png">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-jvm/Untitled%208.png">
+<meta property="article:published_time" content="2021-02-05T16:21:16.845Z">
+<meta property="article:modified_time" content="2021-02-05T16:21:16.000Z">
+<meta property="article:author" content="Hua">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-jvm/Untitled.png">
+  
+  
+    <link rel="shortcut icon" href="favicon.ico" />
+  
+  
+    <link href="//fonts.font.im/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="編舟堂" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">編舟堂</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="/">主頁</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://dicthub.cn/">典合網</a>
+        
+        <a class="main-nav-link" href="/atom.xml">RSS</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://tsunhua@github.io"></form> -->
+        <form action="//cn.bing.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="搜尋">
+          <button type="submit" class="search-form-submit"></button>
+          <input type="hidden" name="sitesearch" value="url">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-it/java/java-jvm" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/02/06/it/java/java-jvm/" class="article-date">
+  <time datetime="2021-02-05T16:21:16.845Z" itemprop="datePublished">2021-02-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JVM
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+          <div id="toc" class="toc-article">
+              <strong class="toc-title">目錄</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A7%E5%AD%98%E5%8D%80%E5%9F%9F"><span class="toc-number">1.</span> <span class="toc-text">內存區域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86-Heap"><span class="toc-number">1.1.</span> <span class="toc-text">堆(Heap)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%8D%80-Method-Area"><span class="toc-number">1.2.</span> <span class="toc-text">方法區(Method Area)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E5%85%A7%E5%AD%98-Direct-Memory"><span class="toc-number">1.3.</span> <span class="toc-text">直接內存(Direct Memory)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E8%A8%88%E6%95%B8%E5%99%A8-Program-Counter"><span class="toc-number">1.4.</span> <span class="toc-text">程序計數器(Program Counter)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%A7-Stack"><span class="toc-number">1.5.</span> <span class="toc-text">棧(Stack)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%9E%E7%9A%84%E5%8A%A0%E8%BC%89"><span class="toc-number">2.</span> <span class="toc-text">類的加載</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%9E%E7%9A%84%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F"><span class="toc-number">2.1.</span> <span class="toc-text">類的生命週期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%9E%E5%8A%A0%E8%BC%89%E5%99%A8-ClassLoader"><span class="toc-number">2.2.</span> <span class="toc-text">類加載器(ClassLoader)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8D%E8%B1%A1%E7%9A%84%E5%89%B5%E5%BB%BA"><span class="toc-number">3.</span> <span class="toc-text">對象的創建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8D%E8%B1%A1%E7%9A%84%E5%89%B5%E5%BB%BA%E9%81%8E%E7%A8%8B"><span class="toc-number">3.1.</span> <span class="toc-text">對象的創建過程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8D%E8%B1%A1%E7%9A%84%E5%85%A7%E5%AD%98%E4%BD%88%E5%B1%80"><span class="toc-number">3.2.</span> <span class="toc-text">對象的內存佈局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8D%E8%B1%A1%E7%9A%84%E8%A8%AA%E5%95%8F"><span class="toc-number">3.3.</span> <span class="toc-text">對象的訪問</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A7%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">內存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A7%E5%AD%98%E5%88%86%E9%85%8D"><span class="toc-number">4.1.</span> <span class="toc-text">內存分配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%88%A4%E5%AE%9A"><span class="toc-number">4.2.</span> <span class="toc-text">垃圾判定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95"><span class="toc-number">4.3.</span> <span class="toc-text">垃圾收集算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-number">4.4.</span> <span class="toc-text">垃圾收集器</span></a></li></ol></li></ol>
+          </div>
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>JVM(Java Virtual Machine)，即 Java 虛擬機，是操作系統上的一個程序，用於編譯、運行Java程序，使得 Java程序可以跨平台。關於 JVM 我們著重在內存區域、類的加載、對象的創建和內存管理四個部分。</p>
+<p>內存區域分爲堆、方法區、程序計數器、虛擬機棧和本地方法棧。其中堆和方法區是線程共享的，程序計數器、虛擬機棧和本地方法棧則是線程私有的。堆是一大塊內存，幾乎所有的對象實例都在這裡分配；方法區在JVM 規範中是堆的一部分，不同的 JVM 可以有不同的實現，就 HotSpot VM 而言，在 JDK1.8 之前使用永久代實現方法區，在JDK1.8及之後使用直接內存上的元空間實現；程序計數器存放下一條指令的地址；虛擬機棧的每一個棧幀保存著方法的局部變量表、操作數棧、動態連接和方法返回地址；本地方法棧類似虛擬機棧，不過是調用 native 方法，在 HotSpot VM中虛擬機棧和本地方法棧合而爲一。</p>
+<p>類的生命週期分爲加載、連接、初始化、使用和卸載四個過程，其中：</p>
+<ol>
+<li>加載：將 .class 文件以二進制字節流方式讀入虛擬機，並在方法區給靜態變量分配空間，在堆中生成 Class 對象作爲訪問靜態變量的入口。</li>
+<li>連接：分爲驗證、準備和解析三個階段，驗證階段驗證字節碼文件的合規性，準備階段將類變量賦予初始零值，解析階段將常量池中的符號引用轉爲直接引用。</li>
+<li>初始化：執行 <code>&lt;clinit&gt;</code> 方法。</li>
+</ol>
+<p>對象的創建過程依次是類加載檢查、分配內存、初始化零值、設置對象頭和執行<code>&lt;init&gt;</code> 方法。</p>
+<ol>
+<li>類加載檢查：檢查類是否加載完畢。</li>
+<li>分配內存：對象實例一般會分配在堆中，根據採用的垃圾回收器會選擇指針碰撞或空閒類表方式分配。JDK1.7之後啟用逃逸分析可以將未逃逸的對象分配到棧中。</li>
+<li>初始化零值：給對象的成員變量設置初始的零值。</li>
+<li>設置對象頭：對象頭包括所屬的類、對象哈希碼、GC分代年齡和鎖信息。</li>
+<li>執行 <code>&lt;init&gt;</code> 方法。</li>
+</ol>
+<p>Java 是自動內存管理的，內存的分配和回收由JVM進行控制。通常使用分代內存管理，分新生代、老年代和永久代(JDK1.8及之後無永久代)，新對象優先在新生代 Eden 區分配，大對象直接分配到老年代，持續存活的對象也會被轉移到老年代。</p>
+<p>內存回收涉及垃圾的判定、垃圾收集算法和垃圾收集器。</p>
+<p>判定垃圾通常有引用計數法和可達性分析算法。</p>
+<p>垃圾收集(GC)通常分部分收集(Partial GC)和整堆收集(Full GC)，部分收集分新生代收集(Minor GC / Young GC)、老年代收集(Major GC / Old GC)和混合收集(Mixed GC)</p>
+<p>垃圾收集算法通常有標記-清除算法、複製算法、標記-整理算法和分代收集算法。</p>
+<p>垃圾收集器中 ParNew 最早採用並行收集，CMS 最早採用並發收集。JDK1.8 中默認使用 Parallel Scavenge(新生代) + Parallel Old(老年代) 收集器，JDK9之後默認使用 G1 收集器。</p>
+<span id="more"></span>
+
+<h2 id="內存區域"><a href="#內存區域" class="headerlink" title="內存區域"></a>內存區域</h2><p>內存區域可以分爲：</p>
+<ol>
+<li>線程共享：堆、方法區（邏輯上屬於堆）、直接內存(非運行時內存)</li>
+<li>線程私有：程序計數器、虛擬機棧和本地方法棧</li>
+</ol>
+<h3 id="堆-Heap"><a href="#堆-Heap" class="headerlink" title="堆(Heap)"></a>堆(Heap)</h3><p>堆是進程中最大的一塊內存，用於存放對象實例，<strong>幾乎所有</strong>的對象實例都在堆中分配。</p>
+<p>JDK 1.7 開始默認開啟了逃逸分析，如果方法中的對象引用沒有逃逸出去（對象沒有 return 或被外面使用），那麼對象可以直接在棧上分配內存，而不是堆。</p>
+<p>一般來說，Java 中的堆根據對象實例的存活時長分爲<strong>新生代、老年代和永久代，以便於更好地回收和分配內存</strong>。</p>
+<p><img src="/2021/02/06/it/java/java-jvm/Untitled.png" alt></p>
+<ul>
+<li>Young Generation(新生代)<ul>
+<li>Eden(伊甸園)：一般情況下，新創建的對象實例默認分配到此區域。</li>
+<li>Survivor(幸存者)：包含 from 和 to 兩個區，Survivor區的對象實例來自 Eden和另一個 Survivor區，默認情況下對象<strong>至多</strong>在新生代中來回複製<strong>15次</strong>(可通過參數<code>-XX:MaxTenuringThreshold</code>設置)後才會進入 Old Generation。</li>
+</ul>
+</li>
+<li>Old Generation(老年代)</li>
+<li>Permanent Generation(永久代)：在 JDK1.8之前，HotSpot 虛擬機中使用永久代實現JVM規範中的方法區；JDK1.7 時字符串常量池從方法區(HotSpot永久代)移到了堆中；在 JDK1.8時永久代被移除，採用元空間(Metaspace)在直接內存中實現了JVM規範中的方法區。</li>
+</ul>
+<h3 id="方法區-Method-Area"><a href="#方法區-Method-Area" class="headerlink" title="方法區(Method Area)"></a>方法區(Method Area)</h3><p>根據 JVM 規範，方法區邏輯上是堆的一部分。這是一塊存放已被虛擬機加載的類信息、常量、靜態變量、即時編譯器編譯後的代碼等數據的區域，類似於 UNIX 中的進程對內存的劃分的文本區/代碼段(text segmemt/code segment)，通常只讀。</p>
+<p>在 JDK1.8之前，HotSpot 虛擬機中使用永久代實現JVM規範中的方法區；在 JDK1.8時永久代被移除，採用元空間(Metaspace)在直接內存中實現了JVM規範中的方法區。</p>
+<p>UNIX 中的進程將內存劃分成三個部分：</p>
+<ol>
+<li>text segment,文本區，例如代碼</li>
+<li>data segment，數據區，例如變量</li>
+<li>stack segment，棧區域</li>
+</ol>
+<h3 id="直接內存-Direct-Memory"><a href="#直接內存-Direct-Memory" class="headerlink" title="直接內存(Direct Memory)"></a>直接內存(Direct Memory)</h3><p>直接內存不是JVM 規範中定義的內存區域，不受Java堆的限制。</p>
+<ol>
+<li>JDK1.4 加入的 NIO，引入一種基於通道(Channel)和緩存區(Buffer)的 I/O 方式，可以直接使用 native 函數分配堆外內存。</li>
+<li>JDK1.8時永久代被移除，採用元空間(Metaspace)在直接內存中實現了JVM規範中的方法區。</li>
+</ol>
+<h3 id="程序計數器-Program-Counter"><a href="#程序計數器-Program-Counter" class="headerlink" title="程序計數器(Program Counter)"></a>程序計數器(Program Counter)</h3><p>程序計數器（Program Counter，PC）用於存放下一條指令所在單元的地址（注意：執行native方法時該地址爲 undefined）。字節碼解釋器通過改變 PC 來依次讀取指令，實現代碼的流程控制。在多線程的環境下，可以可以當前線程執行的位置，這樣當線程被切換回來的時候就可以從上次的位置繼續。通俗的譬喻就是遊戲中存檔。</p>
+<p>因此，PC 必須是線程私有的，否則線程切換後無法恢復到正確的位置。</p>
+<h3 id="棧-Stack"><a href="#棧-Stack" class="headerlink" title="棧(Stack)"></a>棧(Stack)</h3><p>棧有兩種：</p>
+<ol>
+<li><p><strong>虛擬機棧</strong>：每個 Java 方法在執行的同時會創建一個棧幀用於存儲方法的局部變量表、操作數棧、動態連接和方法返回地址等信息。從方法調用直到執行完成的過程，對應著一個棧幀在虛擬機棧入棧和出棧的過程。</p>
+<p> 所謂操作數棧就是一個供常量或變量寫入寫出的棧，出棧的方向可以是局部變量表或者直接返回給調用者。<br> 所謂動態連接就是在運行時將方法的符號引用轉爲直接引用的過程。</p>
+</li>
+<li><p><strong>本地方法棧</strong>：類似虛擬機棧，只不過是爲 native 方法服務。在 HotSpot 虛擬機中本地方法棧和虛擬機棧合而爲一。</p>
+</li>
+</ol>
+<p>爲了保證線程中的方法執行所需的數據（包括局部變量等）不被其他線程訪問，所以虛擬機棧和本地方法棧是線程私有的。</p>
+<h2 id="類的加載"><a href="#類的加載" class="headerlink" title="類的加載"></a>類的加載</h2><h3 id="類的生命週期"><a href="#類的生命週期" class="headerlink" title="類的生命週期"></a>類的生命週期</h3><p><img src="/2021/02/06/it/java/java-jvm/Untitled%201.png" alt></p>
+<p><strong>（1）加載</strong></p>
+<ol>
+<li>將 .class 文件轉爲<strong>二進制字節流</strong>裝載進<strong>類加載器</strong>(ClassLoader)；</li>
+<li>將其中代表的<strong>靜態</strong>存儲結構轉換爲<strong>方法區</strong>中的<strong>運行時數據結構</strong>；</li>
+<li>在<strong>內存</strong>中生成一個 <strong>Class 對象</strong>，作爲方法區中數據的訪問入口。</li>
+</ol>
+<p><strong>（2）連接</strong></p>
+<p>連接階段分爲驗證、準備和解析三個步驟。該階段和加載階段不是順序執行的，存在交叉，即加載未完成時連接就開始了。</p>
+<ol>
+<li>驗證：進行文件格式驗證、元數據驗證、字節碼驗證和符號引用驗證。</li>
+<li>準備：爲<strong>類變量</strong>（靜態變量）分配內存並設置初始值（默認的零值，除非有 final 字段才會設置爲最終的初始值）。</li>
+<li>解析：將常量池內的符號引用替換爲直接引用。</li>
+</ol>
+<p><strong>符號引用</strong>：描述目標的一組符號（字面量），包括類、接口、字段、類方法、接口方法、方法類型、方法句柄和調用限定符。<br><strong>直接引用</strong>：直接指向目標的指針、相對偏移量或一個間接定位到目標的句柄。</p>
+<p><strong>（3）初始化</strong></p>
+<p>初始化階段是執行初始化方法 <code>&lt;clinit&gt;</code> 方法的過程。初始化的時機有：</p>
+<ol>
+<li>直接 new 一個類會觸發類的初始化。</li>
+<li>對類進行反射調用會自動初始化。</li>
+<li>父類會在子類初始化時自動初始化。</li>
+<li>主類（包含main方法）會隨虛擬機啟動自動初始化。</li>
+<li>Java 8 中的默認接口方法會在其實現類初始化時自動初始化。</li>
+<li>…</li>
+</ol>
+<p><strong>（4）卸載</strong></p>
+<p>卸載就是該類的 Class 對象被 GC（垃圾回收）。卸載類需要滿足：</p>
+<ol>
+<li>該類的所有實例對象都被 GC。</li>
+<li>該類 Class 對象沒有其他任何地方被引用。</li>
+<li>該類的類加載器的實例被 GC（自帶的類加載器在JVM生命週期中不會被卸載，因此由之加載的類也不會被卸載，除非是自定義的類加載器，由之加載的類才有可能被卸載）。</li>
+</ol>
+<h3 id="類加載器-ClassLoader"><a href="#類加載器-ClassLoader" class="headerlink" title="類加載器(ClassLoader)"></a>類加載器(ClassLoader)</h3><p>自帶的類加載器有以下三種，分別加載不同路徑下的類：</p>
+<ol>
+<li><strong>BootstrapClassLoader(啟動類加載器)</strong>：最頂層的加載類，負責加載 <code>%JAVA_HOME%/lib</code>目錄下的類或者或被 <code>-Xbootclasspath</code>參數指定的路徑中的所有類。</li>
+<li><strong>ExtensionClassLoader(擴展類加載器)</strong>：繼承自<code>java.lang.ClassLoader</code>，負責加載 <code>%JRE_HOME%/lib/ext</code> 目錄下的類，或系統變量 <code>java.ext.dirs</code> 所指定的路徑下的類。</li>
+<li><strong>AppClassLoader(應用程序類加載器)</strong>：繼承自<code>java.lang.ClassLoader</code>，記載當前應用 classpath 下的類。</li>
+</ol>
+<p>JVM 採用<strong>雙親委派模型(parent-delegation model)</strong>協調類加載器加載類。所謂雙親委派模型就是當一個類要加載時會委託其父類加載器進行加載，如果父類加載器已經加載過會直接返回；如果一直沒有父類加載器處理，會最終委託到頂層類加載器 <strong>BootstrapClassLoader</strong>；當所有<strong>父系類加載器</strong>都無法處理時才會自行加載。</p>
+<p>爲何要這樣麻煩，不一開始就自己加載類呢？<strong>避免類被重複加載，避免 Java 核心類被修改</strong>。注意：同一個類文件被不同的類加載器加載之後會生成不同的類。</p>
+<h2 id="對象的創建"><a href="#對象的創建" class="headerlink" title="對象的創建"></a>對象的創建</h2><h3 id="對象的創建過程"><a href="#對象的創建過程" class="headerlink" title="對象的創建過程"></a>對象的創建過程</h3><p><img src="/2021/02/06/it/java/java-jvm/Untitled%202.png" alt></p>
+<p>在 HotSpot 虛擬機中，一個 Java 對象的創建經歷以下幾個步驟：</p>
+<ol>
+<li><strong>類加載檢查</strong>。請看「類的加載」部分。</li>
+<li><strong>分配內存</strong>。在堆中分配一塊內存空間供對象使用。有兩種分配方式：<ul>
+<li>指針碰撞：當內存規整時，使用和未使用的內存中間會有一個分界指針，只要指針朝未使用內存方法移動即可分配內存。</li>
+<li>空閒列表：當內存不規整時，虛擬機會維護一個內存的可用列表，分配時會確定一塊大小合適的內存並更新可用列表。</li>
+</ul>
+</li>
+<li><strong>初始化零值</strong>。保證對象實例字段可以不用賦予初始值就可以使用。</li>
+<li><strong>設置對象頭</strong>。對象的元數據，包括所屬的類、對象哈希碼、GC分代年齡以及鎖信息。</li>
+<li><strong>執行 <code>&lt;init&gt;</code> 方法</strong>。代碼視角的對象初始化。</li>
+</ol>
+<p>比較<code>&lt;clinit&gt;</code> 和 <code>&lt;init&gt;</code>方法：</p>
+<ol>
+<li><code>&lt;clinit&gt;</code> 方法：class init 類構造器，按順序執行父類靜態變量初始化、父類靜態語句塊、子類靜態變量初始化、子類靜態語句塊。</li>
+<li><code>&lt;init&gt;</code> 方法：實例構造器，按順序執行父類變量初始化、父類語句塊、父類構造函數、子類變量初始化、子類語句塊、子類構造函數。</li>
+</ol>
+<h3 id="對象的內存佈局"><a href="#對象的內存佈局" class="headerlink" title="對象的內存佈局"></a>對象的內存佈局</h3><p>在 Hotspot 虛擬機中，Java對象在內存中由以下部分組成：</p>
+<ol>
+<li>對象頭（object header）：由 mark word 和 class pointer 組成。mark word 存儲了對象的 hashcode、GC信息和鎖信息；class pointer 存儲了指向類對象的指針。32 位的 JVM 上對象頭佔 8 個字節，mark word 和 class pointer 各佔一半。64 位的 JVM 默認開啟了壓縮指針選項（-XX+UseCompressedOops）後上對象頭佔用 12 個字節，mark word 佔用 8 個字節，class pointer 佔用 4 個字節。</li>
+<li>實例數據（instance data）：對象的有效信息。</li>
+<li>對齊填充（padding）：Hotspot 虛擬機的自動內存管理系統要求對象起始地址必須是 8 字節的整數倍，當實例數據不足時需要進行對齊填充。</li>
+</ol>
+<h3 id="對象的訪問"><a href="#對象的訪問" class="headerlink" title="對象的訪問"></a>對象的訪問</h3><p>Java 程序通過棧上的 reference 類型數據來操作訪問堆上的實例對象。具體來說有以下兩種實現方式：</p>
+<ol>
+<li><p>句柄(handle)：操作對象的中間媒介，通過句柄獲取具體對象實例的指針，進而從實例池中獲取想要訪問的對象。</p>
+<p> <img src="/2021/02/06/it/java/java-jvm/Untitled%203.png" alt></p>
+</li>
+<li><p>直接指針(direct pointer)：reference 存儲對象地址，直接指向對象實例。HotSpot 虛擬機採用這種方式訪問對象，相對與句柄的方式，節約了一次定位對象的時間。</p>
+<p> <img src="/2021/02/06/it/java/java-jvm/Untitled%204.png" alt></p>
+</li>
+</ol>
+<h2 id="內存管理"><a href="#內存管理" class="headerlink" title="內存管理"></a>內存管理</h2><p>Java 是自動進行內存管理的，不同於 C/C++ 需要手動進行內存分配和回收。</p>
+<h3 id="內存分配"><a href="#內存分配" class="headerlink" title="內存分配"></a>內存分配</h3><ol>
+<li>對象優先在新生代 Eden 區分配。</li>
+<li>大對象直接進入老年代。<br>避免大對象<strong>分配擔保機制</strong>帶來的複製而降低效率。<br>分配擔保機制：當進行 Minor GC 時，如果 Survivor 區空間不夠用，會直接將新生代的對象提前轉移到老年代中。</li>
+<li>長期存活的對象將進入老年代。<br>每個對象都有一個對象年齡計數器，超齡的對象一般會進入老年代。</li>
+<li>根據採用的垃圾回收器會選擇指針碰撞或空閒類表方式分配。</li>
+</ol>
+<h3 id="垃圾判定"><a href="#垃圾判定" class="headerlink" title="垃圾判定"></a>垃圾判定</h3><ol>
+<li><p>引用計數法<br>給對象添加一個引用計數器，當有一個地方引用了該對象，計數器就加 1，引用失效則減 1。若計數爲 0 則判定該對象是垃圾。這種算法有個大缺陷就是無法解決循環引用問題：當對象 A 和對象B除了互相引用外別無引用時，A 和B的計數都不爲0不會判定爲垃圾，但顯然 A、B是垃圾啊。</p>
+</li>
+<li><p>可達性分析算法<br>以根集合 GC Roots 爲起點向下搜索形成引用鏈，當一個對象到 GC Roots沒有引用鏈時判定其爲垃圾。</p>
+<p> <img src="/2021/02/06/it/java/java-jvm/Untitled%205.png" alt></p>
+<p> 可作爲 GC Roots 的對象有:</p>
+<ul>
+<li>虛擬機棧(棧幀中的本地變量表)中引用的對象</li>
+<li>本地方法棧(Native 方法)中引用的對象</li>
+<li>方法區中類靜態屬性引用的對象</li>
+<li>方法區中常量引用的對象</li>
+</ul>
+</li>
+<li><p>廢棄常量的判定<br>沒有對象引用的常量就是廢棄常量。</p>
+</li>
+<li><p>廢棄類的判定</p>
+<p> 廢棄類需要滿足：</p>
+<ul>
+<li>該類的所有實例對象都被 GC。</li>
+<li>該類 Class 對象沒有其他任何地方被引用。</li>
+<li>該類的類加載器的實例被 GC（自帶的類加載器在JVM生命週期中不會被卸載，因此由之加載的類也不會被卸載，除非是自定義的類加載器，由之加載的類才有可能被卸載）。</li>
+</ul>
+</li>
+</ol>
+<h3 id="垃圾收集算法"><a href="#垃圾收集算法" class="headerlink" title="垃圾收集算法"></a>垃圾收集算法</h3><p>垃圾收集(Garbage Collection, GC)，指對判定爲垃圾的內存區域進行收集的過程。針對 HotSpot VM，GC 可分爲：</p>
+<ol>
+<li>部分收集 (Partial GC)：<ul>
+<li>新生代收集（Minor GC / Young GC）：只對新生代進行垃圾收集，Eden 區和 From 區的數據會進入 To 區，然後 From 和To會互換角色。</li>
+<li>老年代收集（Major GC / Old GC）：只對老年代進行垃圾收集。需要注意的是 Major GC 在有的語境中也用於指代整堆收集。</li>
+<li>混合收集（Mixed GC）：對整個新生代和部分老年代進行垃圾收集。</li>
+</ul>
+</li>
+<li>整堆收集 (Full GC)：收集整個 Java 堆和方法區。</li>
+</ol>
+<p>常見的垃圾收集算法有：</p>
+<ol>
+<li><p>標記-清除算法<br>分兩個階段進行，第一個階段標記要回收的垃圾；第二個階段統一清除垃圾。缺點是造成內存碎片化。</p>
+<p> <img src="/2021/02/06/it/java/java-jvm/Untitled%206.png" alt></p>
+</li>
+<li><p>複製算法<br>將內存分爲大小相同的兩塊，每次只使用其中的一塊。當一塊使用完後，將存活的對象複製到另一塊去，再把使用完的空間一次清理掉，避免了標記-清除算法的內存碎片化問題。</p>
+<p> <img src="/2021/02/06/it/java/java-jvm/Untitled%207.png" alt></p>
+</li>
+<li><p>標記-整理算法(Mark-Compact)<br>分兩個階段進行，第一個階段標記要回收的垃圾；第二個階段統一將存活對象向一端移動，然後清理掉端邊界之外的內存。</p>
+<p> <img src="/2021/02/06/it/java/java-jvm/Untitled%208.png" alt></p>
+</li>
+<li><p>分代收集算法<br>便於根據各個年代的特點選擇合適的垃圾收集算法：</p>
+</li>
+</ol>
+<ul>
+<li>新生代(From Survivor 和 To Survivor)：複製算法</li>
+<li>老年代：標記-清除 或 標記-整理算法</li>
+</ul>
+<h3 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h3><ol>
+<li><p>新生代收集器</p>
+<ol>
+<li>Serial<br>單線程，採用複製算法，串行，收集垃圾時會暫停其他所有的工作線程。</li>
+<li>ParNew (Parallel New)<br>Serial 的多線程版本，採用複製算法，<strong>並行—多條垃圾收集線程並行工作，仍然會暫停其他所有的工作線程(Stop the World)</strong>。</li>
+<li>Parallel Scavenge<br>直譯過來就是「並行清理垃圾」，也採用複製算法，這是 JDK1.8 默認的收集器。該算法關注<strong>吞吐量，即CPU中運行用戶代碼的時間與總消耗時間的比值</strong>。</li>
+</ol>
+</li>
+<li><p>老年代收集器</p>
+<ol>
+<li>Serial Old<br>Serial 的老年代版本，採用標記-整理算法。CMS 的後備方案。</li>
+<li>Parallel Old<br>Parallel Scavenge 的老年代版本，採用標記-整理算法。</li>
+<li>CMS (Concurrent Mark Sweep)<br>直譯過來就是「並發標記清除」，HotSpot 虛擬機第一款真正意義上的並發收集器，JDK1.5時發佈，採用標記-清除算法，<strong>並發—用戶線程與垃圾收集線程同時執行（但不一定是並行的，可能會交替執行），用戶程序在繼續運行</strong>。該算法關注<strong>用戶線程的停頓時間</strong>，綽號<strong>并发低停顿收集器</strong>（Concurrent Low Pause Collector）。缺點有三：<ul>
+<li>對 ****CPU 資源敏感；</li>
+<li>無法處理浮動垃圾；</li>
+<li>使用的「標記-清除」算法會導致內存碎片化。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>G1 (Garbage-First)</p>
+<p> 面向服務端應用的垃圾收集器，JDK1.7時發佈。特點是：並發與並行、分代收集、空間整合(標記-整理)和可預測的停頓。G1 收集器在後台維護了一個優先列表，每次根據允許的收集時間，優先選擇回收價值最大的區域。</p>
+</li>
+<li><p>ZGC (The Z Garbage Collector)</p>
+<p> JDK 11時發佈，適用於大內存低延遲服務的內存管理和回收。</p>
+</li>
+</ol>
+<p>使用以下命令可以查看JDK使用的垃圾收集器：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">java -XX:+PrintCommandLineFlags</span><br><span class="line">java -XX:+PrintGCDetails</span><br><span class="line">java -Xlog:gc <span class="comment"># 較新版本可用</span></span><br></pre></td></tr></table></figure>
+
+<p>不同 JDK 版本默認使用的垃圾收集器：</p>
+<ul>
+<li><p>1.8，Parallel Scavenge(新生代) + Parallel Old(老年代)</p>
+<p>  注意：PS 是「Parallel Scavenge」的簡寫，ParOld 是「Parallel Old」的簡寫。</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ java -version</span><br><span class="line">java version <span class="string">&quot;1.8.0_191&quot;</span></span><br><span class="line">Java(TM) SE Runtime Environment (build 1.8.0_191-b12)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 25.191-b12, mixed mode)</span><br><span class="line"></span><br><span class="line">$ java -XX:+PrintCommandLineFlags</span><br><span class="line">-XX:InitialHeapSize=266390080 -XX:MaxHeapSize=4262241280 -XX:+PrintCommandLineFlags </span><br><span class="line">-XX:+UseCompressedClassPointers -XX:+UseCompressedOops </span><br><span class="line">-XX:-UseLargePagesIndividualAllocation -XX:+UseParallelGC</span><br><span class="line"></span><br><span class="line">$ java -XX:+PrintGCDetails -version</span><br><span class="line">Heap</span><br><span class="line"> 	PSYoungGen      total 76288K, used 2621K [0x000000076b500000, 0x0000000770a00000, 0x00000007c0000000)</span><br><span class="line">  					eden space 65536K, 4% used [0x000000076b500000,0x000000076b78f748,0x000000076f500000)</span><br><span class="line">  					from space 10752K, 0% used [0x000000076ff80000,0x000000076ff80000,0x0000000770a00000)</span><br><span class="line">  					to   space 10752K, 0% used [0x000000076f500000,0x000000076f500000,0x000000076ff80000)</span><br><span class="line">  ParOldGen       total 175104K, used 0K [0x00000006c1e00000, 0x00000006cc900000, 0x000000076b500000)</span><br><span class="line">  					object space 175104K, 0% used [0x00000006c1e00000,0x00000006c1e00000,0x00000006cc900000)</span><br><span class="line"> 	Metaspace       used 2291K, capacity 4480K, committed 4480K, reserved 1056768K</span><br><span class="line">  					class space    used 254K, capacity 384K, committed 384K, reserved 1048576K</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>9、11、15，G1</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ java -version</span><br><span class="line">java version <span class="string">&quot;15.0.1&quot;</span> 2020-10-20</span><br><span class="line">Java(TM) SE Runtime Environment (build 15.0.1+9-18)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 15.0.1+9-18, mixed mode, sharing)</span><br><span class="line"></span><br><span class="line">$ java -XX:+PrintCommandLineFlags</span><br><span class="line">-XX:ConcGCThreads=1 -XX:G1ConcRefinementThreads=4 -XX:GCDrainStackTargetSize=64 -XX:InitialHeapSize=268435456 -XX:MarkStackSize=4194304 -XX:MaxHeapSize=4294967296 -XX:MinHeapSize=6815736 -XX:+PrintCommandLineFlags -XX:ReservedCodeCacheSize=251658240 -XX:+SegmentedCodeCache -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseG1GC</span><br><span class="line"></span><br><span class="line">$ java -Xlog:gc</span><br><span class="line">[0.006s][info][gc] Using G1</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://tsunhua@github.io/2021/02/06/it/java/java-jvm/" data-id="ckpwth6so001a4k3qeu7pbcay" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/02/06/language/jp/keitai-de-nihongo/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          携帯で日本語（手机上的日语）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/02/06/it/java/java-concurrent/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">Java 多線程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">貼示</h3>
+    <div class="widget" style="min-height: 50px;">
+        <img src="" height="50px" style="float: left; margin-right: 10px" />
+        <div style="font-size:medium; color:palevioletred;padding-top: 16px;">汝著愛忍耐，愛找覓家己的路來行</div>
+    </div>
+</div>
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">標籤雲</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Go/" style="font-size: 20px;">Go</a> <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/%E5%8D%81%E4%BA%8C%E7%94%9F%E8%82%96/" style="font-size: 10px;">十二生肖</a> <a href="/tags/%E5%B9%B2%E6%94%AF%E7%B4%80%E5%B9%B4%E6%B3%95/" style="font-size: 10px;">干支紀年法</a> <a href="/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/" style="font-size: 10px;">日本語</a> <a href="/tags/%E6%BD%AE%E5%8A%87/" style="font-size: 10px;">潮劇</a> <a href="/tags/%E6%BD%AE%E5%B7%9E%E8%A9%B1/" style="font-size: 15px;">潮州話</a> <a href="/tags/%E7%94%B2%E5%AD%90%E8%A9%B1/" style="font-size: 20px;">甲子話</a> <a href="/tags/%E8%81%86%E8%81%BD%E9%9F%B3%E6%A8%82/" style="font-size: 10px;">聆聽音樂</a> <a href="/tags/%E8%A9%A9%E7%B6%93/" style="font-size: 10px;">詩經</a> <a href="/tags/%E9%96%A9%E5%8D%97%E8%AA%9E/" style="font-size: 20px;">閩南語</a>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">二維碼</h3>
+    <div class="widget">
+        <img src="https://tsunhua.github.io/qrcode.jpg" width="100%" />
+    </div>
+</div>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">彙整</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/06/music/listen-chopin-raindrop/">聆聽音樂：蕭邦之「雨滴」</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/teochew-opera-ghe%CC%82gdengcung/">在潮劇中學之《玉堂春》</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/teochew-kahtsi-vowel/">潮州話與甲子話韻母差異（稿）</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/sige%CC%82ng-giamgia/">詩經·秦風‧蒹葭 (甲子話注音版)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/gahzi-oi-hung-lui-ci-biao/">甲子話分類辭表（2020.12）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="創用 CC 授權條款"
+          style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+      <br />
+      Writed by
+      <a xmlns:cc="http: //creativecommons.org/ns#" target="_blank" href="https://linlshare.github.io/" property="cc:attributionName"
+        rel="cc:attributionURL noopener">Hua
+      </a>
+
+      <br>
+      Powered by
+      <a href="https://github.com/" target="_blank">Github</a>&nbsp;&&nbsp;
+      <a href="https://hexo.io/" target="_blank">Hexo</a>
+      <br />
+
+    </div>
+  </div>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主頁</a>
+  
+    <a target="_blank" rel="noopener" href="https://dicthub.cn/" class="mobile-nav-link">典合網</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">RSS</a>
+  
+</nav>
+    
+
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

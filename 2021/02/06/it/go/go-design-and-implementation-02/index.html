@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <html lang="en"></html>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-128207704-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>《Go 設計與實現》筆記之第二章 編譯原理 | 編舟堂</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="編譯原理這一章講 Go 的源代碼是如何變成二進制碼的，可分爲四個過程：  詞法和語法分析 lexical and grammar analysis 類型檢查 type check 中間代碼生成 IR(intermediate representation) generation 機器碼生成 machine code generation  詞法分析是將源代碼視爲字符串序列，對各個字符串進行標記，生">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Go 設計與實現》筆記之第二章 編譯原理">
+<meta property="og:url" content="https://tsunhua@github.io/2021/02/06/it/go/go-design-and-implementation-02/index.html">
+<meta property="og:site_name" content="編舟堂">
+<meta property="og:description" content="編譯原理這一章講 Go 的源代碼是如何變成二進制碼的，可分爲四個過程：  詞法和語法分析 lexical and grammar analysis 類型檢查 type check 中間代碼生成 IR(intermediate representation) generation 機器碼生成 machine code generation  詞法分析是將源代碼視爲字符串序列，對各個字符串進行標記，生">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/go/go-design-and-implementation-02/Untitled.png">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/go/go-design-and-implementation-02/Untitled%201.png">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/go/go-design-and-implementation-02/Untitled%202.png">
+<meta property="article:published_time" content="2021-02-05T16:21:16.536Z">
+<meta property="article:modified_time" content="2021-02-05T16:21:16.000Z">
+<meta property="article:author" content="Hua">
+<meta property="article:tag" content="Go">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tsunhua@github.io/2021/02/06/it/go/go-design-and-implementation-02/Untitled.png">
+  
+  
+    <link rel="shortcut icon" href="favicon.ico" />
+  
+  
+    <link href="//fonts.font.im/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="編舟堂" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">編舟堂</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="/">主頁</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://dicthub.cn/">典合網</a>
+        
+        <a class="main-nav-link" href="/atom.xml">RSS</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://tsunhua@github.io"></form> -->
+        <form action="//cn.bing.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="搜尋">
+          <button type="submit" class="search-form-submit"></button>
+          <input type="hidden" name="sitesearch" value="url">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-it/go/go-design-and-implementation-02" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/02/06/it/go/go-design-and-implementation-02/" class="article-date">
+  <time datetime="2021-02-05T16:21:16.536Z" itemprop="datePublished">2021-02-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      《Go 設計與實現》筆記之第二章 編譯原理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+          <div id="toc" class="toc-article">
+              <strong class="toc-title">目錄</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">2.1 概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-%E9%A0%90%E5%82%99%E7%9F%A5%E8%AD%98"><span class="toc-number">1.1.</span> <span class="toc-text">2.1.1 預備知識</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-%E7%B7%A8%E8%AD%AF%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">2.1.2 編譯原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E8%A9%9E%E6%B3%95%E5%92%8C%E8%AA%9E%E6%B3%95%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text">2.2 詞法和語法分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-%E8%A9%9E%E6%B3%95%E5%88%86%E6%9E%90"><span class="toc-number">2.1.</span> <span class="toc-text">2.2.1 詞法分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-%E8%AA%9E%E6%B3%95%E5%88%86%E6%9E%90"><span class="toc-number">2.2.</span> <span class="toc-text">2.2.2 語法分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E9%A1%9E%E5%9E%8B%E6%AA%A2%E6%9F%A5"><span class="toc-number">3.</span> <span class="toc-text">2.3 類型檢查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E4%B8%AD%E9%96%93%E4%BB%A3%E7%A2%BC%E7%94%9F%E6%88%90"><span class="toc-number">4.</span> <span class="toc-text">2.4 中間代碼生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-%E6%A9%9F%E5%99%A8%E7%A2%BC%E7%94%9F%E6%88%90"><span class="toc-number">5.</span> <span class="toc-text">2.5 機器碼生成</span></a></li></ol>
+          </div>
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>編譯原理這一章講 Go 的源代碼是如何變成二進制碼的，可分爲四個過程：</p>
+<ol>
+<li>詞法和語法分析 lexical and grammar analysis</li>
+<li>類型檢查 type check</li>
+<li>中間代碼生成 IR(intermediate representation) generation</li>
+<li>機器碼生成 machine code generation</li>
+</ol>
+<p>詞法分析是將源代碼視爲字符串序列，對各個字符串進行標記，生成 Token 序列。</p>
+<p>語法分析是將 Token 序列按照 LALR(1)（向前查看和自底向上解析）的解析文法進行解析，生成一棵AST (抽象語法樹 )。</p>
+<p>類型檢查分靜態類型檢查和動態類型檢查，靜態類型檢查會在編譯期對變量賦值、返回值和函數參數進行類型檢查；動態類型檢查在代碼運行時進行，可以實現向下類型轉換、延遲綁定和反射等功能。</p>
+<p>中間代碼生成階段首先會進行 ssaconfig 的初始化，緩存可能需要用到的類型和指針；然後進行遍歷和替換，將內建函數 make、map、channel、new、select、panic、recover 等等替換成 runtime 包的函數。最後不斷地進行中間代碼生成，優化代碼，生成類似彙編代碼的代碼。</p>
+<p>機器碼生成階段分兩個部分：一是 SSA 中間代碼降級、針對特定CPU架構的中間代碼優化和重寫，最後生成相當接近特定架構彙編代碼的指令；二是將特定架構的指令轉成二進制代碼。</p>
+<span id="more"></span>
+
+<h2 id="2-1-概述"><a href="#2-1-概述" class="headerlink" title="2.1 概述"></a>2.1 概述</h2><p>編譯原理就是講編譯器如何將代碼編譯成二進制碼。</p>
+<h3 id="2-1-1-預備知識"><a href="#2-1-1-預備知識" class="headerlink" title="2.1.1 預備知識"></a>2.1.1 預備知識</h3><p><strong>（1）抽象語法樹</strong></p>
+<p>抽象語法樹（Abstract Syntax Tree、AST），是源代碼語法的結構的樹狀表示。以表達式 2 * 3 + 7 為例，編譯器的語法分析階段會生成如下圖所示的抽象語法樹：</p>
+<p><img src="/2021/02/06/it/go/go-design-and-implementation-02/Untitled.png" alt></p>
+<p><strong>（2）靜態單賦值</strong></p>
+<p>靜態單賦值（Static Single Assignment、SSA），是指中間代碼每個變量只會被賦值一次。例如以下代碼：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">x := <span class="number">1</span></span><br><span class="line">x := <span class="number">2</span></span><br><span class="line">y := x</span><br></pre></td></tr></table></figure>
+
+<p>其中間的代碼爲：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">x_1 := <span class="number">1</span></span><br><span class="line">x_2 := <span class="number">2</span></span><br><span class="line">y_1 := x_2</span><br></pre></td></tr></table></figure>
+
+<p>由於 x_1 := 1 沒有什麼用，因此會在生成機器碼時省去。</p>
+<p><strong>（3）指令集</strong></p>
+<p>指令集或者說指令集架構 (Instruction set architecture, ISA)，就是計算機的抽象模型。指令集可分爲兩大類：</p>
+<ul>
+<li>複雜指令集計算機 (complex instruction set computer, CISC)：包含了很多特定的指令，但是其中的一些指令很少會被程序使用（據說有 80% 不經常使用）。例如：Intel 8080、x86-family。</li>
+<li>精簡指令集計算機 (reduced instruction set computer, RISC)：只實現了經常被使用的指令，不常用的操作都會通過組合簡單指令來實現。例如：ARM、Power ISA。</li>
+</ul>
+<h3 id="2-1-2-編譯原理"><a href="#2-1-2-編譯原理" class="headerlink" title="2.1.2 編譯原理"></a>2.1.2 編譯原理</h3><p><img src="/2021/02/06/it/go/go-design-and-implementation-02/Untitled%201.png" alt></p>
+<p>編譯器的前端：</p>
+<ul>
+<li>詞法分析 lexical analysis</li>
+<li>語法分析 syntax analysis</li>
+<li>語義分析 semantic analysis</li>
+</ul>
+<p>編譯器的後端：</p>
+<ul>
+<li>中間代碼生成 IR(Intermediate Representation)  generation</li>
+<li>代碼優化 code optimization</li>
+<li>機器碼生成 machinecode generation</li>
+</ul>
+<p>Go 的編譯器邏輯上可以分爲四個階段：</p>
+<ol>
+<li>詞法和語法分析，將源代碼字符串序列轉成 Token 序列，再轉成抽象語法樹。</li>
+<li>類型檢查，檢查類型，並展開內建的函數。</li>
+<li>中間代碼生成，使用 goroutine 並發生成中間代碼，並進行 SSA 優化。</li>
+<li>機器碼生成，根據不同類型的 CPU 生成不同的機器碼</li>
+</ol>
+<p>Go 的編譯器入口在 <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/cmd/compile/internal/gc/main.go">src/cmd/compile/internal/gc/main.go</a> 文件中，其中的 Main 函數就是編譯器的主要程序，其工作過程是：</p>
+<ol>
+<li>獲取命令行傳入的參數並更新編譯選項和配置。</li>
+<li>調用 parseFiles 方法解析輸入的文件，得到 AST，隨後進行以下 9 個步驟：<ol>
+<li>const, type, and names and types of funcs（檢查常量、類型以及函數的名稱和類型）</li>
+<li>Variable assignments（處理變量賦值）</li>
+<li>Type check function bodies（對函數體進行類型檢查）</li>
+<li>Decide how to capture closed variables（決定如何捕獲封閉的變量）</li>
+<li>Inlining（處理內聯函數）</li>
+<li>Escape analysis（進行逃逸分析）</li>
+<li>Transform closure bodies to properly reference captured variables（將閉包的主體轉成實際引用的捕獲變量）</li>
+<li>Compile top level functions（編譯頂層函數）</li>
+<li>Check external declarations（檢查外部聲明）</li>
+</ol>
+</li>
+</ol>
+<h2 id="2-2-詞法和語法分析"><a href="#2-2-詞法和語法分析" class="headerlink" title="2.2 詞法和語法分析"></a>2.2 詞法和語法分析</h2><h3 id="2-2-1-詞法分析"><a href="#2-2-1-詞法分析" class="headerlink" title="2.2.1 詞法分析"></a>2.2.1 詞法分析</h3><p>詞法分析就是將源代碼的字符串序列轉成標記(Token)序列的過程。如 <code>make(chan int)</code> 經過詞法分析後是一個由 <code>make</code> 、<code>(</code>、<code>chan</code>、<code>int</code> 和 <code>)</code> 組成的 Token序列。</p>
+<p>可以使用 lex 工具進行詞法分析，Go 早期也是使用該工具，<a target="_blank" rel="noopener" href="https://github.com/LinLshare/case/blob/main/doc/compile/compile_001_flex">該案例</a>展示了使用 lex 工具進行詞法分析。後期更換成了自身，<a target="_blank" rel="noopener" href="https://github.com/LinLshare/case/blob/main/doc/compile/compile_002_golang_lexer">該案例</a>展示了使用 Go 自帶的詞法分析器進行詞法分析。</p>
+<h3 id="2-2-2-語法分析"><a href="#2-2-2-語法分析" class="headerlink" title="2.2.2 語法分析"></a>2.2.2 語法分析</h3><p>語法分析是根據某種特定的形式文法（Grammar）對 Token 序列構成的輸入文本進行分析並確定其語法結構的過程。</p>
+<p><strong>文法</strong></p>
+<p>上下文無關文法(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Context-free_grammar">context-free grammar</a>) 是用來形式化、精確描述某種編程語言的工具，由以下四個部分組成：</p>
+<ol>
+<li>N, 有限個非終結符的集合</li>
+<li>Σ, 有限個終結符的集合</li>
+<li>P, 有限個生成規則(production rule)的集合</li>
+<li>S, 開始變量或符號，用來代表整個語句或程序，是集合N的成員。</li>
+</ol>
+<p>非終結符可以使用一組終結符根據生成規則展開，而終結符是語言定義的基本元素，不可展開。</p>
+<p>P = N x (NvΣ)* 即生成規則是集合 N與集合N、Σ的併集的 Kleene 操作之間的二元關係。</p>
+<p>假定有以下生成規則：</p>
+<ol>
+<li>S —&gt; aSb // S 可以展開爲 aSb</li>
+<li>S —&gt; ab // S 可以展開爲 ab</li>
+</ol>
+<p>那麼，aabb（運用一次規則1，一次規則2）、aaabbb（運用兩次規則1，一次規則2）等就是符合語法規則的表示。</p>
+<p><strong>解析方法</strong></p>
+<p>解析文法的方法有兩種：</p>
+<ol>
+<li><strong>自頂向下解析</strong>(Top-down parsing)：從最高級別開始解析，不斷地用生成規則右側的符號展開非終結符，直到最低級別的終結符號。</li>
+<li><strong>自底向上解析</strong>(Bottom-up parsing)：從最低級別開始解析，不斷地用生成規則左側非終結符歸約，直到最高級別的開始符號。</li>
+</ol>
+<p><strong>LL文法</strong>是一種使用自頂向下解析的文法。假定有 LL文法如下：</p>
+<ol>
+<li>𝑆→𝑎𝑆1</li>
+<li>𝑆1→𝑏𝑆1</li>
+<li>𝑆1→𝜖</li>
+</ol>
+<p>輸入流 abb 採用上面的文法進行解析，其過程爲：</p>
+<ol>
+<li>S （開始符號）</li>
+<li>aS1（規則 1）</li>
+<li>abS1 （規則 2）</li>
+<li>abbS1 （規則2）</li>
+<li>abb（規則 3）</li>
+</ol>
+<p><strong>LR(0) 文法</strong>是一种使用自底向上解析的文法。假定有 LR(0) 文法如下：</p>
+<ol>
+<li>𝑆→𝑆1</li>
+<li>𝑆1→𝑆1𝑏</li>
+<li>𝑆1→𝑎</li>
+</ol>
+<p>輸入流 abb 採用上面的文法進行解析，其過程爲：</p>
+<ol>
+<li>a（入棧）</li>
+<li>S1（規則3）</li>
+<li>S1b（入棧）</li>
+<li>S1（規則2）</li>
+<li>S1b（入棧）</li>
+<li>S1（規則2）</li>
+<li>S（規則1）</li>
+</ol>
+<p>當有多個生成規則符合時，會出現衝突。解析時可以採用 <strong>Lookahead</strong> 向前查看技術解決，即預讀一個 Token 確保出現衝突的生成規則可以被正確處理。</p>
+<p>Go 語言的解析器採用 LALR(1) 的文法進行解析，是一種自底向上且帶有 <strong>Lookahead</strong>(縮寫爲LA) 功能的解析文法。LALR(1)  也是大多數編程語言的選擇。</p>
+<p><strong>Go 文法</strong></p>
+<p>閱讀 src/cmd/compile/internal/syntax/parser.go，可知：</p>
+<p>每個 Go 源代碼文件最終都會被解析成一個獨立的抽象語法樹，所以語法樹最頂層的結構或者開始符號都是 SourceFile：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">SourceFile = PackageClause <span class="string">&quot;;&quot;</span> &#123; ImportDecl <span class="string">&quot;;&quot;</span> &#125; &#123; TopLevelDecl <span class="string">&quot;;&quot;</span> &#125; .</span><br></pre></td></tr></table></figure>
+
+<p>PackageClause 的生成規則爲：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">PackageClause  = <span class="string">&quot;package&quot;</span> PackageName .</span><br><span class="line">PackageName    = identifier .</span><br><span class="line">identifier = letter &#123; letter | unicode_digit &#125; .</span><br></pre></td></tr></table></figure>
+
+<p>ImportDecl 的生成規則爲：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">ImportDecl       = <span class="string">&quot;import&quot;</span> ( ImportSpec | <span class="string">&quot;(&quot;</span> &#123; ImportSpec <span class="string">&quot;;&quot;</span> &#125; <span class="string">&quot;)&quot;</span> ) .</span><br><span class="line">ImportSpec       = [ <span class="string">&quot;.&quot;</span> | PackageName ] ImportPath .</span><br><span class="line">ImportPath       = string_lit .</span><br></pre></td></tr></table></figure>
+
+<p>TopLevelDecl 的生成規則爲：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">TopLevelDecl  = Declaration | FunctionDecl | MethodDecl .</span><br><span class="line">Declaration   = ConstDecl | TypeDecl | VarDecl .</span><br></pre></td></tr></table></figure>
+
+<p>可知頂層的聲明共有五種，分別是常量、類型、變量、函數和方法聲明，其生成规则如下：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">ConstDecl = <span class="string">&quot;const&quot;</span> ( ConstSpec | <span class="string">&quot;(&quot;</span> &#123; ConstSpec <span class="string">&quot;;&quot;</span> &#125; <span class="string">&quot;)&quot;</span> ) .</span><br><span class="line">ConstSpec = IdentifierList [ [ Type ] <span class="string">&quot;=&quot;</span> ExpressionList ] .</span><br><span class="line"></span><br><span class="line">TypeDecl  = <span class="string">&quot;type&quot;</span> ( TypeSpec | <span class="string">&quot;(&quot;</span> &#123; TypeSpec <span class="string">&quot;;&quot;</span> &#125; <span class="string">&quot;)&quot;</span> ) .</span><br><span class="line">TypeSpec  = AliasDecl | TypeDef .</span><br><span class="line">AliasDecl = identifier <span class="string">&quot;=&quot;</span> Type .</span><br><span class="line">TypeDef   = identifier Type .</span><br><span class="line"></span><br><span class="line">VarDecl = <span class="string">&quot;var&quot;</span> ( VarSpec | <span class="string">&quot;(&quot;</span> &#123; VarSpec <span class="string">&quot;;&quot;</span> &#125; <span class="string">&quot;)&quot;</span> ) .</span><br><span class="line">VarSpec = IdentifierList ( Type [ <span class="string">&quot;=&quot;</span> ExpressionList ] | <span class="string">&quot;=&quot;</span> ExpressionList ) .</span><br><span class="line"></span><br><span class="line">FunctionDecl = <span class="string">&quot;func&quot;</span> FunctionName Signature [ FunctionBody ] .</span><br><span class="line">FunctionName = identifier .</span><br><span class="line">FunctionBody = Block .</span><br><span class="line"></span><br><span class="line">MethodDecl = <span class="string">&quot;func&quot;</span> Receiver MethodName Signature [ FunctionBody ] .</span><br><span class="line">Receiver   = Parameters .</span><br><span class="line"></span><br><span class="line">Block = <span class="string">&quot;&#123;&quot;</span> StatementList <span class="string">&quot;&#125;&quot;</span> .</span><br><span class="line">StatementList = &#123; Statement <span class="string">&quot;;&quot;</span> &#125; .</span><br><span class="line"></span><br><span class="line">Statement =</span><br><span class="line">  Declaration | LabeledStmt | SimpleStmt |</span><br><span class="line">  GoStmt | ReturnStmt | BreakStmt | ContinueStmt | GotoStmt |</span><br><span class="line">  FallthroughStmt | Block | IfStmt | SwitchStmt | SelectStmt | ForStmt |</span><br><span class="line">  DeferStmt .</span><br><span class="line"></span><br><span class="line">SimpleStmt = EmptyStmt | ExpressionStmt | SendStmt | IncDecStmt | Assignment | ShortVarDecl .</span><br></pre></td></tr></table></figure>
+
+<p>更詳細的文法見：<a target="_blank" rel="noopener" href="https://golang.org/ref/spec#Declarations_and_scope">Language Specification</a>。</p>
+<h2 id="2-3-類型檢查"><a href="#2-3-類型檢查" class="headerlink" title="2.3 類型檢查"></a>2.3 類型檢查</h2><p>類型檢查的目的在於確保代碼正確執行。</p>
+<p>類型分兩種：強類型和弱類型。一般來說，強類型是在編譯期間有嚴格的類型限制，會在編譯期間發現變量賦值、返回值和函數調用是的類型錯誤。弱類型則是在運行時出現類型錯誤時進行隱式類型轉換。</p>
+<p>檢查也分兩種：靜態類型檢查和動態類型檢查。靜態類型檢查是在編譯期進行，動態類型檢查是在運行期間進行。實現動態類型檢查通常是爲每個運行時對象關聯一個類型標籤，包含了它的類型信息（RTTI, the Runtime type information），用來實現動態派發、延遲綁定、向下轉型和反射等等。</p>
+<p>另外，只使用動態類型檢查的編程語言叫做動態類型編程語言，比如 JavaScript、Ruby 和 PHP。</p>
+<p>Go 進行靜態類型檢查的代碼主要邏輯在 <a target="_blank" rel="noopener" href="https://draveness.me/golang/tree/cmd/compile/internal/gc.typecheck">cmd/compile/internal/gc.typecheck</a> 和 <a target="_blank" rel="noopener" href="https://draveness.me/golang/tree/cmd/compile/internal/gc.typecheck1">cmd/compile/internal/gc.typecheck1</a> 中。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">typecheck1</span><span class="params">(n *Node, top <span class="keyword">int</span>)</span> <span class="params">(res *Node)</span></span> &#123;</span><br><span class="line">  <span class="keyword">switch</span> n.Op &#123;</span><br><span class="line">  <span class="keyword">case</span> OTARRAY:</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">  <span class="keyword">case</span> OTMAP:</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">  <span class="keyword">case</span> OTCHAN:</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> n</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>介紹幾種常見類型的檢查過程：</p>
+<ul>
+<li>OTARRAY 數組或切片類型：<ol>
+<li>對右節點也就是元素進行類型檢查</li>
+<li>對左節點，按三種情況：<ol>
+<li>[]int，直接調用 <a target="_blank" rel="noopener" href="https://draveness.me/golang/tree/cmd/compile/internal/types.NewSlice">cmd/compile/internal/types.NewSlice</a>，返回一個 <code>TSLICE</code> 類型的結構體。</li>
+<li>[…]int，ODDD(即…) 先調用 <a href>cmd/compile/internal/gc.typecheckcomplit</a> ，後調用 <a target="_blank" rel="noopener" href="https://draveness.me/golang/tree/cmd/compile/internal/types.NewArray">cmd/compile/internal/types.NewArray</a> 初始化一個存儲著數組中元素類型和數組大小的結構體。</li>
+<li>[3]int，調用 <a target="_blank" rel="noopener" href="https://draveness.me/golang/tree/cmd/compile/internal/types.NewArray">cmd/compile/internal/types.NewArray</a> 初始化一個存儲著數組中元素類型和數組大小的結構體。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>OTMAP 哈希類型：<ol>
+<li>分別檢查鍵值類型</li>
+<li>通過 <a href>cmd/compile/internal/types.NewMap</a> 创建一个新的 TMAP 结构并将哈希的键值类型都存储到该结构体</li>
+<li>代表當前哈希的節點最終也會被加入 mapqueue 隊列，編譯器會在後面的階段對哈希鍵的類型進行再次檢查。</li>
+</ol>
+</li>
+<li>OMAKE 內置函數make<ol>
+<li>檢查第一個類型參數，然後據此進入不同的分支：TSLICE 切片分支、TMAP 哈希分支和 TCHAN 信道分支。</li>
+<li>如是 TSLICE 分支，將檢查 len 和 cap 的合法性，然後將當前節點的 Op 改爲 OMAKESLICE。</li>
+<li>如是 TMAP 分支，將在檢查 size 之後將當前節點的 Op 改爲 OMAKEMAP。</li>
+<li>如是 TCHAN 分支，將在檢查 buffer 之後將當前節點的 Op 改爲 OMAKECHAN。</li>
+</ol>
+</li>
+</ul>
+<h2 id="2-4-中間代碼生成"><a href="#2-4-中間代碼生成" class="headerlink" title="2.4 中間代碼生成"></a>2.4 中間代碼生成</h2><p>中間代碼生成是爲了解決直接編譯成二進制碼的複雜。通過將複雜問題拆分成一個個簡單的步驟，再逐個擊破，這就是中間代碼的作用。</p>
+<p>AST 和二進制碼之間隔了幾十次中間代碼的生成。生成之初會將緩存可能需要用到的類型和指針，並將內建函數映射到 runtime包中的函數。之後每次中間代碼的生成都是對代碼的優化，最後生成具備 SSA 特性的中間代碼。</p>
+<p><img src="/2021/02/06/it/go/go-design-and-implementation-02/Untitled%202.png" alt></p>
+<p>關鍵字和操作符和運行時函數的映射</p>
+<p>中間代碼不是彙編代碼，但是很接近彙編代碼，也用到一些寄存器，可說是彙編代碼的偽代碼（pseudo code），中間代碼形如：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">pass trim begin</span><br><span class="line">  pass trim end [<span class="number">738</span> ns]</span><br><span class="line">hello <span class="function"><span class="keyword">func</span><span class="params">(<span class="keyword">int</span>)</span> <span class="title">int</span></span></span><br><span class="line">  b1:</span><br><span class="line">    v1 = InitMem &lt;mem&gt;</span><br><span class="line">    v10 = VarDef &lt;mem&gt; &#123;~r1&#125; v1</span><br><span class="line">    v2 = SP &lt;<span class="keyword">uintptr</span>&gt; : SP</span><br><span class="line">    v6 = Arg &lt;<span class="keyword">int</span>&gt; &#123;a&#125; : a[<span class="keyword">int</span>]</span><br><span class="line">    v8 = LoadReg &lt;<span class="keyword">int</span>&gt; v6 : AX</span><br><span class="line">    v9 = ADDQconst &lt;<span class="keyword">int</span>&gt; [<span class="number">2</span>] v8 : AX (c[<span class="keyword">int</span>])</span><br><span class="line">    v11 = MOVQstore &lt;mem&gt; &#123;~r1&#125; v2 v9 v10</span><br><span class="line">    Ret v11</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-5-機器碼生成"><a href="#2-5-機器碼生成" class="headerlink" title="2.5 機器碼生成"></a>2.5 機器碼生成</h2><p>機器碼的生成包含兩個部分：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://github.com/golang/go/tree/master/src/cmd/compile/internal/ssa">cmd/compile/internal/ssa</a> 進行 SSA 中間代碼的降級過程，執行架構特定的優化和重寫，最後生成架構特定的指令 <a target="_blank" rel="noopener" href="https://draveness.me/golang/tree/cmd/compile/internal/obj.Prog">cmd/compile/internal/obj.Prog</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/golang/go/tree/master/src/cmd/internal/obj">cmd/internal/obj</a> 作爲彙編器將架構特定的指令轉成二進制代碼。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://tsunhua@github.io/2021/02/06/it/go/go-design-and-implementation-02/" data-id="ckpwth6s800094k3qf73a6iks" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Go/" rel="tag">Go</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/02/06/it/go/zodiac-ganzhi-go/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          十二生肖、干支紀年法與Go語言編程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/02/06/it/go/go-design-and-implementation-01/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">《Go 設計與實現》筆記之第一章 準備工作</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">貼示</h3>
+    <div class="widget" style="min-height: 50px;">
+        <img src="" height="50px" style="float: left; margin-right: 10px" />
+        <div style="font-size:medium; color:palevioletred;padding-top: 16px;">汝著愛忍耐，愛找覓家己的路來行</div>
+    </div>
+</div>
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">標籤雲</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Go/" style="font-size: 20px;">Go</a> <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/%E5%8D%81%E4%BA%8C%E7%94%9F%E8%82%96/" style="font-size: 10px;">十二生肖</a> <a href="/tags/%E5%B9%B2%E6%94%AF%E7%B4%80%E5%B9%B4%E6%B3%95/" style="font-size: 10px;">干支紀年法</a> <a href="/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/" style="font-size: 10px;">日本語</a> <a href="/tags/%E6%BD%AE%E5%8A%87/" style="font-size: 10px;">潮劇</a> <a href="/tags/%E6%BD%AE%E5%B7%9E%E8%A9%B1/" style="font-size: 15px;">潮州話</a> <a href="/tags/%E7%94%B2%E5%AD%90%E8%A9%B1/" style="font-size: 20px;">甲子話</a> <a href="/tags/%E8%81%86%E8%81%BD%E9%9F%B3%E6%A8%82/" style="font-size: 10px;">聆聽音樂</a> <a href="/tags/%E8%A9%A9%E7%B6%93/" style="font-size: 10px;">詩經</a> <a href="/tags/%E9%96%A9%E5%8D%97%E8%AA%9E/" style="font-size: 20px;">閩南語</a>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">二維碼</h3>
+    <div class="widget">
+        <img src="https://tsunhua.github.io/qrcode.jpg" width="100%" />
+    </div>
+</div>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">彙整</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/06/music/listen-chopin-raindrop/">聆聽音樂：蕭邦之「雨滴」</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/teochew-opera-ghe%CC%82gdengcung/">在潮劇中學之《玉堂春》</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/teochew-kahtsi-vowel/">潮州話與甲子話韻母差異（稿）</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/sige%CC%82ng-giamgia/">詩經·秦風‧蒹葭 (甲子話注音版)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/gahzi-oi-hung-lui-ci-biao/">甲子話分類辭表（2020.12）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="創用 CC 授權條款"
+          style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+      <br />
+      Writed by
+      <a xmlns:cc="http: //creativecommons.org/ns#" target="_blank" href="https://linlshare.github.io/" property="cc:attributionName"
+        rel="cc:attributionURL noopener">Hua
+      </a>
+
+      <br>
+      Powered by
+      <a href="https://github.com/" target="_blank">Github</a>&nbsp;&&nbsp;
+      <a href="https://hexo.io/" target="_blank">Hexo</a>
+      <br />
+
+    </div>
+  </div>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主頁</a>
+  
+    <a target="_blank" rel="noopener" href="https://dicthub.cn/" class="mobile-nav-link">典合網</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">RSS</a>
+  
+</nav>
+    
+
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

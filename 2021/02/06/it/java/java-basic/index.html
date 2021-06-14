@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <html lang="en"></html>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-128207704-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>Java 基礎 | 編舟堂</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Java 自 95 年誕生至今，已有 25 年的歷史。它是一種半編譯的語言，先將代碼編譯成字節碼，然後在 JVM 中解釋執行。  它是一種面向對象的語言，封裝、繼承和多態它都有，類可以多實現但不支持多繼承，而接口可以多繼承。 它支持 8 種基本數據類型，同時還提供了其包裝類型，另外還提供了 BigDecimal 精確處理浮點數、提供了 BigInteger 處理大整數。 它的方法只有值傳遞，傳遞對">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 基礎">
+<meta property="og:url" content="https://tsunhua@github.io/2021/02/06/it/java/java-basic/index.html">
+<meta property="og:site_name" content="編舟堂">
+<meta property="og:description" content="Java 自 95 年誕生至今，已有 25 年的歷史。它是一種半編譯的語言，先將代碼編譯成字節碼，然後在 JVM 中解釋執行。  它是一種面向對象的語言，封裝、繼承和多態它都有，類可以多實現但不支持多繼承，而接口可以多繼承。 它支持 8 種基本數據類型，同時還提供了其包裝類型，另外還提供了 BigDecimal 精確處理浮點數、提供了 BigInteger 處理大整數。 它的方法只有值傳遞，傳遞對">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-basic/20201202_24328.png">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-basic/Untitled.png">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-basic/Untitled%201.png">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-basic/Untitled%202.png">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-basic/Untitled%203.png">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-basic/Untitled%204.png">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-basic/20201114_101407.png">
+<meta property="article:published_time" content="2021-02-05T16:21:16.565Z">
+<meta property="article:modified_time" content="2021-06-14T15:54:20.179Z">
+<meta property="article:author" content="Hua">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-basic/20201202_24328.png">
+  
+  
+    <link rel="shortcut icon" href="favicon.ico" />
+  
+  
+    <link href="//fonts.font.im/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="編舟堂" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">編舟堂</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="/">主頁</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://dicthub.cn/">典合網</a>
+        
+        <a class="main-nav-link" href="/atom.xml">RSS</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://tsunhua@github.io"></form> -->
+        <form action="//cn.bing.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="搜尋">
+          <button type="submit" class="search-form-submit"></button>
+          <input type="hidden" name="sitesearch" value="url">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-it/java/java-basic" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/02/06/it/java/java-basic/" class="article-date">
+  <time datetime="2021-02-05T16:21:16.565Z" itemprop="datePublished">2021-02-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java 基礎
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+          <div id="toc" class="toc-article">
+              <strong class="toc-title">目錄</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-%E5%85%A5%E9%96%80%EF%BC%88%E5%9F%BA%E7%A4%8E%E6%A6%82%E5%BF%B5%E8%88%87%E5%B8%B8%E8%AD%98%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">Java 入門（基礎概念與常識）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%B7%E5%8F%B2"><span class="toc-number">1.1.</span> <span class="toc-text">歷史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D%E8%88%87%E5%8D%B8%E8%BC%89JDK"><span class="toc-number">1.2.</span> <span class="toc-text">安裝與卸載JDK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hello-World"><span class="toc-number">1.3.</span> <span class="toc-text">Hello World</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-%E8%AA%9E%E8%A8%80%E7%9A%84%E7%89%B9%E9%BB%9E"><span class="toc-number">1.4.</span> <span class="toc-text">Java 語言的特點</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM%E3%80%81JDK-%E5%92%8C-JRE"><span class="toc-number">1.5.</span> <span class="toc-text">JVM、JDK 和  JRE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-%E8%88%87-C-%E5%B0%8D%E6%AF%94"><span class="toc-number">1.6.</span> <span class="toc-text">Java 與 C++ 對比</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-%E8%AA%9E%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">Java 語法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E9%A1%9E%E5%9E%8B%E5%8F%8A%E5%85%B6%E5%A4%A7%E5%B0%8F"><span class="toc-number">2.1.</span> <span class="toc-text">基本類型及其大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%85%E8%A3%9D%E9%A1%9E%E5%9E%8B%E5%8F%8A%E5%B8%B8%E9%87%8F%E6%B1%A0%E6%8A%80%E8%A1%93"><span class="toc-number">2.2.</span> <span class="toc-text">包裝類型及常量池技術</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BigDecimal"><span class="toc-number">2.3.</span> <span class="toc-text">BigDecimal</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8D%E8%B1%A1%E5%8F%8A%E5%85%B6%E5%A4%A7%E5%B0%8F"><span class="toc-number">2.4.</span> <span class="toc-text">對象及其大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String%E3%80%81StringBuffer-%E5%92%8C-String-Builder-%E7%9A%84%E5%8D%80%E5%88%A5"><span class="toc-number">2.5.</span> <span class="toc-text">String、StringBuffer 和 String Builder 的區別</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%87%8B"><span class="toc-number">2.6.</span> <span class="toc-text">注釋</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%99%E8%AD%98%E7%AC%A6%E5%92%8C%E9%97%9C%E9%8D%B5%E5%AD%97%E7%9A%84%E5%8D%80%E5%88%A5"><span class="toc-number">2.7.</span> <span class="toc-text">標識符和關鍵字的區別</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%A2%9E%E8%87%AA%E6%B8%9B%E9%81%8B%E7%AE%97%E7%AC%A6"><span class="toc-number">2.8.</span> <span class="toc-text">自增自減運算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%92%8C-equals-%E7%9A%84%E5%8D%80%E5%88%A5"><span class="toc-number">2.9.</span> <span class="toc-text">&#x3D;&#x3D; 和 equals 的區別</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E6%99%82%E5%A6%82%E6%9E%9C%E6%9C%89%E4%BA%9B%E5%AD%97%E6%AE%B5%E4%B8%8D%E6%83%B3%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%8C%E6%80%8E%E9%BA%BC%E8%BE%A6%EF%BC%9F"><span class="toc-number">2.10.</span> <span class="toc-text">序列化時如果有些字段不想序列化，怎麼辦？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#continue%E3%80%81break-%E5%92%8C-return-%E7%9A%84%E5%8D%80%E5%88%A5"><span class="toc-number">2.11.</span> <span class="toc-text">continue、break 和 return 的區別</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B%E3%80%81%E9%A1%9E%E5%9E%8B%E6%93%A6%E9%99%A4%E5%92%8C%E9%80%9A%E9%85%8D%E7%AC%A6"><span class="toc-number">2.12.</span> <span class="toc-text">泛型、類型擦除和通配符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8D%B2%E5%8F%96%E9%8D%B5%E7%9B%A4%E8%BC%B8%E5%85%A5%E6%95%B8%E6%93%9A%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">2.13.</span> <span class="toc-text">獲取鍵盤輸入數據的常用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%EF%BC%88%E5%87%BD%E6%95%B8%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">方法（函數）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%88%B2%E4%BB%80%E9%BA%BC-Java-%E5%8F%AA%E6%9C%89%E5%80%BC%E5%82%B3%E9%81%9E%EF%BC%9F"><span class="toc-number">3.1.</span> <span class="toc-text">爲什麼 Java 只有值傳遞？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%B1%E6%8B%B7%E8%B2%9D%E5%92%8C%E6%B7%BA%E6%8B%B7%E8%B2%9D%E6%9C%89%E4%BB%80%E9%BA%BC%E4%B8%8D%E5%90%8C%EF%BC%9F"><span class="toc-number">3.2.</span> <span class="toc-text">深拷貝和淺拷貝有什麼不同？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E8%BC%89%E5%92%8C%E9%87%8D%E5%AF%AB%E6%9C%89%E4%BB%80%E9%BA%BC%E5%8D%80%E5%88%A5%EF%BC%9F"><span class="toc-number">3.3.</span> <span class="toc-text">重載和重寫有什麼區別？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-%E9%9D%A2%E5%90%91%E5%B0%8D%E8%B1%A1"><span class="toc-number">4.</span> <span class="toc-text">Java 面向對象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%B0%8D%E8%B1%A1%E5%92%8C%E9%9D%A2%E5%90%91%E9%81%8E%E7%A8%8B"><span class="toc-number">4.1.</span> <span class="toc-text">面向對象和面向過程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A7%8B%E9%80%A0%E6%96%B9%E6%B3%95"><span class="toc-number">4.2.</span> <span class="toc-text">構造方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%90%E5%93%A1%E8%AE%8A%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E8%AE%8A%E9%87%8F%E7%9A%84%E5%8D%80%E5%88%A5"><span class="toc-number">4.3.</span> <span class="toc-text">成員變量和局部變量的區別</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8D%E8%B1%A1%E5%AF%A6%E4%BE%8B%E5%92%8C%E5%B0%8D%E8%B1%A1%E5%BC%95%E7%94%A8%E7%9A%84%E5%8D%80%E5%88%A5"><span class="toc-number">4.4.</span> <span class="toc-text">對象實例和對象引用的區別</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%B0%8D%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E5%BE%B5"><span class="toc-number">4.5.</span> <span class="toc-text">面向對象的三大特徵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9C%E6%85%8B%E6%96%B9%E6%B3%95%E5%85%A7%E7%88%B2%E4%BB%80%E9%BA%BC%E4%B8%8D%E8%83%BD%E8%AA%BF%E7%94%A8%E9%9D%9E%E9%9D%9C%E6%85%8B%E6%88%90%E5%93%A1%EF%BC%9F"><span class="toc-number">4.6.</span> <span class="toc-text">靜態方法內爲什麼不能調用非靜態成員？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E9%A1%9E%E7%9A%84%E5%8D%80%E5%88%A5"><span class="toc-number">4.7.</span> <span class="toc-text">接口和抽象類的區別</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-%E6%A0%B8%E5%BF%83%E6%8A%80%E8%A1%93"><span class="toc-number">5.</span> <span class="toc-text">Java 核心技術</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E5%90%88"><span class="toc-number">5.1.</span> <span class="toc-text">集合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E6%A9%9F%E5%88%B6"><span class="toc-number">5.2.</span> <span class="toc-text">反射機制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%95%B0%E5%B8%B8"><span class="toc-number">5.3.</span> <span class="toc-text">異常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E7%B7%9A%E7%A8%8B"><span class="toc-number">5.4.</span> <span class="toc-text">多線程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%88%87-I-O-%E6%B5%81"><span class="toc-number">5.5.</span> <span class="toc-text">文件與 I&#x2F;O 流</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-%E9%A0%85%E7%9B%AE%E7%AE%A1%E7%90%86%E5%92%8C%E6%A7%8B%E5%BB%BA"><span class="toc-number">6.</span> <span class="toc-text">Java 項目管理和構建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Maven-%E9%A1%B9%E7%9B%AE"><span class="toc-number">6.1.</span> <span class="toc-text">Maven 项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Gradle-%E9%A1%B9%E7%9B%AE"><span class="toc-number">6.2.</span> <span class="toc-text">Gradle 项目</span></a></li></ol></li></ol>
+          </div>
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Java 自 95 年誕生至今，已有 25 年的歷史。它是一種半編譯的語言，先將代碼編譯成字節碼，然後在 JVM 中解釋執行。</p>
+<ul>
+<li>它是一種面向對象的語言，封裝、繼承和多態它都有，類可以多實現但不支持多繼承，而接口可以多繼承。</li>
+<li>它支持 8 種基本數據類型，同時還提供了其包裝類型，另外還提供了 BigDecimal 精確處理浮點數、提供了 BigInteger 處理大整數。</li>
+<li>它的方法只有值傳遞，傳遞對象時它是淺拷貝而非深拷貝。類的方法可以被子類重寫，同個類可以有多個同名的重載方法。</li>
+<li>它支持泛型，一種將類型參數化的技術。不過，也有人稱之爲「僞泛型」，因爲類型會在編譯時被擦除。</li>
+<li>它支持反射，一種在運行時操作任意對象的方法和屬性的技術，這在框架應用中很常見。</li>
+<li>它提供了豐富的集合類、迭代器及工具類。</li>
+<li>它支持多線程，一種在程序進程中同時執行多個任務的技術，同時還有豐富的鎖類型，所有對象的頭信息裏都有一個鎖標識。</li>
+<li>它支持異常處理，Exception 分編譯時異常和運行時異常，編譯時異常可以被編譯器檢查到，而運行時異常只能在程序運行時發生。</li>
+<li>它有豐富的 I/O API，派生自 4 個抽象類，InputStream、OutputStream、Reader、Writer，字符流的出現是爲了減少 JVM 進行字符編碼解碼的資源損耗和編解碼錯誤。</li>
+<li>另外，目前有兩大項目管理工具，Maven 和 Gradle。</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="Java-入門（基礎概念與常識）"><a href="#Java-入門（基礎概念與常識）" class="headerlink" title="Java 入門（基礎概念與常識）"></a>Java 入門（基礎概念與常識）</h2><h3 id="歷史"><a href="#歷史" class="headerlink" title="歷史"></a>歷史</h3><p>Java 編程語言本名爲 oak（橡樹），因爲商標被註冊了，所以更名爲 Java，而 Java 是印尼的一座島嶼，盛產咖啡豆，有一種咖啡就是以該島命名，Java 編程語言之名因之。使用十六進制編輯器打開 class 文件時會發現前 32 位顯示爲 <code>CA FE BA BE</code> ，即 cafe babe （咖啡寶貝）。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">$ hexdump Test.class</span><br><span class="line"><span class="number">0000000</span> ca fe ba be <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> 3b <span class="number">00</span> <span class="number">51</span> 0a <span class="number">00</span> <span class="number">02</span> <span class="number">00</span> <span class="number">03</span> <span class="number">07</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>1994 年完成 1.0 版本。</li>
+<li>1995 年首次對外發佈，Java 語言誕生。</li>
+<li>1996 年JDK 1.0 誕生。</li>
+<li>2004 年 SUN 公司發佈 Java SE 5。</li>
+<li>2005 年 SUN 公司發佈 Java SE 6。</li>
+<li>2006 年 SUN 公司推出 OpenJDK 計劃。</li>
+<li>2014年 Oracle 公司發佈 Java SE 8。</li>
+<li>2017年 Oracle公司發佈 Java SE 9。</li>
+<li>2020 年 Oracle 公司發佈 Java SE 15。</li>
+</ul>
+<h3 id="安裝與卸載JDK"><a href="#安裝與卸載JDK" class="headerlink" title="安裝與卸載JDK"></a>安裝與卸載JDK</h3><p>在 Mac 環境下，從 <a target="_blank" rel="noopener" href="https://www.oracle.com/tw/java/technologies/javase-downloads.html">Oracle JavaSE 下載地址</a> 下載並安裝。安裝完成後執行 <code>java -version</code>  可查看安裝的版本，以確認安裝成功。安裝後的Java Home 位置爲 <code>/Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home</code> 。如需卸載該 jdk，可安裝以下 shell 命令，先移除插件後根據查詢到的 jdk 版本移除整個 jdk 文件夾即可。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo rm -fr /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin</span><br><span class="line">sudo rm -fr /Library/PreferencesPanes/JavaControlPanel.prefpane</span><br><span class="line"></span><br><span class="line">ls /Library/Java/JavaVirtualMachines/</span><br><span class="line">输出：jdk-9.0.1.jdk</span><br><span class="line"></span><br><span class="line">sudo rm -rf /Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk</span><br></pre></td></tr></table></figure>
+
+<h3 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h3><p>運行以下代碼，將輸出 <code>Hello World</code>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> hello;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello World&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Java-語言的特點"><a href="#Java-語言的特點" class="headerlink" title="Java 語言的特點"></a>Java 語言的特點</h3><ol>
+<li>面向對象（封裝，繼承，多態）</li>
+<li>平台無關性（ Java 虛擬機實現平台無關性）</li>
+<li>支持多線程</li>
+<li>編譯與解釋並存</li>
+</ol>
+<p>編譯：生成字節碼(.class文件)，javac 指令。<br>解釋：解釋字節碼成機器碼，java 指令。</p>
+<h3 id="JVM、JDK-和-JRE"><a href="#JVM、JDK-和-JRE" class="headerlink" title="JVM、JDK 和  JRE"></a>JVM、JDK 和  JRE</h3><ol>
+<li>JVM，Java Virtual Machine 的縮寫，即 Java 虛擬機，是運行 Java 字節碼的虛擬機（包含解釋器 java），它包含在 JRE 中。不同的操作系統有特定的 JVM 實現，以便 Java 字節碼可以跨平台。</li>
+<li>JDK，Java Development Kit 的縮寫，即 Java 開發工具集，包含了 JRE 、編譯器（javac）和其他工具（javadoc 和 jdb 等）。</li>
+<li>JRE，Java Runtime 的縮寫，即 Java 運行時，包含了 JVM、必要的類庫、java 命令和其他基礎構件。</li>
+</ol>
+<h3 id="Java-與-C-對比"><a href="#Java-與-C-對比" class="headerlink" title="Java 與 C++ 對比"></a>Java 與 C++ 對比</h3><ol>
+<li>皆支持面向對象編程（封裝、繼承和多態）。</li>
+<li>Java 不提供指針來直接訪問內存；C++ 提供。</li>
+<li>Java 的類不支持多繼承，但接口可以；C++ 的類可以多繼承。</li>
+<li>Java 有內存垃圾自動回收機制（GC），不需要手動釋放無用內存；C++ 沒有。</li>
+<li>Java 字符串和字符數組沒有結束符的概念；C/C++ 中字符串和字符數組最後會有一個額外的字符<code>\0</code> 來表示結束。</li>
+</ol>
+<h2 id="Java-語法"><a href="#Java-語法" class="headerlink" title="Java 語法"></a>Java 語法</h2><h3 id="基本類型及其大小"><a href="#基本類型及其大小" class="headerlink" title="基本類型及其大小"></a>基本類型及其大小</h3><p>Java 共 8 種數據類型（不包括 void），具體如下表：</p>
+<p><img src="/2021/02/06/it/java/java-basic/20201202_24328.png" alt></p>
+<p>boolean 值的大小取決於 JVM 實現，Java 虛擬機規範（第8版）規定：單個 boolean佔 4 個字節，而 boolean 數組 1 個字節。</p>
+<p>char 值是一個 16 位的 Unicode 字符，最小值是 ‘\u0000’ ，最大值是 ‘\uffff’，即 0～65535，每個數字對應一個字符。</p>
+<ul>
+<li><p>代碼</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> a = <span class="string">&#x27;中&#x27;</span>;</span><br><span class="line">System.out.println((<span class="keyword">int</span>)a);</span><br><span class="line"><span class="comment">// 輸出 20013</span></span><br><span class="line">System.out.println(Integer.toHexString(a));</span><br><span class="line"><span class="comment">// 輸出 4e2d</span></span><br><span class="line">System.out.println(<span class="string">&#x27;\u4e2d&#x27;</span>);</span><br><span class="line"><span class="comment">// 輸出 中</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>byte、short、int、long 類型，採用二進制補碼存儲數據，以便利減法運算。</p>
+<ul>
+<li>二進制補碼<ul>
+<li>過程：正數的補碼是其自身；負數的補碼是除符號位外所有二進制位做反碼後加 1 的結果。</li>
+<li>原理：假定 X、Y 是两个占1个字节的数。X-Y 等价于 X+(-Y) ，而 -Y 可以看作 0-Y，假定是 0 不足以被减，向上借 1 变为 1 0000 0000，而  1 0000 0000 又等價於 1111 1111 + 1，於是 -Y = 1111 1111 - Y + 1，即 Y 的反碼再 + 1。 見 <a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2009/08/twos_complement.html">https://www.ruanyifeng.com/blog/2009/08/twos_complement.htm</a>l</li>
+</ul>
+</li>
+</ul>
+<p>long 類型的數據後面一定要加上 L，否則會被認為是整型。</p>
+<p>char 類型值使用單引號括起來，String 使用雙引號。</p>
+<p>Java 有<strong>自動拆裝箱機制</strong>，裝箱即把基本類型使用其包裝類型包裝起來，拆箱即把包裝類型拆成基本類型。</p>
+<h3 id="包裝類型及常量池技術"><a href="#包裝類型及常量池技術" class="headerlink" title="包裝類型及常量池技術"></a>包裝類型及常量池技術</h3><ol>
+<li>Byte、Short、Integer 和 Long 分別默認創建了數值 [-128, 127] 的相應類型的緩存數據。</li>
+<li>Character 創建了數值在 [0, 127] 的緩存數據。</li>
+<li>Boolean 直接返回 True 和 False。</li>
+<li>Float 和 Double 沒有實現常量池技術。</li>
+</ol>
+<p>使用常量池技術意味著在緩存範圍內的包裝類型對象是相等的，除非 new 一個對象。使用包裝器的 valueOf 方法默認會先去緩存中取對象，取不到才會 new 一個。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Integer i1 = <span class="number">33</span>;</span><br><span class="line">Integer i2 = <span class="number">33</span>;</span><br><span class="line">System.out.println(i1 == i2);<span class="comment">// 输出 true</span></span><br><span class="line">Integer i11 = <span class="number">333</span>;</span><br><span class="line">Integer i22 = <span class="number">333</span>;</span><br><span class="line">System.out.println(i11 == i22);<span class="comment">// 输出 false</span></span><br><span class="line">Double i3 = <span class="number">1.2</span>;</span><br><span class="line">Double i4 = <span class="number">1.2</span>;</span><br><span class="line">System.out.println(i3 == i4);<span class="comment">// 输出 false</span></span><br></pre></td></tr></table></figure>
+
+<p>《阿里巴巴Java開發手冊》規定：</p>
+<ul>
+<li>【強制】<strong>所有的 POJO 類屬性必須使用包裝數據類型</strong>。</li>
+<li>【強制】RPC 方法的返回值和參數必須使用包裝數據類型。</li>
+<li>【推薦】所有的局部變量使用基本數據類型。</li>
+</ul>
+<h3 id="BigDecimal"><a href="#BigDecimal" class="headerlink" title="BigDecimal"></a>BigDecimal</h3><p><strong>（1）使用 BigDecimal 進行浮點數比較和精度取捨</strong></p>
+<p><strong>（2）使用 BigDecimal(String) 或 BigDecimal.valueOf(double) 構造對象</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">float</span> a = <span class="number">1.0f</span> - <span class="number">0.9f</span>;</span><br><span class="line"><span class="keyword">float</span> b = <span class="number">0.9f</span> - <span class="number">0.8f</span>;</span><br><span class="line">System.out.println(a);</span><br><span class="line">System.out.println(b);</span><br><span class="line">System.out.println(a == b); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line">BigDecimal a = <span class="keyword">new</span> BigDecimal(<span class="string">&quot;1.0&quot;</span>);</span><br><span class="line">BigDecimal b = <span class="keyword">new</span> BigDecimal(<span class="string">&quot;0.9&quot;</span>);</span><br><span class="line">BigDecimal c = <span class="keyword">new</span> BigDecimal(<span class="string">&quot;0.8&quot;</span>);</span><br><span class="line">System.out.println(a.subtract(b));</span><br><span class="line">System.out.println(b.subtract(c));</span><br><span class="line">System.out.println(a.subtract(b).equals(b.subtract(c))); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">BigDecimal a = <span class="keyword">new</span> BigDecimal(<span class="string">&quot;1.1252312&quot;</span>);</span><br><span class="line"><span class="comment">// 取小數點後 2 位，四捨五入</span></span><br><span class="line">BigDecimal scale = a.setScale(<span class="number">2</span>, RoundingMode.HALF_UP);</span><br><span class="line">System.out.println(scale.toString()); <span class="comment">// 1.13</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="對象及其大小"><a href="#對象及其大小" class="headerlink" title="對象及其大小"></a>對象及其大小</h3><p>基本類型的封裝類型是對象，Java 中的對象由以下部分組成：</p>
+<ol>
+<li>對象頭（object header）：由 mark word 和 class pointer 組成。mark word 存儲了對象的 hashcode、GC信息和鎖信息；class pointer 存儲了指向類對象的指針。32 位的 JVM 上對象頭佔 8 個字節，mark word 和 class pointer 各佔一半。64 位的 JVM 默認開啟了壓縮指針選項（-XX+UseCompressedOops）後上對象頭佔用 12 個字節，mark word 佔用 8 個字節，class pointer 佔用 4 個字節。</li>
+<li>實例數據（instance data）：對象的有效信息。</li>
+<li>對齊填充（padding）：Hotspot 虛擬機的自動內存管理系統要求對象起始地址必須是 8 字節的整數倍，當實例數據不足時需要進行對齊填充。</li>
+</ol>
+<p>可使用 <code>org.openjdk.jol</code> 工具查看一個對象佔用的字節大小，</p>
+<ul>
+<li><p>如下：</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    System.out.println(VM.current().details());</span><br><span class="line">    System.out.println(ClassLayout.parseClass(Object.class).toPrintable());</span><br><span class="line">    System.out.println(ClassLayout.parseInstance(Integer.valueOf(<span class="number">1</span>)).toPrintable());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  輸出結果：</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Running 64-bit HotSpot VM.</span></span><br><span class="line"><span class="comment"># Using compressed oop with 3-bit shift.</span></span><br><span class="line"><span class="comment"># Using compressed klass with 3-bit shift.</span></span><br><span class="line"><span class="comment"># WARNING | Compressed references base/shifts are guessed by the experiment!</span></span><br><span class="line"><span class="comment"># WARNING | Therefore, computed addresses are just guesses, and ARE NOT RELIABLE.</span></span><br><span class="line"><span class="comment"># WARNING | Make sure to attach Serviceability Agent to get the reliable addresses.</span></span><br><span class="line"><span class="comment"># Objects are 8 bytes aligned.</span></span><br><span class="line"><span class="comment"># Field sizes by type: 4, 1, 1, 2, 2, 4, 4, 8, 8 [bytes]</span></span><br><span class="line"><span class="comment"># Array element sizes: 4, 1, 1, 2, 2, 4, 4, 8, 8 [bytes]</span></span><br><span class="line"></span><br><span class="line">java.lang.Object object internals:</span><br><span class="line"> OFFSET  SIZE   TYPE DESCRIPTION                               VALUE</span><br><span class="line">      0    12        (object header)                           N/A</span><br><span class="line">     12     4        (loss due to the next object alignment)</span><br><span class="line">Instance size: 16 bytes</span><br><span class="line">Space losses: 0 bytes internal + 4 bytes external = 4 bytes total</span><br><span class="line"></span><br><span class="line">java.lang.Integer object internals:</span><br><span class="line"> OFFSET  SIZE   TYPE DESCRIPTION                               VALUE</span><br><span class="line">      0     4        (object header)                           01 c9 01 4e (00000001 11001001 00000001 01001110) (1308739841)</span><br><span class="line">      4     4        (object header)                           3d 00 00 00 (00111101 00000000 00000000 00000000) (61)</span><br><span class="line">      8     4        (object header)                           48 71 00 00 (01001000 01110001 00000000 00000000) (29000)</span><br><span class="line">     12     4    int Integer.value                             1</span><br><span class="line">Instance size: 16 bytes</span><br><span class="line">Space losses: 0 bytes internal + 0 bytes external = 0 bytes total</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>結論：在 64 位開啟指針壓縮的環境下，Object 對象佔用 16 個字節，Integer 對象也佔用 16 個字節。</p>
+<h3 id="String、StringBuffer-和-String-Builder-的區別"><a href="#String、StringBuffer-和-String-Builder-的區別" class="headerlink" title="String、StringBuffer 和 String Builder 的區別"></a>String、StringBuffer 和 String Builder 的區別</h3><p>String 類使用 final 修飾字符數組或字節數組來保存字符串，所以 String 對象是不可變的。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">String</span> </span>&#123;</span><br><span class="line">  <span class="comment">// Java 9 之前</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">char</span>[] value;</span><br><span class="line">  <span class="comment">// Java 9 之後</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">byte</span>[] value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>StringBuilder  和 StringBuffer 都繼承自 AbstractStringBuilder，AbstractStringBuilder 使用字符數組來保存字符串，但沒有使用 final 關鍵字修飾，所以這兩者是可變的。</p>
+<p>下面從不同角度比較下此三者：</p>
+<ol>
+<li>線程安全性：String 對象不可變，線程安全；StringBuffer 對方法加了同步鎖，線程安全；StringBuilder 對方法沒有加同步鎖，線程不安全。</li>
+<li>性能：每次對 String 類型進行改變時會生成一個新的 String 對象，然後將指針指向新的 String 對象。StringBuffer 和 StringBuilder 每次對自身進行操作，不生成新對象。同等情況下， StringBuilder 比 StringBuffer 能提升 10%～15% 性能，但要冒線程不安全的風險。</li>
+</ol>
+<h3 id="注釋"><a href="#注釋" class="headerlink" title="注釋"></a>注釋</h3><p>代碼即注釋。先讓標識符見名知意，然後再考慮增加注釋。</p>
+<h3 id="標識符和關鍵字的區別"><a href="#標識符和關鍵字的區別" class="headerlink" title="標識符和關鍵字的區別"></a>標識符和關鍵字的區別</h3><p>標識符是程序、類、變量、方法等取的名字，而關鍵字是具備特殊含義的標識符。常見的關鍵字有：</p>
+<ol>
+<li>訪問控制：private、protected、public</li>
+<li>類、方法和變量修飾符：abstract、class、extends、final、implements、interface、native、new、static、strictfp、synchronized、transient、volatile</li>
+<li>程序控制：break、continue、return、do、while、if、else、for、instanceof、switch、case、default</li>
+<li>錯誤處理：try、catch、throw、throws、finally</li>
+<li>包相關：import、package</li>
+<li>基本類型：boolean、byte、char、double、float、int、short、null、true、false</li>
+<li>變量引用：super、this、void</li>
+<li>保留字：goto、const</li>
+</ol>
+<h3 id="自增自減運算符"><a href="#自增自減運算符" class="headerlink" title="自增自減運算符"></a>自增自減運算符</h3><p>符號在前先加減再賦值，符號在後先賦值後加減。假定 <code>a = 1; b = a++</code> 最後 a 值爲 2，b 值爲 1。</p>
+<h3 id="和-equals-的區別"><a href="#和-equals-的區別" class="headerlink" title="== 和 equals 的區別"></a>== 和 equals 的區別</h3><ol>
+<li>基本數據類型 == 比較的是值，引用數據類型 == 比較的是內存地址。</li>
+<li>equals 是 Object 類的方法，如無重寫該方法，則默認使用 == 比較對象，即比較內存地址；String 類重寫了 equals 方法使其比較得是值。</li>
+<li>整型包裝類都應使用 equals 比較大小。</li>
+<li>浮點數之間的等值判斷，基本數據類型不能用==來比較，包裝數據類型不能用 equals 來判斷。</li>
+</ol>
+<ul>
+<li><p>重寫 equals 方法通常同時需要重寫 hashcode 方法，爲什麼？</p>
+<p>  hashcode 是 Object 類的一個本地方法，其實現時將對象的內存地址轉爲一個 int 值，不同的對象的 hashcode 可能相同。 HashSet 集合進行元素重複校驗時先比較 hashcode ，當 hashcode 一樣時再調用 equals，提高了校驗效率。因此，如果只重寫 equals 方法而不重寫 hashcode 方法，會出現 equals 返回 true，而 hashcode 不等的情況，這樣如果要求 HashSet 去重就會失敗。</p>
+<p>  HashSet 基於 HashMap 實現，HashMap 內部有一哈希表，裏面使用 hashcode 進行散列存儲。</p>
+</li>
+</ul>
+<h3 id="序列化時如果有些字段不想序列化，怎麼辦？"><a href="#序列化時如果有些字段不想序列化，怎麼辦？" class="headerlink" title="序列化時如果有些字段不想序列化，怎麼辦？"></a>序列化時如果有些字段不想序列化，怎麼辦？</h3><p>使用 transient 關鍵字修飾不想序列化的字段。</p>
+<h3 id="continue、break-和-return-的區別"><a href="#continue、break-和-return-的區別" class="headerlink" title="continue、break 和 return 的區別"></a>continue、break 和 return 的區別</h3><ol>
+<li>continue：跳出當前這一次循環，繼續下一次循環。</li>
+<li>break：跳出整個循環體，繼續執行循環外的語句。</li>
+<li>return：跳出所在的方法，結束方法，可以帶一個返回值。</li>
+</ol>
+<h3 id="泛型、類型擦除和通配符"><a href="#泛型、類型擦除和通配符" class="headerlink" title="泛型、類型擦除和通配符"></a>泛型、類型擦除和通配符</h3><p><strong>泛型的本質是將類型參數化。</strong>Java 的泛型（generics）是 JDK 5 中引入的新特性，還提供了編譯時類型安全檢測機制來檢測非法的類型。但是 Java 的泛型在編譯期間會將泛型信息擦除，即類型擦除，因此也被稱爲<strong>僞泛型</strong>。下面的例子展示了如何在運行期加入非法類型。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">list.add(<span class="number">12</span>);</span><br><span class="line"><span class="comment">//這裡直接添加會報錯</span></span><br><span class="line"><span class="comment">// list.add(&quot;a&quot;);</span></span><br><span class="line">Class&lt;? extends List&gt; clazz = list.getClass();</span><br><span class="line">Method add = clazz.getDeclaredMethod(<span class="string">&quot;add&quot;</span>, Object.class);</span><br><span class="line"><span class="comment">//但是通過反射添加，是可以的</span></span><br><span class="line">add.invoke(list, <span class="string">&quot;kl&quot;</span>);</span><br><span class="line">System.out.println(list);</span><br></pre></td></tr></table></figure>
+
+<p>泛型分泛型接口、泛型類和泛型方法。泛型類的具體類型通過實例化時傳入，泛型方法的具體類型通過方法調用時傳入的參數確定。</p>
+<p>泛型通配符約定：</p>
+<ol>
+<li>？ 表示不確定的 Java 類型，用於泛型方法</li>
+<li>T（Type）表示確定的一個 Java 類型</li>
+<li>K V（Key Value）分別表示映射中的鍵、值</li>
+<li>E（Element）表示集合中的一個元素</li>
+<li>&lt;? extends A&gt; 上界通配符，表示 A 類型或其子類</li>
+<li>&lt;? super A&gt; 下界通配符，表示 A 類型或其父類</li>
+<li><T extends a> 表示 A 類型或其子類的一種</T></li>
+<li>&lt;T extends A &amp; B&gt; 表示 A 類型且B類型的子類的一種</li>
+<li><del><T super a></T></del> </li>
+</ol>
+<p>泛型不是協變的，已知 Apple 繼承自 Fruit 的情況下，Plate<Apple> 的引用並不能傳遞給 Plate<Fruit>，但可以傳遞給 Plate&lt;? extends Fruit&gt;。</Fruit></Apple></p>
+<p>元素爲 &lt;? extends E&gt; 的集合，只能取出 E，而不能存入 E 及其子類的對象。因爲只能確定該類型是 E 的子類，但具體是哪個子類未知，因此編譯器不允許插入任何 E 或其子類的對象，取出來的時候只能當 E 類型。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">  List&lt;? extends A&gt; list = Arrays.asList(<span class="keyword">new</span> A(), <span class="keyword">new</span> B());</span><br><span class="line">  list.add(<span class="keyword">new</span> A()); <span class="comment">// 報錯</span></span><br><span class="line">  list.add(<span class="keyword">new</span> B()); <span class="comment">// 報錯</span></span><br><span class="line">  A a = list.get(<span class="number">1</span>);</span><br><span class="line">  System.out.println(a.toString());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>元素爲 &lt;? super E&gt; 的集合，只能取出 Object，只能存入 E 及其子類的對象。因爲只能確定該類型是 E 的超類，但不知是哪一個超類，所以插入任何 E 及其子類的對象是沒問題的，但是插入 E 的超類就不行了，取出來的時候也只能是 Object，因爲 Object 是一切類的超類。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">  List&lt;? <span class="keyword">super</span> B&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">  list.add(<span class="keyword">new</span> A()); <span class="comment">// 報錯</span></span><br><span class="line">  list.add(<span class="keyword">new</span> B());</span><br><span class="line">  list.add(<span class="keyword">new</span> C());</span><br><span class="line">  Object object = list.get(<span class="number">1</span>);</span><br><span class="line">  System.out.println(object.toString());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">C</span> <span class="keyword">extends</span> <span class="title">B</span></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="獲取鍵盤輸入數據的常用方法"><a href="#獲取鍵盤輸入數據的常用方法" class="headerlink" title="獲取鍵盤輸入數據的常用方法"></a>獲取鍵盤輸入數據的常用方法</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 方法一：使用 Scanner，可以快速確定輸入數據的類型，按空格符分割數據</span></span><br><span class="line">Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">String s = scanner.nextLine();</span><br><span class="line">System.out.println(s);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法二：使用 BufferedReader 讀取字符序列，高效但需要轉換成其他類型，會拋出 IOException</span></span><br><span class="line">BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</span><br><span class="line">String s1 = bufferedReader.readLine();</span><br><span class="line">System.out.println(s1);</span><br></pre></td></tr></table></figure>
+
+<h2 id="方法（函數）"><a href="#方法（函數）" class="headerlink" title="方法（函數）"></a>方法（函數）</h2><h3 id="爲什麼-Java-只有值傳遞？"><a href="#爲什麼-Java-只有值傳遞？" class="headerlink" title="爲什麼 Java 只有值傳遞？"></a>爲什麼 Java 只有值傳遞？</h3><p>首先要明瞭程序設計語言中的有關函數參數傳遞的兩種方法：</p>
+<ol>
+<li>按值調用（call by value）：方法接收調用者提供的參數的值，方法內無法修改實際參數值。</li>
+<li>按引用調用（call by reference）：方法接收調用者提供的參數的地址，方法內可以修改實際參數值。</li>
+</ol>
+<p><strong>Java 總是採用按值調用，所有參數值都是一個拷貝，無法修改實際參數值。對於引用類型參數，傳遞的是引用的拷貝，引用的拷貝和引用指向同一個對象，即所謂的淺拷貝</strong>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">  String s1 = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">  String s2 = <span class="string">&quot;World&quot;</span>;</span><br><span class="line">  swap(s1, s2);</span><br><span class="line">  System.out.printf(<span class="string">&quot;main s1: %s, s2: %s%n&quot;</span>, s1, s2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(String s1, String s2)</span> </span>&#123;</span><br><span class="line">  String tmp = s1;</span><br><span class="line">  s1 = s2;</span><br><span class="line">  s2 = tmp;</span><br><span class="line">  System.out.printf(<span class="string">&quot;swap s1: %s, s2: %s%n&quot;</span>, s1, s2);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 運行結果：</span></span><br><span class="line"><span class="comment">// swap s1: World, s2: Hello</span></span><br><span class="line"><span class="comment">// main s1: Hello, s2: World</span></span><br></pre></td></tr></table></figure>
+
+<p>結論：</p>
+<ol>
+<li>一個方法不能修改一個基本類型的實參。</li>
+<li>一個方法可以改變一個對象類型的實參狀態。</li>
+<li>一個方法不能讓對象類型的實參引用一個新對象。</li>
+</ol>
+<h3 id="深拷貝和淺拷貝有什麼不同？"><a href="#深拷貝和淺拷貝有什麼不同？" class="headerlink" title="深拷貝和淺拷貝有什麼不同？"></a>深拷貝和淺拷貝有什麼不同？</h3><ol>
+<li>淺拷貝：對基本類型拷貝其值；對引用類型拷貝其引用。</li>
+<li>深拷貝：對基本類型拷貝其值；對引用類型，新建一個對象並拷貝原對象的值。</li>
+</ol>
+<p><img src="/2021/02/06/it/java/java-basic/Untitled.png" alt></p>
+<h3 id="重載和重寫有什麼區別？"><a href="#重載和重寫有什麼區別？" class="headerlink" title="重載和重寫有什麼區別？"></a>重載和重寫有什麼區別？</h3><ol>
+<li>重載（overloading）：在一個類中，有多個同名但不同傳入參數的方法，各個重載方法簽名不同。</li>
+<li>重寫（overwrite）：子類對父類允許訪問的方法的重新編寫，方法簽名不變，訪問修飾符只能降低不能提高，拋出的異常只能更小，返回值類型也是。</li>
+</ol>
+<h2 id="Java-面向對象"><a href="#Java-面向對象" class="headerlink" title="Java 面向對象"></a>Java 面向對象</h2><h3 id="面向對象和面向過程"><a href="#面向對象和面向過程" class="headerlink" title="面向對象和面向過程"></a>面向對象和面向過程</h3><ol>
+<li>面向過程：不需要實例化對象，內存和 CPU 開銷小，但不容易維護。</li>
+<li>面向對象：需要實例化對象，內存和 CPU 開銷大，但易維護、易復用、易擴展。</li>
+</ol>
+<p>Java 因爲編譯出的字節碼並不能直接在機器上運行，因而效率上會稍慢。但一些面向過程的腳本語言性能也不一定比 Java 好。</p>
+<h3 id="構造方法"><a href="#構造方法" class="headerlink" title="構造方法"></a>構造方法</h3><ol>
+<li>特點：名字跟類名相同，沒有返回值，不可重寫但可重載。</li>
+<li>作用：執行對象的初始化工作，如果類沒有重載任何構造方法，那默認會有不帶參數的構造方法。</li>
+<li>子類初始化時一定會調用父類的構造方法，即使子類不顯式調用，也會默認調用父類的無參構造方法。</li>
+</ol>
+<h3 id="成員變量和局部變量的區別"><a href="#成員變量和局部變量的區別" class="headerlink" title="成員變量和局部變量的區別"></a>成員變量和局部變量的區別</h3><ol>
+<li>成員變量：屬於類；可以被 public、private、static 等修飾符修飾；如用 static 修飾則變量屬於類，否則屬於對象存在於堆內存；生命週期隨對象；自動賦予初始化值。</li>
+<li>局部變量：屬於代碼塊或方法；只能被 final 修飾；存在於棧內存；生命週期隨代碼塊或方法；不會自動賦予初始化值。</li>
+</ol>
+<h3 id="對象實例和對象引用的區別"><a href="#對象實例和對象引用的區別" class="headerlink" title="對象實例和對象引用的區別"></a>對象實例和對象引用的區別</h3><ol>
+<li>對象實例：存在於堆內存，一個對象實例可以被多個引用指向。</li>
+<li>對象引用：存在於棧內存，一個引用指向一個對象實例。</li>
+</ol>
+<h3 id="面向對象的三大特徵"><a href="#面向對象的三大特徵" class="headerlink" title="面向對象的三大特徵"></a>面向對象的三大特徵</h3><p><strong>（1）封裝</strong></p>
+<p>封裝是將一個對象的狀態信息（即屬性）隱藏在對象內部，一般不允許外界直接訪問，而是提供必要的方法給外界操作。</p>
+<p><strong>（2）繼承</strong></p>
+<p>繼承是使用已有的類創建新類的技術，它提高了代碼復用率和開發效率。關於繼承以下幾點務必明瞭：</p>
+<ol>
+<li>子類擁有父類所有的屬性和方法（包括私有的），但父類中的私有屬性和方法子類無法訪問（反射子類也無法訪問），<strong>僅僅擁有</strong>。</li>
+<li>子類可以對父類進行擴展，增加新的屬性和方法。</li>
+<li>子類可以重寫父類的方法。</li>
+</ol>
+<p><strong>（3）多態</strong></p>
+<p>多態，即一個對象可以擁有多種狀態。具體表現在父類的引用可以指向子類的實例。關於多態以下幾點務必知曉：</p>
+<ol>
+<li>對象類型和引用類型之間具有繼承/實現關係。</li>
+<li>對象類型不可變，引用類型可變。</li>
+<li>方法具有多態性，屬性不具有。父類的引用可以調用子類對象的方法，但不能訪問其屬性。</li>
+<li>父類的引用不能調用「只有子類存在但在父類不存在」的方法。</li>
+<li>如果子類重寫了父類的方法，真正執行的是子類覆蓋的方法。</li>
+</ol>
+<h3 id="靜態方法內爲什麼不能調用非靜態成員？"><a href="#靜態方法內爲什麼不能調用非靜態成員？" class="headerlink" title="靜態方法內爲什麼不能調用非靜態成員？"></a><strong>靜態方法內爲什麼不能調用非靜態成員？</strong></h3><p>因爲非靜態成員需要在類實例化成對象後才能被調用，而靜態方法不需要實例化對象就可以被調用。</p>
+<h3 id="接口和抽象類的區別"><a href="#接口和抽象類的區別" class="headerlink" title="接口和抽象類的區別"></a>接口和抽象類的區別</h3><ol>
+<li>方法上：接口的方法默認修飾符是 public，且不能實現（Java 8 開始可以有默認方法和靜態方法，Java 9 開始可以有私有方法和私有靜態方法）；而抽象類可有 public、protected 和 default 修飾符，且可有非抽象的方法。</li>
+<li>變量上：接口只能有 static、final 變量；而抽象類沒有限制。</li>
+<li>繼承上：一個類可以實現多個接口，接口本身也可以擴展多個接口；但一個類只能繼承一個抽象類。</li>
+<li>設計上：接口是對行爲的抽象，是一個行爲規範；抽象類是對類的抽象，是一種模板設計。</li>
+</ol>
+<h2 id="Java-核心技術"><a href="#Java-核心技術" class="headerlink" title="Java 核心技術"></a>Java 核心技術</h2><h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><p>見 <a target="_blank" rel="noopener" href="https://tsunhua.github.io/2020/12/02/it/java/java-collection/">Java 集合</a> </p>
+<h3 id="反射機制"><a href="#反射機制" class="headerlink" title="反射機制"></a>反射機制</h3><p><strong>（1）什麼是反射</strong></p>
+<p>Java 的反射機制是在運行時能知道任意一個類的所有屬性和方法，能調用任意一個對象的屬性和方法。</p>
+<p><strong>（2）反射的優缺點</strong></p>
+<ol>
+<li>優點：運行時確定類型，動態加載類，提高代碼靈活度。</li>
+<li>缺點：反射性能比直接的 Java 代碼慢，存在安全問題，因爲可以動態操作改變類的屬性。</li>
+</ol>
+<p>反射動態加載類的優點即是動態編譯，與之相對的是靜態編譯，靜態編譯是在編譯時就確定了類型。</p>
+<p><strong>（3）反射的應用場景</strong></p>
+<p>反射是框架設計的靈魂。其應用場景有：</p>
+<ol>
+<li>模塊化開發；</li>
+<li>動態代理設計模式；</li>
+<li>Spring 框架的 IOC（控制反轉）和 AOP（面向切面編程）；</li>
+<li>JDBC 連接數據庫等等。</li>
+</ol>
+<h3 id="異常"><a href="#異常" class="headerlink" title="異常"></a>異常</h3><p><strong>（1）簡介</strong></p>
+<p>Java 的異常歸於同一個 Throwable 類，並分爲兩大類：Error 和 Exception。<strong>Error 通常是 JVM 錯誤，程序無法處理</strong>；<strong>而 Exception 是程序本身可以處理的異常</strong>。Exception 分爲 Checked Exceptions（受檢異常）和 Unchecked Exceptions（不受檢異常）。</p>
+<p><img src="/2021/02/06/it/java/java-basic/Untitled%201.png" alt></p>
+<p><strong>Checked Exceptions 又名 Compile Time Exceptions（編譯時異常）</strong>，編譯器可以發現並要求程序處理後才能正常通過編譯，常見的有：</p>
+<ul>
+<li><em>IOException</em></li>
+<li><em>EOFException</em></li>
+<li><em>MalFormedURLException</em></li>
+<li><em>IntruptedException</em></li>
+</ul>
+<p><strong>Unchecked Exception 又名 Runtime Exceptions（運行時異常）</strong>，編譯器無法檢測出，只有運行時才會發生的異常，常見的有：</p>
+<ul>
+<li><em>ArithmaticException</em></li>
+<li><em>NullPointerException</em></li>
+<li><em>IndexOutOfBoundsException</em></li>
+<li><em>ClassCastException</em></li>
+<li><em>ArrayIndexOutOfBoundsException</em></li>
+<li><em>NumberFormatException</em></li>
+</ul>
+<p><strong>（2）Throwable 類常用方法</strong></p>
+<ol>
+<li><code>getMessage</code>：返回異常的簡要描述</li>
+<li><code>toString</code>：返回異常的詳細信息</li>
+<li><code>getLocalizedMessage</code>：返回異常的本地化信息（需要子類覆蓋該方法，否則與 <code>getMessage</code> 一樣）</li>
+<li><code>printStackTrace</code>：在控制台打印 Throwable 对象封装的异常信息</li>
+</ol>
+<p><strong>（3）try-catch-finally</strong></p>
+<ol>
+<li>try 代碼塊：捕獲異常。其後可接零個或多個 catch 代碼塊，如零個則必須接一個 finally 代碼塊。</li>
+<li>catch 代碼塊：處理捕獲到的異常。</li>
+<li>finally 代碼塊：無論是否捕獲或處理異常，finally 代碼塊最終都會被執行。當在 try 代碼塊或 catch 代碼塊中遇到 return 語句時，finally 代碼塊將在方法返回之前被執行。此時如果 finally 中也有 return 語句的話，其返回值將覆蓋 try 或 catch 代碼塊中的返回值。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> value * value;</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (value == <span class="number">2</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// f(2) 將返回 0 ，而不是 4.</span></span><br></pre></td></tr></table></figure>
+
+<p>以下情況，finally 代碼塊不會被執行或只部分執行：</p>
+<ol>
+<li>finally 代碼塊中有異常，代碼會中異常處中止；</li>
+<li>在 catch 代碼塊或 finally 塊中調用了 <code>System.exit</code> 函數退出程序；</li>
+<li>程序所在的線程死亡等等不可預料的系統和硬件問題。</li>
+</ol>
+<p><strong>（4）try-witch-resources</strong></p>
+<p>Java 7 中新增了 ****try-witch-resources 語法糖，適用於實現<code>java.lang.AutoCloseable</code> 或者 <code>java.io.Closeable</code> 的對象，可以自動關閉申請的資源，然後再執行 catch 或 finally 代碼塊。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// try-catch-finally</span></span><br><span class="line">Scanner scanner = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    scanner = <span class="keyword">new</span> Scanner(<span class="keyword">new</span> File(<span class="string">&quot;src/main/resources/test.txt&quot;</span>));</span><br><span class="line">    <span class="keyword">while</span> (scanner.hasNext()) &#123;</span><br><span class="line">        System.out.println(scanner.nextLine());</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (scanner != <span class="keyword">null</span>) &#123;</span><br><span class="line">        scanner.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// try-witch-resources</span></span><br><span class="line"><span class="keyword">try</span> (Scanner scanner = <span class="keyword">new</span> Scanner(<span class="keyword">new</span> File(<span class="string">&quot;src/main/resources/test.txt&quot;</span>))) &#123;</span><br><span class="line">    <span class="keyword">while</span> (scanner.hasNext()) &#123;</span><br><span class="line">        System.out.println(scanner.nextLine());</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="多線程"><a href="#多線程" class="headerlink" title="多線程"></a>多線程</h3><p>見 <a target="_blank" rel="noopener" href="https://tsunhua.github.io/2020/12/10/it/java/java-concurrent/">Java 多線程</a> </p>
+<h3 id="文件與-I-O-流"><a href="#文件與-I-O-流" class="headerlink" title="文件與 I/O 流"></a>文件與 I/O 流</h3><p><strong>（1）Java 中 I/O 流分爲幾種？</strong></p>
+<p>按不同的分類方法有不同的分類：</p>
+<ol>
+<li>按流向分：輸入流、輸出流。</li>
+<li>按操作單元分：字節流、字符流。</li>
+<li>按角色分：節點流、處理流。</li>
+</ol>
+<p>Java 中 40 多個 I/O 流相關的類都是從 4 個抽象基類派生：</p>
+<ol>
+<li>InputStream：字節輸入流</li>
+<li>Reader：字符輸入流</li>
+<li>OutputStream：字節輸出流</li>
+<li>Writer：字符輸出流</li>
+</ol>
+<p><img src="/2021/02/06/it/java/java-basic/Untitled%202.png" alt></p>
+<p><img src="/2021/02/06/it/java/java-basic/Untitled%203.png" alt></p>
+<p><strong>（2）爲什麼有了字節流還需要字符流？</strong></p>
+<p>不管是文件讀寫還是網絡發送接收，信息的最小存儲單元都是字節，那為什麼 I/O 流操作要分為字節流操作和字符流操作呢？</p>
+<p>字符流是由 JVM 將字節流轉換得到的，過程非常耗時，且容易出現亂碼問題。所以 I/O 流提供直接操作字符流的接口，以避免這種轉換。對於文本建議使用字符流，而圖片、音視頻等應使用字節流。</p>
+<p><strong>（3）BIO、NIO、AIO 有什麼區別？</strong></p>
+<ol>
+<li><strong>BIO</strong>（Blocking I/O），同步阻塞 I/O 模式，數據的讀取寫入必須阻塞在一個線程內等待其完成。適用於活動連接數不高（&lt; 單機 1000）的情況，結合線程池一起使用。</li>
+<li><strong>NIO</strong>（Non-blocking I/O 或 New I/O），同步非阻塞的 I/O 模型，Java 1.4 中引入，位於 <code>java.nio</code> 包，提供 Channel、Selector 和 Buffer 等抽象，支持基於通道面向緩衝的 I/O 操作方法。適用於高負載、高並發的（網絡）應用。</li>
+<li><strong>AIO</strong>（Asynchronous I/O），異步非阻塞的 I/O 模型，Java 7 中引入。支持基於事件回調機制的操作方法。</li>
+</ol>
+<p>NIO 模型：</p>
+<p><img src="/2021/02/06/it/java/java-basic/Untitled%204.png" alt></p>
+<ul>
+<li><p>NIO 服務端代碼</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiplexerNioServer</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Selector selector;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">boolean</span> stop = <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 初始化多路复用器 绑定监听端口</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> port</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MultiplexerNioServer</span><span class="params">(<span class="keyword">int</span> port)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();<span class="comment">//获得一个serverChannel</span></span><br><span class="line">            selector = Selector.open();<span class="comment">////创建选择器  获得一个多路复用器</span></span><br><span class="line">            serverSocketChannel.configureBlocking(<span class="keyword">false</span>);<span class="comment">//设置为非阻塞模式 如果为 true，则此通道将被置于阻塞模式；如果为 false，则此通道将被置于非阻塞模式</span></span><br><span class="line">            serverSocketChannel.socket().bind(<span class="keyword">new</span> InetSocketAddress(port), <span class="number">1024</span>);<span class="comment">//绑定一个端口和等待队列长度</span></span><br><span class="line">            serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);<span class="comment">//把selector注册到channel，关注链接事件</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.exit(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.stop = <span class="keyword">true</span>; <span class="comment">// 优雅停机</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (!stop) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">//无论是否有读写事件发生，selector每隔1s被唤醒一次。如果一定时间内没有事件，就需要做些其他的事情，就可以使用带超时的</span></span><br><span class="line">                <span class="keyword">int</span> client = selector.select(<span class="number">1000</span>);</span><br><span class="line">                System.out.println(<span class="string">&quot;1:&quot;</span> + client);</span><br><span class="line">                <span class="comment">// 阻塞,只有当至少一个注册的事件发生的时候才会继续.</span></span><br><span class="line">                <span class="comment">// int client = selector.select(); 不设置超时时间为线程阻塞，但是IO上支持多个文件描述符就绪</span></span><br><span class="line">                <span class="keyword">if</span> (client == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.println(<span class="string">&quot;2:&quot;</span> + client);</span><br><span class="line">                Set&lt;SelectionKey&gt; selectionKeys = selector.selectedKeys();</span><br><span class="line">                Iterator&lt;SelectionKey&gt; it = selectionKeys.iterator();</span><br><span class="line">                SelectionKey key = <span class="keyword">null</span>;</span><br><span class="line">                <span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">                    key = it.next();</span><br><span class="line">                    it.remove();</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        <span class="comment">//处理事件</span></span><br><span class="line">                        handle(key);</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (key != <span class="keyword">null</span>) &#123;</span><br><span class="line">                            key.cancel();</span><br><span class="line">                            <span class="keyword">if</span> (key.channel() != <span class="keyword">null</span>) &#123;</span><br><span class="line">                                key.channel().close();</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (selector != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// selector关闭后会自动释放里面管理的资源</span></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                selector.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handle</span><span class="params">(SelectionKey key)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (key.isValid()) &#123;</span><br><span class="line">            <span class="comment">//连接事件</span></span><br><span class="line">            <span class="keyword">if</span> (key.isAcceptable()) &#123;</span><br><span class="line">                ServerSocketChannel ssc = (ServerSocketChannel) key.channel();</span><br><span class="line">                <span class="comment">// 通过ServerSocketChannel的accept创建SocketChannel实例</span></span><br><span class="line">                <span class="comment">// 完成该操作意味着完成TCP三次握手，TCP物理链路正式建立</span></span><br><span class="line">                SocketChannel sc = ssc.accept();<span class="comment">//3次握手</span></span><br><span class="line">                sc.configureBlocking(<span class="keyword">false</span>);</span><br><span class="line">                sc.register(selector, SelectionKey.OP_READ);<span class="comment">//连接建立后关注读事件</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//读事件</span></span><br><span class="line">            <span class="keyword">if</span> (key.isReadable()) &#123;</span><br><span class="line">                SocketChannel socketChannel = (SocketChannel) key.channel();</span><br><span class="line">                ByteBuffer readbuffer = ByteBuffer.allocate(<span class="number">1024</span>);<span class="comment">//写 0 1024  1024</span></span><br><span class="line"><span class="comment">//                ByteBuffer readbuffer = ByteBuffer.allocateDirect(1024); //申请直接内存，也就是堆外内存</span></span><br><span class="line">                <span class="comment">// 读取请求码流，返回读取到的字节数</span></span><br><span class="line">                <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                    <span class="keyword">int</span> readBytes = socketChannel.read(readbuffer);</span><br><span class="line">                    <span class="comment">// 读取到字节，对字节进行编解码</span></span><br><span class="line">                    <span class="keyword">if</span> (readBytes &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                        <span class="comment">// 将缓冲区当前的limit设置为position=0，用于后续对缓冲区的读取操作</span></span><br><span class="line">                        readbuffer.flip();<span class="comment">//读写模式反转</span></span><br><span class="line">                        <span class="comment">// 将缓冲区可读字节数组复制到新建的数组中</span></span><br><span class="line">                        <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[readbuffer.remaining()];</span><br><span class="line">                        readbuffer.get(bytes);</span><br><span class="line">                        String body = <span class="keyword">new</span> String(bytes, StandardCharsets.UTF_8);</span><br><span class="line">                        System.out.println(<span class="string">&quot;input is:&quot;</span> + body);</span><br><span class="line">                        res(socketChannel, body);</span><br><span class="line">                    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (readBytes &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                        <span class="comment">// 链路已经关闭 释放资源</span></span><br><span class="line">                        key.cancel();</span><br><span class="line">                        socketChannel.close();</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="comment">// 没有读到字节忽略</span></span><br><span class="line">                        <span class="keyword">return</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">res</span><span class="params">(SocketChannel channel, String response)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (response != <span class="keyword">null</span> &amp;&amp; response.length() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">byte</span>[] bytes = response.getBytes();</span><br><span class="line">            ByteBuffer writeBuffer = ByteBuffer.allocate(bytes.length);</span><br><span class="line">            writeBuffer.put(bytes);</span><br><span class="line">            writeBuffer.flip();</span><br><span class="line">            channel.write(writeBuffer);</span><br><span class="line">            System.out.println(<span class="string">&quot;res end&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>NIO 客戶端代碼</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NioClientHandler</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String host;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> port;</span><br><span class="line">    <span class="keyword">private</span> Selector selector;</span><br><span class="line">    <span class="keyword">private</span> SocketChannel socketChannel;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">boolean</span> stop;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">NioClientHandler</span><span class="params">(String host, <span class="keyword">int</span> port)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.host = host;</span><br><span class="line">        <span class="keyword">this</span>.port = port;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 创建选择器</span></span><br><span class="line">            selector = Selector.open();</span><br><span class="line">            <span class="comment">// 打开监听通道</span></span><br><span class="line">            socketChannel = SocketChannel.open();</span><br><span class="line">            <span class="comment">// 如果为 true，则此通道将被置于阻塞模式；如果为 false，则此通道将被置于非阻塞模式</span></span><br><span class="line">            socketChannel.configureBlocking(<span class="keyword">false</span>); <span class="comment">// 开启非阻塞模式</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.exit(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            doConnect();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.exit(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (!stop) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">int</span> wait = selector.select(<span class="number">1000</span>);</span><br><span class="line">                <span class="keyword">if</span> (wait == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                Set&lt;SelectionKey&gt; selectionKeys = selector.selectedKeys();</span><br><span class="line">                Iterator&lt;SelectionKey&gt; it = selectionKeys.iterator();</span><br><span class="line">                SelectionKey key = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">                    key = it.next();</span><br><span class="line">                    it.remove();</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        handle(key);</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (key != <span class="keyword">null</span>) &#123;</span><br><span class="line">                            key.cancel();</span><br><span class="line">                            <span class="keyword">if</span> (key.channel() != <span class="keyword">null</span>) &#123;</span><br><span class="line">                                key.channel().close();</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">                System.exit(<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (selector != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                selector.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">doConnect</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (socketChannel.connect(<span class="keyword">new</span> InetSocketAddress(host, port))) &#123;</span><br><span class="line">            socketChannel.register(selector, SelectionKey.OP_READ);</span><br><span class="line">            doWrite(socketChannel);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            socketChannel.register(selector, SelectionKey.OP_CONNECT);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">handle</span><span class="params">(SelectionKey key)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (key.isValid()) &#123;</span><br><span class="line">            SocketChannel sc = (SocketChannel) key.channel();</span><br><span class="line">            <span class="keyword">if</span> (key.isConnectable()) &#123;</span><br><span class="line">                <span class="keyword">if</span> (sc.finishConnect()) &#123;</span><br><span class="line">                    sc.register(selector, SelectionKey.OP_READ);</span><br><span class="line">                    doWrite(sc);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    System.exit(<span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (key.isReadable()) &#123;</span><br><span class="line">                ByteBuffer readBuffer = ByteBuffer.allocate(<span class="number">1024</span>);</span><br><span class="line">                <span class="keyword">int</span> readBytes = sc.read(readBuffer);</span><br><span class="line">                <span class="keyword">if</span> (readBytes &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    readBuffer.flip();</span><br><span class="line">                    <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[readBuffer.remaining()];</span><br><span class="line">                    readBuffer.get(bytes);</span><br><span class="line">                    String body = <span class="keyword">new</span> String(bytes, StandardCharsets.UTF_8);</span><br><span class="line">                    System.out.println(<span class="string">&quot;res&quot;</span> + body);</span><br><span class="line">                    <span class="keyword">this</span>.stop = <span class="keyword">true</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (readBytes &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                    key.cancel();</span><br><span class="line">                    sc.close();</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">doWrite</span><span class="params">(SocketChannel sc)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 将消息编码为字节数组</span></span><br><span class="line">        <span class="keyword">byte</span>[] request = <span class="string">&quot;Hello&quot;</span>.getBytes();</span><br><span class="line">        <span class="comment">// 根据数组容量创建ByteBuffer</span></span><br><span class="line">        ByteBuffer writeBuffer = ByteBuffer.allocate(request.length);</span><br><span class="line">        <span class="comment">// 将字节数组复制到缓冲区</span></span><br><span class="line">        writeBuffer.put(request);</span><br><span class="line">        <span class="comment">// flip读写切换操作</span></span><br><span class="line">        writeBuffer.flip();</span><br><span class="line">        sc.write(writeBuffer);</span><br><span class="line">        <span class="keyword">if</span> (!writeBuffer.hasRemaining()) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;写入完成&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Java-項目管理和構建"><a href="#Java-項目管理和構建" class="headerlink" title="Java 項目管理和構建"></a>Java 項目管理和構建</h2><h3 id="Maven-项目"><a href="#Maven-项目" class="headerlink" title="Maven 项目"></a>Maven 项目</h3><p><strong>（1）安装</strong></p>
+<p>從 <a target="_blank" rel="noopener" href="https://maven.apache.org/download.cgi">Maven 官網</a>下載 maven 包，解壓並設置環境變量。還可以直接使用 IDEA 的 Maven 插件。</p>
+<p><strong>（2）初始化一個 Maven 項目</strong></p>
+<p>使用以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mvn -B archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4</span><br></pre></td></tr></table></figure>
+
+<p>或者用 IDEA 直接新建一個 Maven 項目，其結構如下：</p>
+<p><img src="/2021/02/06/it/java/java-basic/20201114_101407.png" alt></p>
+<p>其中 pom.xml 的內容如下：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>testmaven<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--  添加以下屬性，解決編譯報錯  --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.encoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">maven.compiler.encoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>15<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>15<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>15<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 新增依賴在下方 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.openjdk.jol<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jol-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.14<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>為什麼叫 Maven？</p>
+<p>  Maven 來源於意第緒語，爲「行家」的意思。最初是為了簡化 Jakarta Turbine 項目中的構建過程而建立。Maven 使用項目對象模型（POM）和一組插件來構件項目。</p>
+</li>
+<li><p>POM 又是指什麼？</p>
+<p>  POM（project object model）項目對象模型，maven 使用 <code>pom.xml</code> 定義了整個項目的構建、報告和文檔。</p>
+</li>
+</ul>
+<p><strong>（3）編譯測試打包</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 清理 target 中的文件</span></span><br><span class="line">mvn clean</span><br><span class="line"><span class="comment"># 編譯 java 文件成 class 文件，置於 target/classes 文件夾中</span></span><br><span class="line">mvn compile</span><br><span class="line"><span class="comment"># 進行單元測試</span></span><br><span class="line">mvn <span class="built_in">test</span></span><br><span class="line"><span class="comment"># 打包成 jar 文件，置於 target 文件夾中</span></span><br><span class="line">mvn package</span><br><span class="line"><span class="comment"># 安裝 jar 包到本地存儲庫（$&#123;user.home&#125;/.m2/repository）</span></span><br><span class="line">mvn install</span><br><span class="line"><span class="comment"># 生成自己的 maven 站點</span></span><br><span class="line">mvn site</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>SNAPSHOT 是什麼？</p>
+<p>  snapshot 簡要的意思，在版本號之後添加 <code>-SNAPSHOT</code> 是說明該版本仍處於開發階段，不是最終的發行版本。以 <code>x.y-SNAPSHOT</code> 版本為例，發行時會去除 <code>-SNAPSHOT</code>  後綴，然後將最新的開發版本升爲<code>x.(y+1)-SNAPSHOT</code> 。</p>
+</li>
+<li><p>使用 mvn compile 生成的 jar 包，其內容是怎樣的？</p>
+<p>  除了 class 文件外，還有 <code>META-INF</code> 文件夾，裏面存放一些清單文件和pom 文件。存放到項目資源文件夾（<code>main/resources</code> ）的文件也會被打包到<code>META-INF</code> 文件夾中，代碼中可通過<code>getClass().getResourceAsStream( &quot;/application.properties&quot; )</code> 調用。</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ jar tf target/testmaven-1.0-SNAPSHOT.jar </span><br><span class="line">META-INF/</span><br><span class="line">META-INF/MANIFEST.MF</span><br><span class="line">B.class</span><br><span class="line">MemoryLayoutTest.class</span><br><span class="line">A.class</span><br><span class="line">C.class</span><br><span class="line">META-INF/maven/</span><br><span class="line">META-INF/maven/org.example/</span><br><span class="line">META-INF/maven/org.example/testmaven/</span><br><span class="line">META-INF/maven/org.example/testmaven/pom.xml</span><br><span class="line">META-INF/maven/org.example/testmaven/pom.properties</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="Gradle-项目"><a href="#Gradle-项目" class="headerlink" title="Gradle 项目"></a>Gradle 项目</h3><p><strong>（1）安裝</strong></p>
+<p>可從 <a target="_blank" rel="noopener" href="https://www.gradle.org/downloads">gradle 官網</a>下載解壓並配置環境變量的方式安裝。Mac 用戶還可以使用 <code>brew install gradle</code> 的方式安裝。或者直接使用 IDEA 項目中的 <code>gradle-wrapper</code> ，此時對應的 <code>gradle</code> 命令變爲 <code>gradlew</code>。</p>
+<p><strong>（2）gradle 命令能做什麼？</strong></p>
+<p>gradle 命令能構建項目， 查看項目依賴、子項目和項目配置等等。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gradle tasks</span><br><span class="line"></span><br><span class="line">:tasks</span><br><span class="line"></span><br><span class="line">== All tasks runnable from root project</span><br><span class="line"></span><br><span class="line">== Build Setup tasks</span><br><span class="line">setupBuild - Initializes a new Gradle build. [incubating]</span><br><span class="line"></span><br><span class="line">== Help tasks</span><br><span class="line">dependencies - Displays all dependencies declared <span class="keyword">in</span> root project <span class="string">&#x27;gs-gradle&#x27;</span>.</span><br><span class="line">dependencyInsight - Displays the insight into a specific dependency <span class="keyword">in</span> root project <span class="string">&#x27;gs-gradle&#x27;</span>.</span><br><span class="line"><span class="built_in">help</span> - Displays a <span class="built_in">help</span> message</span><br><span class="line">projects - Displays the sub-projects of root project <span class="string">&#x27;gs-gradle&#x27;</span>.</span><br><span class="line">properties - Displays the properties of root project <span class="string">&#x27;gs-gradle&#x27;</span>.</span><br><span class="line">tasks - Displays the tasks runnable from root project <span class="string">&#x27;gs-gradle&#x27;</span>.</span><br><span class="line"></span><br><span class="line">To see all tasks and more detail, run with --all.</span><br><span class="line"></span><br><span class="line">BUILD SUCCESSFUL</span><br><span class="line"></span><br><span class="line">Total time: 3.077 secs</span><br></pre></td></tr></table></figure>
+
+<p><strong>（3）初始化一個 Gradle 項目</strong></p>
+<p>在項目文件夾中新建一個名爲 <code>build.gradle</code> 的文件，其內容如下：</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">apply <span class="attr">plugin:</span> <span class="string">&#x27;java&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>隨後新建一個名爲 <code>settings.gradle</code> 的文件，其內容可暫時爲空。</p>
+<p>在 IDEA 中打開此項目，隨後 IDEA 會自動配置加入 <code>gradle-wrapper</code> ，其過程等價於執行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gradle wrapper --gradle-version 6.5</span><br></pre></td></tr></table></figure>
+
+<p><strong>（4）編譯打包</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 編譯項目，會默認在 build/classes 中生成類文件，在 build/libs 中生成 jar 包</span></span><br><span class="line">gradle build</span><br><span class="line"><span class="comment"># 或使用 gradle wrapper</span></span><br><span class="line">./gradlew build</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理生成的文件</span></span><br><span class="line">gradle clean</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成 jar 文件</span></span><br><span class="line">gradle jar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 運行生成的 jar 文件</span></span><br><span class="line">gradle run</span><br><span class="line"></span><br><span class="line"><span class="comment"># 進行單元測試</span></span><br><span class="line">gradle <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>（5）<code>build.gradle</code> 中可配置什麼？</strong></p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 配置插件，插件提供語法定義</span></span><br><span class="line">apply <span class="attr">plugin:</span> <span class="string">&#x27;java&#x27;</span></span><br><span class="line">apply <span class="attr">plugin:</span> <span class="string">&#x27;application&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 配置入口類</span></span><br><span class="line">mainClassName = <span class="string">&#x27;hello.HelloWorld&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 配置依賴倉庫</span></span><br><span class="line">repositories &#123;</span><br><span class="line">    mavenCentral()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 配置生成的 jar 文件的入口類</span></span><br><span class="line">jar &#123;</span><br><span class="line">    manifest &#123;</span><br><span class="line">        attributes <span class="string">&#x27;Main-Class&#x27;</span>: mainClassName</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 配置 JDK 兼容性</span></span><br><span class="line">sourceCompatibility = <span class="number">1.8</span></span><br><span class="line">targetCompatibility = <span class="number">1.8</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 配置依賴</span></span><br><span class="line">dependencies &#123;</span><br><span class="line">    compile <span class="string">&quot;joda-time:joda-time:2.2&quot;</span></span><br><span class="line">    testCompile <span class="string">&quot;junit:junit:4.12&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如需將所有依賴 jar 打進同一個 jar 包，可使用 <a target="_blank" rel="noopener" href="https://github.com/johnrengelman/shadow">shadow 插件</a>或使用 <a target="_blank" rel="noopener" href="https://spring.io/quickstart">spring boot 插件</a>。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://tsunhua@github.io/2021/02/06/it/java/java-basic/" data-id="ckpwth6sw001w4k3q16qzb8fp" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/02/06/it/java/java-collection/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          Java 集合
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/02/06/it/go/zodiac-ganzhi-go/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">十二生肖、干支紀年法與Go語言編程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">貼示</h3>
+    <div class="widget" style="min-height: 50px;">
+        <img src="" height="50px" style="float: left; margin-right: 10px" />
+        <div style="font-size:medium; color:palevioletred;padding-top: 16px;">汝著愛忍耐，愛找覓家己的路來行</div>
+    </div>
+</div>
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">標籤雲</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Go/" style="font-size: 20px;">Go</a> <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/%E5%8D%81%E4%BA%8C%E7%94%9F%E8%82%96/" style="font-size: 10px;">十二生肖</a> <a href="/tags/%E5%B9%B2%E6%94%AF%E7%B4%80%E5%B9%B4%E6%B3%95/" style="font-size: 10px;">干支紀年法</a> <a href="/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/" style="font-size: 10px;">日本語</a> <a href="/tags/%E6%BD%AE%E5%8A%87/" style="font-size: 10px;">潮劇</a> <a href="/tags/%E6%BD%AE%E5%B7%9E%E8%A9%B1/" style="font-size: 15px;">潮州話</a> <a href="/tags/%E7%94%B2%E5%AD%90%E8%A9%B1/" style="font-size: 20px;">甲子話</a> <a href="/tags/%E8%81%86%E8%81%BD%E9%9F%B3%E6%A8%82/" style="font-size: 10px;">聆聽音樂</a> <a href="/tags/%E8%A9%A9%E7%B6%93/" style="font-size: 10px;">詩經</a> <a href="/tags/%E9%96%A9%E5%8D%97%E8%AA%9E/" style="font-size: 20px;">閩南語</a>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">二維碼</h3>
+    <div class="widget">
+        <img src="https://tsunhua.github.io/qrcode.jpg" width="100%" />
+    </div>
+</div>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">彙整</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/06/music/listen-chopin-raindrop/">聆聽音樂：蕭邦之「雨滴」</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/teochew-opera-ghe%CC%82gdengcung/">在潮劇中學之《玉堂春》</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/teochew-kahtsi-vowel/">潮州話與甲子話韻母差異（稿）</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/sige%CC%82ng-giamgia/">詩經·秦風‧蒹葭 (甲子話注音版)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/gahzi-oi-hung-lui-ci-biao/">甲子話分類辭表（2020.12）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="創用 CC 授權條款"
+          style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+      <br />
+      Writed by
+      <a xmlns:cc="http: //creativecommons.org/ns#" target="_blank" href="https://linlshare.github.io/" property="cc:attributionName"
+        rel="cc:attributionURL noopener">Hua
+      </a>
+
+      <br>
+      Powered by
+      <a href="https://github.com/" target="_blank">Github</a>&nbsp;&&nbsp;
+      <a href="https://hexo.io/" target="_blank">Hexo</a>
+      <br />
+
+    </div>
+  </div>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主頁</a>
+  
+    <a target="_blank" rel="noopener" href="https://dicthub.cn/" class="mobile-nav-link">典合網</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">RSS</a>
+  
+</nav>
+    
+
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

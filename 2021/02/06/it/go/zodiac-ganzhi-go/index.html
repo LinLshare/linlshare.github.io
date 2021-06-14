@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <html lang="en"></html>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-128207704-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>十二生肖、干支紀年法與Go語言編程 | 編舟堂</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="如無特殊說明，本文標音採用甲子話拼音方案。甲子話系陸豐市甲子鎮通行的語言，屬閩南語潮汕話三甲片。 十二生肖十二生肖本地讀音爲：  鼠牛虎兔 &#x2F;cu² ngu⁵ hao² tao³&#x2F; 龍蛇馬羊 &#x2F;lêng⁵ zua⁵ bhê² ion⁵&#x2F; 猴雞狗豬 &#x2F;gao⁵ goi¹ gao² du¹&#x2F;  干支紀年法「干」是天干，有 10：  甲乙丙丁 &#x2F;gah⁴ ig⁴ bian² dêng¹&#x2F; 戊己庚辛 &#x2F;b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="十二生肖、干支紀年法與Go語言編程">
+<meta property="og:url" content="https://tsunhua@github.io/2021/02/06/it/go/zodiac-ganzhi-go/index.html">
+<meta property="og:site_name" content="編舟堂">
+<meta property="og:description" content="如無特殊說明，本文標音採用甲子話拼音方案。甲子話系陸豐市甲子鎮通行的語言，屬閩南語潮汕話三甲片。 十二生肖十二生肖本地讀音爲：  鼠牛虎兔 &#x2F;cu² ngu⁵ hao² tao³&#x2F; 龍蛇馬羊 &#x2F;lêng⁵ zua⁵ bhê² ion⁵&#x2F; 猴雞狗豬 &#x2F;gao⁵ goi¹ gao² du¹&#x2F;  干支紀年法「干」是天干，有 10：  甲乙丙丁 &#x2F;gah⁴ ig⁴ bian² dêng¹&#x2F; 戊己庚辛 &#x2F;b">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2021-02-05T16:21:16.558Z">
+<meta property="article:modified_time" content="2021-02-05T16:21:16.000Z">
+<meta property="article:author" content="Hua">
+<meta property="article:tag" content="甲子話">
+<meta property="article:tag" content="Go">
+<meta property="article:tag" content="十二生肖">
+<meta property="article:tag" content="干支紀年法">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="shortcut icon" href="favicon.ico" />
+  
+  
+    <link href="//fonts.font.im/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="編舟堂" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">編舟堂</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="/">主頁</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://dicthub.cn/">典合網</a>
+        
+        <a class="main-nav-link" href="/atom.xml">RSS</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://tsunhua@github.io"></form> -->
+        <form action="//cn.bing.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="搜尋">
+          <button type="submit" class="search-form-submit"></button>
+          <input type="hidden" name="sitesearch" value="url">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-it/go/zodiac-ganzhi-go" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/02/06/it/go/zodiac-ganzhi-go/" class="article-date">
+  <time datetime="2021-02-05T16:21:16.558Z" itemprop="datePublished">2021-02-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      十二生肖、干支紀年法與Go語言編程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+          <div id="toc" class="toc-article">
+              <strong class="toc-title">目錄</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%BA%8C%E7%94%9F%E8%82%96"><span class="toc-number">1.</span> <span class="toc-text">十二生肖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B2%E6%94%AF%E7%B4%80%E5%B9%B4%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">干支紀年法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%95%8F%E9%A1%8C"><span class="toc-number">3.</span> <span class="toc-text">問題</span></a></li></ol>
+          </div>
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>如無特殊說明，本文標音採用甲子話拼音方案。甲子話系陸豐市甲子鎮通行的語言，屬閩南語潮汕話三甲片。</p>
+<h2 id="十二生肖"><a href="#十二生肖" class="headerlink" title="十二生肖"></a>十二生肖</h2><p>十二生肖本地讀音爲：</p>
+<ul>
+<li>鼠牛虎兔 /cu² ngu⁵ hao² tao³/</li>
+<li>龍蛇馬羊 /lêng⁵ zua⁵ bhê² ion⁵/</li>
+<li>猴雞狗豬 /gao⁵ goi¹ gao² du¹/</li>
+</ul>
+<h2 id="干支紀年法"><a href="#干支紀年法" class="headerlink" title="干支紀年法"></a>干支紀年法</h2><p>「干」是天干，有 10：</p>
+<ul>
+<li>甲乙丙丁 /gah⁴ ig⁴ bian² dêng¹/</li>
+<li>戊己庚辛 /bhao⁷ gi² gên¹ sing¹/</li>
+<li>壬癸 /rim⁶ gui³/</li>
+</ul>
+<p>「支」是地支，有 12：</p>
+<ul>
+<li>子丑寅卯 /zu² tiu² ing⁵ bhao²/</li>
+<li>辰巳午未 /sing⁵ zi⁶ ngao² bhi⁷/</li>
+<li>申酉戌亥 /sing¹ iu² sug⁴ hai⁶/</li>
+</ul>
+<p>天干從甲開始，地支從子開始，天干地支相配形成 60 種組合，用來紀年。從甲子出發，60 年後又回到甲子，因此稱 60 年爲「一甲子」。</p>
+<p>十二地支與十二生肖相對應，因此也用生肖紀年。如甲子年，地支爲「子」，對應生肖「鼠」，因此甲子年也稱之為「鼠年」。</p>
+<h2 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h2><p><strong>問題1：已知 2020 年是鼠年，請問 2021 年是什麼年？</strong></p>
+<p>排在鼠之後的生肖是牛，因此 2021 年是牛年。</p>
+<p><strong>問題2：已知 2020 年是庚子年 /gên¹ zu² ni⁵/，請問 2021 年是什麼年？</strong></p>
+<p>庚之後爲辛，子之後爲丑，因此 2021 年是辛丑年 /sing¹ tiu² ni⁵/。</p>
+<p><strong>問題3：已知 1024 年是甲子年，問最近過去的甲子年和將要到來的甲子年是公元多少年？</strong></p>
+<span id="more"></span>
+
+<p>使用 Go 語言解決，編碼如下：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f1</span><span class="params">()</span></span> &#123;</span><br><span class="line">  jz := <span class="number">1024</span></span><br><span class="line">  <span class="keyword">for</span> &#123;</span><br><span class="line">    jz = jz + <span class="number">60</span></span><br><span class="line">    <span class="keyword">if</span> jz &gt; <span class="number">2020</span> &#123;</span><br><span class="line">      <span class="built_in">println</span>(jz<span class="number">-60</span>, jz)</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>執行後輸出結果爲：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="number">1984</span> <span class="number">2044</span></span><br></pre></td></tr></table></figure>
+
+<p>因此，最近過去的甲子年是 1984 年，將要到來的甲子年是 2044 年。</p>
+<p><strong>問題4：已知干支紀年法中有 10 天干，12 地支，有 60 種合法組合，求所有非法的組合，並探討其中規律。</strong></p>
+<p>先說結論：</p>
+<ol>
+<li>所有非法的組合爲：<br>甲丑 甲卯 甲巳 甲未 甲酉 甲亥 乙子 乙寅 乙辰 乙午 乙申 乙戌 丙丑 丙卯 丙巳 丙未 丙酉 丙亥 丁子 丁寅 丁辰 丁午 丁申 丁戌 戊丑 戊卯 戊巳 戊未 戊酉 戊亥 己子 己寅 己辰 己午 辛寅 辛辰 辛午 辛申 辛戌 壬丑 壬卯 壬巳 壬未 壬酉 壬亥 癸子 癸寅 癸辰 癸午 癸申 癸戌</li>
+<li>其中的規律是：使用 1～10 給天干編號，1～12給地支編號，分別從天干和地支的編號中任取一個，如果其和爲偶數則是合法的組合，否則就是非法的組合。例如「甲丑」中「甲」的編號是 1，「丑」的編號是 2，1+2=3 爲奇數，是非法的組合。</li>
+</ol>
+<p>試著使用編程來解決此問題。</p>
+<p>首先，將天干和地址的字符串定義如下：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> gs = <span class="string">&quot;甲乙丙丁戊己庚辛壬癸&quot;</span></span><br><span class="line"><span class="keyword">const</span> zs = <span class="string">&quot;子丑寅卯辰巳午未申酉戌亥&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>第一種思路是：先求出所有合法的組合，然後窮盡所有組合，如組合不在合法組合中即是非法組合，輸出即可，編程到函數 f1 如下：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f1</span><span class="params">()</span></span> &#123;</span><br><span class="line">  <span class="comment">// 天干數組</span></span><br><span class="line">  garr := []<span class="keyword">rune</span>(gs)</span><br><span class="line">  <span class="comment">// 地支數組</span></span><br><span class="line">  zarr := []<span class="keyword">rune</span>(zs)</span><br><span class="line">  <span class="comment">// 保存合法的干支組合的Map</span></span><br><span class="line">  <span class="comment">// Key爲干支，Value爲天干索引與地支索引之和</span></span><br><span class="line">  tdmap := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 將干支組合保存到Map中，直到出現第一個重複項就停止遍歷</span></span><br><span class="line">  <span class="keyword">for</span> i, j := <span class="number">0</span>, <span class="number">0</span>; i &lt; <span class="built_in">len</span>(garr) &amp;&amp; j &lt; <span class="built_in">len</span>(zarr); i, j = (i+<span class="number">1</span>)%<span class="built_in">len</span>(garr), (j+<span class="number">1</span>)%<span class="built_in">len</span>(zarr) &#123;</span><br><span class="line">    k := <span class="keyword">string</span>(garr[i]) + <span class="keyword">string</span>(zarr[j])</span><br><span class="line">    <span class="keyword">if</span> _, ok := tdmap[k]; ok &#123;</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">    tdmap[k] = i + j</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 輸出所有合法的組合</span></span><br><span class="line">  <span class="built_in">println</span>(<span class="string">&quot;\n所有合法的組合：&quot;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> k, v := <span class="keyword">range</span> tdmap &#123;</span><br><span class="line">    fmt.Printf(<span class="string">&quot;%s:%d &quot;</span>, k, v)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 輸出所有非法的組合</span></span><br><span class="line">  <span class="built_in">println</span>(<span class="string">&quot;\n所有非法的組合：&quot;</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(garr); i++ &#123;</span><br><span class="line">    <span class="keyword">for</span> j := <span class="number">0</span>; j &lt; <span class="built_in">len</span>(zarr); j++ &#123;</span><br><span class="line">      k := <span class="keyword">string</span>(garr[i]) + <span class="keyword">string</span>(zarr[j])</span><br><span class="line">      <span class="keyword">if</span> _, ok := tdmap[k]; !ok &#123;</span><br><span class="line">        fmt.Printf(<span class="string">&quot;%s:%d &quot;</span>, k, i+j)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>輸出結果爲：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">所有合法的組合：</span><br><span class="line">庚午:<span class="number">12</span> 己卯:<span class="number">8</span> 甲申:<span class="number">8</span> 己酉:<span class="number">14</span> 丙寅:<span class="number">4</span> 丁卯:<span class="number">6</span> 己巳:<span class="number">10</span> 癸酉:<span class="number">18</span> 戊寅:<span class="number">6</span> 戊戌:<span class="number">14</span> 癸巳:<span class="number">14</span> 癸卯:<span class="number">12</span> 甲辰:<span class="number">4</span> 乙卯:<span class="number">4</span> 辛巳:<span class="number">12</span> 丙戌:<span class="number">12</span> 壬辰:<span class="number">12</span> 乙未:<span class="number">8</span> 辛亥:<span class="number">18</span> 戊午:<span class="number">10</span> 丁巳:<span class="number">8</span> 己未:<span class="number">12</span> 辛 壬申:<span class="number">16</span> 甲午:<span class="number">6</span> 庚子:<span class="number">6</span> 辛丑:<span class="number">8</span> 庚戌:<span class="number">16</span> 丙辰:<span class="number">6</span> 戊辰:<span class="number">8</span> 癸未:<span class="number">16</span> 甲子:<span class="number">0</span> 丙申:<span class="number">10</span> 丁未:<span class="number">10</span> 壬子:<span class="number">8</span> 庚辰:<span class="number">10</span> 甲戌:<span class="number">10</span> 丁丑:<span class="number">4</span> 壬午:<span class="number">14</span> 丙子:<span class="number">2</span> 庚寅:<span class="number">8</span> 壬寅:<span class="number">10</span> 戊申:<span class="number">12</span> 甲寅:<span class="number">2</span> 乙丑:<span class="number">2</span> 辛未:<span class="number">14</span> 丁亥:<span class="number">14</span> 戊子:<span class="number">4</span> 己亥:<span class="number">16</span> 丙午:<span class="number">8</span> 庚申:<span class="number">14</span> 癸亥:<span class="number">20</span> 丁酉:<span class="number">12</span> </span><br><span class="line">所有非法的組合：</span><br><span class="line">甲丑:<span class="number">1</span> 甲卯:<span class="number">3</span> 甲巳:<span class="number">5</span> 甲未:<span class="number">7</span> 甲酉:<span class="number">9</span> 甲亥:<span class="number">11</span> 乙子:<span class="number">1</span> 乙寅:<span class="number">3</span> 乙辰:<span class="number">5</span> 乙午:<span class="number">7</span> 乙申:<span class="number">9</span> 乙戌:<span class="number">11</span> 丙丑:<span class="number">3</span> 丙卯:<span class="number">5</span> 丙巳:<span class="number">7</span> 丙未:<span class="number">9</span> 丙酉:<span class="number">11</span> 丙亥:<span class="number">13</span> 丁子:<span class="number">3</span> 丁寅:<span class="number">5</span> 丁辰:<span class="number">7</span> 丁午:<span class="number">9</span> 丁申:<span class="number">11</span> 丁 己辰:<span class="number">9</span> 己午:<span class="number">11</span> 己申:<span class="number">13</span> 己戌:<span class="number">15</span> 庚丑:<span class="number">7</span> 庚卯:<span class="number">9</span> 庚巳:<span class="number">11</span> 庚未:<span class="number">13</span> 庚酉:<span class="number">15</span> 庚亥:<span class="number">17</span> 辛子:<span class="number">7</span> 辛寅:<span class="number">9</span> 辛辰:<span class="number">11</span> 辛午:<span class="number">13</span> 辛申:<span class="number">15</span> 辛戌:<span class="number">17</span> 壬丑:<span class="number">9</span> 壬卯:<span class="number">11</span> 壬巳:<span class="number">13</span> 壬未:<span class="number">15</span> 壬酉:<span class="number">17</span> 壬亥:<span class="number">19</span> 癸子:<span class="number">9</span> 癸寅:<span class="number">11</span> 癸辰:<span class="number">13</span> 癸午:<span class="number">15</span> 癸申:<span class="number">17</span> 癸戌:<span class="number">19</span> </span><br></pre></td></tr></table></figure>
+
+<p>嗯，符合預期，合法的組合和非法的組合各佔 60 個。</p>
+<p>觀察發現，所有合法的組合的Value值都是偶數，所有非法的組合的Value值都是奇數。</p>
+<p>因此有第二種思路求出非法組合：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f2</span><span class="params">()</span></span> &#123;</span><br><span class="line">  garr := []<span class="keyword">rune</span>(gs)</span><br><span class="line">  zarr := []<span class="keyword">rune</span>(zs)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 輸出所有非法的組合</span></span><br><span class="line">  <span class="built_in">println</span>(<span class="string">&quot;\n所有非法的組合：&quot;</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(garr); i++ &#123;</span><br><span class="line">    <span class="keyword">for</span> j := <span class="number">0</span>; j &lt; <span class="built_in">len</span>(zarr); j++ &#123;</span><br><span class="line">      <span class="keyword">if</span> (i+j)%<span class="number">2</span> != <span class="number">0</span> &#123;</span><br><span class="line">        fmt.Printf(<span class="string">&quot;%s:%d &quot;</span>, <span class="keyword">string</span>(garr[i])+<span class="keyword">string</span>(zarr[j]), i+j)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>輸出結果：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">所有非法的組合：</span><br><span class="line">甲丑:<span class="number">1</span> 甲卯:<span class="number">3</span> 甲巳:<span class="number">5</span> 甲未:<span class="number">7</span> 甲酉:<span class="number">9</span> 甲亥:<span class="number">11</span> 乙子:<span class="number">1</span> 乙寅:<span class="number">3</span> 乙辰:<span class="number">5</span> 乙午:<span class="number">7</span> 乙申:<span class="number">9</span> 乙戌:<span class="number">11</span> 丙丑:<span class="number">3</span> 丙卯:<span class="number">5</span> 丙巳:<span class="number">7</span> 丙未:<span class="number">9</span> 丙酉:<span class="number">11</span> 丙亥:<span class="number">13</span> 丁子:<span class="number">3</span> 丁寅:<span class="number">5</span> 丁辰:<span class="number">7</span> 丁午:<span class="number">9</span> 丁申:<span class="number">11</span> 丁 己辰:<span class="number">9</span> 己午:<span class="number">11</span> 己申:<span class="number">13</span> 己戌:<span class="number">15</span> 庚丑:<span class="number">7</span> 庚卯:<span class="number">9</span> 庚巳:<span class="number">11</span> 庚未:<span class="number">13</span> 庚酉:<span class="number">15</span> 庚亥:<span class="number">17</span> 辛子:<span class="number">7</span> 辛寅:<span class="number">9</span> 辛辰:<span class="number">11</span> 辛午:<span class="number">13</span> 辛申:<span class="number">15</span> 辛戌:<span class="number">17</span> 壬丑:<span class="number">9</span> 壬卯:<span class="number">11</span> 壬巳:<span class="number">13</span> 壬未:<span class="number">15</span> 壬酉:<span class="number">17</span> 壬亥:<span class="number">19</span> 癸子:<span class="number">9</span> 癸寅:<span class="number">11</span> 癸辰:<span class="number">13</span> 癸午:<span class="number">15</span> 癸申:<span class="number">17</span> 癸戌:<span class="number">19</span></span><br></pre></td></tr></table></figure>
+
+<p>很棒，跟思路一的非法組合一致。</p>
+<p>學過小學數學的都知道，奇數+偶數=奇數，奇數+奇數=偶數，偶數+偶數=偶數。於是有了第三種思路，只要保證 i 和 j 的奇偶性不同即可保證 i 和 j 的組合爲非法組合。代碼如下：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f3</span><span class="params">()</span></span> &#123;</span><br><span class="line">  garr := []<span class="keyword">rune</span>(gs)</span><br><span class="line">  zarr := []<span class="keyword">rune</span>(zs)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 輸出所有非法的組合</span></span><br><span class="line">  <span class="built_in">println</span>(<span class="string">&quot;\n所有非法的組合：&quot;</span>)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(garr); i++ &#123;</span><br><span class="line">    <span class="keyword">if</span> i%<span class="number">2</span> == <span class="number">0</span> &#123;</span><br><span class="line">      <span class="keyword">for</span> j := <span class="number">1</span>; j &lt; <span class="built_in">len</span>(zarr); j = j + <span class="number">2</span> &#123;</span><br><span class="line">        fmt.Printf(<span class="string">&quot;%s:%d &quot;</span>, <span class="keyword">string</span>(garr[i])+<span class="keyword">string</span>(zarr[j]), i+j)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">for</span> j := <span class="number">0</span>; j &lt; <span class="built_in">len</span>(zarr); j = j + <span class="number">2</span> &#123;</span><br><span class="line">        fmt.Printf(<span class="string">&quot;%s:%d &quot;</span>, <span class="keyword">string</span>(garr[i])+<span class="keyword">string</span>(zarr[j]), i+j)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>輸出結果同思路二的一致。</p>
+<p>完結</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://tsunhua@github.io/2021/02/06/it/go/zodiac-ganzhi-go/" data-id="ckpwth6s9000b4k3q12x7bnh7" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Go/" rel="tag">Go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%81%E4%BA%8C%E7%94%9F%E8%82%96/" rel="tag">十二生肖</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B9%B2%E6%94%AF%E7%B4%80%E5%B9%B4%E6%B3%95/" rel="tag">干支紀年法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%B2%E5%AD%90%E8%A9%B1/" rel="tag">甲子話</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/02/06/it/java/java-basic/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          Java 基礎
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/02/06/it/go/go-design-and-implementation-02/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">《Go 設計與實現》筆記之第二章 編譯原理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">貼示</h3>
+    <div class="widget" style="min-height: 50px;">
+        <img src="" height="50px" style="float: left; margin-right: 10px" />
+        <div style="font-size:medium; color:palevioletred;padding-top: 16px;">汝著愛忍耐，愛找覓家己的路來行</div>
+    </div>
+</div>
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">標籤雲</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Go/" style="font-size: 20px;">Go</a> <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/%E5%8D%81%E4%BA%8C%E7%94%9F%E8%82%96/" style="font-size: 10px;">十二生肖</a> <a href="/tags/%E5%B9%B2%E6%94%AF%E7%B4%80%E5%B9%B4%E6%B3%95/" style="font-size: 10px;">干支紀年法</a> <a href="/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/" style="font-size: 10px;">日本語</a> <a href="/tags/%E6%BD%AE%E5%8A%87/" style="font-size: 10px;">潮劇</a> <a href="/tags/%E6%BD%AE%E5%B7%9E%E8%A9%B1/" style="font-size: 15px;">潮州話</a> <a href="/tags/%E7%94%B2%E5%AD%90%E8%A9%B1/" style="font-size: 20px;">甲子話</a> <a href="/tags/%E8%81%86%E8%81%BD%E9%9F%B3%E6%A8%82/" style="font-size: 10px;">聆聽音樂</a> <a href="/tags/%E8%A9%A9%E7%B6%93/" style="font-size: 10px;">詩經</a> <a href="/tags/%E9%96%A9%E5%8D%97%E8%AA%9E/" style="font-size: 20px;">閩南語</a>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">二維碼</h3>
+    <div class="widget">
+        <img src="https://tsunhua.github.io/qrcode.jpg" width="100%" />
+    </div>
+</div>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">彙整</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/06/music/listen-chopin-raindrop/">聆聽音樂：蕭邦之「雨滴」</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/teochew-opera-ghe%CC%82gdengcung/">在潮劇中學之《玉堂春》</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/teochew-kahtsi-vowel/">潮州話與甲子話韻母差異（稿）</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/sige%CC%82ng-giamgia/">詩經·秦風‧蒹葭 (甲子話注音版)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/gahzi-oi-hung-lui-ci-biao/">甲子話分類辭表（2020.12）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="創用 CC 授權條款"
+          style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+      <br />
+      Writed by
+      <a xmlns:cc="http: //creativecommons.org/ns#" target="_blank" href="https://linlshare.github.io/" property="cc:attributionName"
+        rel="cc:attributionURL noopener">Hua
+      </a>
+
+      <br>
+      Powered by
+      <a href="https://github.com/" target="_blank">Github</a>&nbsp;&&nbsp;
+      <a href="https://hexo.io/" target="_blank">Hexo</a>
+      <br />
+
+    </div>
+  </div>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主頁</a>
+  
+    <a target="_blank" rel="noopener" href="https://dicthub.cn/" class="mobile-nav-link">典合網</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">RSS</a>
+  
+</nav>
+    
+
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

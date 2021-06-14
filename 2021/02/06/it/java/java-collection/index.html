@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <html lang="en"></html>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-128207704-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>Java 集合 | 編舟堂</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Java 集合分 List、Set、Map 三大類，其中 List 和 Set 實現了 Collection 接口。List 的特點是數據有序、可重複；Set 的特點是數據無序、不可重複；Map 存儲鍵值映射，Key 不可重複，Value 可重複，且一個 Key 只能對應一個 Value。 List 有一實現 ArrayList，其底層實現是對象數組，默認容量是 10，但等到首次添加元素時才分配內">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 集合">
+<meta property="og:url" content="https://tsunhua@github.io/2021/02/06/it/java/java-collection/index.html">
+<meta property="og:site_name" content="編舟堂">
+<meta property="og:description" content="Java 集合分 List、Set、Map 三大類，其中 List 和 Set 實現了 Collection 接口。List 的特點是數據有序、可重複；Set 的特點是數據無序、不可重複；Map 存儲鍵值映射，Key 不可重複，Value 可重複，且一個 Key 只能對應一個 Value。 List 有一實現 ArrayList，其底層實現是對象數組，默認容量是 10，但等到首次添加元素時才分配內">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-collection/Untitled.png">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-collection/Untitled%201.png">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-collection/Untitled%202.png">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-collection/Untitled%203.png">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-collection/Untitled%204.png">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-collection/Untitled%205.png">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-collection/Untitled%206.png">
+<meta property="article:published_time" content="2021-02-05T16:21:16.664Z">
+<meta property="article:modified_time" content="2021-02-05T16:21:16.000Z">
+<meta property="article:author" content="Hua">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tsunhua@github.io/2021/02/06/it/java/java-collection/Untitled.png">
+  
+  
+    <link rel="shortcut icon" href="favicon.ico" />
+  
+  
+    <link href="//fonts.font.im/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="編舟堂" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">編舟堂</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="/">主頁</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://dicthub.cn/">典合網</a>
+        
+        <a class="main-nav-link" href="/atom.xml">RSS</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://tsunhua@github.io"></form> -->
+        <form action="//cn.bing.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="搜尋">
+          <button type="submit" class="search-form-submit"></button>
+          <input type="hidden" name="sitesearch" value="url">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-it/java/java-collection" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/02/06/it/java/java-collection/" class="article-date">
+  <time datetime="2021-02-05T16:21:16.664Z" itemprop="datePublished">2021-02-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java 集合
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+          <div id="toc" class="toc-article">
+              <strong class="toc-title">目錄</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%A6%BD"><span class="toc-number">1.</span> <span class="toc-text">概覽</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#List%E3%80%81Set%E3%80%81Map-%E4%B8%89%E8%80%85%E4%B9%8B%E5%8D%80%E5%88%A5"><span class="toc-number">1.1.</span> <span class="toc-text">List、Set、Map 三者之區別</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List%E3%80%81Set%E3%80%81Map-%E4%B8%89%E8%80%85%E4%B9%8B%E5%BA%95%E5%B1%A4%E6%95%B8%E6%93%9A%E7%B5%90%E6%A7%8B"><span class="toc-number">1.2.</span> <span class="toc-text">List、Set、Map 三者之底層數據結構</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Iterator-%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="toc-number">1.3.</span> <span class="toc-text">Iterator 迭代器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%93%AA%E4%BA%9B%E9%9B%86%E5%90%88%E6%98%AF%E7%B7%9A%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84%EF%BC%9F%E6%80%8E%E9%BA%BC%E8%A7%A3%E6%B1%BA%EF%BC%9F"><span class="toc-number">1.4.</span> <span class="toc-text">有哪些集合是線程不安全的？怎麼解決？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#length%E3%80%81length-%E3%80%81size-%E4%B8%89%E8%80%85%E7%94%A8%E9%80%94"><span class="toc-number">1.5.</span> <span class="toc-text">length、length()、size() 三者用途</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Collections-%E5%B7%A5%E5%85%B7%E9%A1%9E%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.6.</span> <span class="toc-text">Collections 工具類的使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List"><span class="toc-number">2.</span> <span class="toc-text">List</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AF%94%E8%BC%83-ArrayList-%E8%88%87-LinkedList"><span class="toc-number">2.1.</span> <span class="toc-text">比較 ArrayList 與 LinkedList</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ArrayList-%E6%93%B4%E5%AE%B9%E6%A9%9F%E5%88%B6"><span class="toc-number">2.2.</span> <span class="toc-text">ArrayList 擴容機制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E9%9A%A8%E6%A9%9F%E8%A8%AA%E5%95%8F-RandomAccess"><span class="toc-number">2.3.</span> <span class="toc-text">快速隨機訪問 RandomAccess</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#System-arraycopy-%E8%88%87-Arrays-copyOf-%E6%96%B9%E6%B3%95"><span class="toc-number">2.4.</span> <span class="toc-text">System.arraycopy() 與 Arrays.copyOf() 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CopyOnWriteArrayList-%E7%9A%84%E7%89%B9%E9%BB%9E"><span class="toc-number">2.5.</span> <span class="toc-text">CopyOnWriteArrayList 的特點</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%A7%BB%E9%99%A4%E5%88%97%E8%A1%A8%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0"><span class="toc-number">2.6.</span> <span class="toc-text">如何移除列表中的元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E7%A2%BA%E4%BD%BF%E7%94%A8-Arrays-asList"><span class="toc-number">2.7.</span> <span class="toc-text">正確使用 Arrays.asList</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%8A%E6%95%B8%E7%B5%84%E8%BD%89%E7%88%B2-java-util-ArrayList"><span class="toc-number">2.8.</span> <span class="toc-text">把數組轉爲 java.util.ArrayList</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%87-List-%E8%BD%89%E7%88%B2%E6%95%B8%E7%B5%84"><span class="toc-number">2.9.</span> <span class="toc-text">將 List 轉爲數組</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set"><span class="toc-number">3.</span> <span class="toc-text">Set</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%84%A1%E5%BA%8F%E6%80%A7%E5%92%8C%E4%B8%8D%E5%8F%AF%E9%87%8D%E8%A4%87%E6%80%A7%E7%9A%84%E5%90%AB%E7%BE%A9"><span class="toc-number">3.1.</span> <span class="toc-text">無序性和不可重複性的含義</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AF%94%E8%BC%83-HashSet%E3%80%81LinkedHashSet-%E5%92%8C-TreeSet"><span class="toc-number">3.2.</span> <span class="toc-text">比較 HashSet、LinkedHashSet 和 TreeSet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E7%BE%A9%E6%8E%92%E5%BA%8F%E7%9A%84%E5%AF%A6%E7%8F%BE"><span class="toc-number">3.3.</span> <span class="toc-text">自定義排序的實現</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashSet-%E5%A6%82%E4%BD%95%E6%AA%A2%E6%9F%A5%E9%87%8D%E8%A4%87"><span class="toc-number">3.4.</span> <span class="toc-text">HashSet 如何檢查重複</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Map"><span class="toc-number">4.</span> <span class="toc-text">Map</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AF%94%E8%BC%83-HashMap-%E8%88%87-TreeMap"><span class="toc-number">4.1.</span> <span class="toc-text">比較 HashMap 與 TreeMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap-%E5%BA%95%E5%B1%A4%E5%AF%A6%E7%8F%BE"><span class="toc-number">4.2.</span> <span class="toc-text">HashMap 底層實現</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%8D%E6%AD%B7-HashMap-%E7%9A%84%E5%B9%BE%E7%A8%AE%E6%96%B9%E5%BC%8F"><span class="toc-number">4.3.</span> <span class="toc-text">遍歷 HashMap 的幾種方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcurrentHashMap-%E7%B7%9A%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-number">4.4.</span> <span class="toc-text">ConcurrentHashMap 線程安全的原因</span></a></li></ol></li></ol>
+          </div>
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Java 集合分 List、Set、Map 三大類，其中 List 和 Set 實現了 Collection 接口。List 的特點是數據有序、可重複；Set 的特點是數據無序、不可重複；Map 存儲鍵值映射，Key 不可重複，Value 可重複，且一個 Key 只能對應一個 Value。</p>
+<p>List 有一實現 <code>ArrayList</code>，其底層實現是對象數組，默認容量是 10，但等到首次添加元素時才分配內存，每次遞增爲上次容量的 1.5 倍。在添加大量元素之前，建議調用 <code>ensureCapacity</code> 方法擴容，以減少遞增式再分配內存的次數。</p>
+<p>Set 有一實現 <code>HashSet</code>，其底層實現是 <code>HashMap</code> ，其檢查重複的機制有賴於 <code>hashCode</code> 和 <code>equals</code> 方法。</p>
+<p>Map 有一實現 <code>HashMap</code> ，JDK 1.8 之後其底層實現是：<strong>數組 + 鏈表 + 紅黑二叉樹</strong>。紅黑樹是爲了減少搜索時間，默認當鏈表長度大於 8 且當前數組長度大於等於 64 時，鏈表會轉爲紅黑樹。數組默認容量是 16，通過帶參構造方法傳入的容量值如非 2 的幂次會自動向上轉爲 2 的幂次，以便元素散列存儲（元素位置才可通過 <code>hash &amp; (length-1)</code> 確定）。添加元素時，若元素數量大於數組長度的 75% 且該元素存在哈希衝突，則觸發擴容機制，數組容量翻倍。</p>
+<p>總結下 HashMap 中解決哈希衝突的方式：</p>
+<ol>
+<li>使用鏈表 — 拉鍊法；</li>
+<li>使用紅黑二叉樹；</li>
+<li>擴容底層數組；</li>
+<li>強制數組容量爲 2 之幂次；</li>
+<li>將元素的 hash 值的高位分散到低位等等。</li>
+</ol>
+<p><code>ArrayList</code>、<code>HashSet</code>、<code>HashMap</code> 都是線程不安全的。在多線程環境下應使用 J.U.C 包下的對應的並發類 <code>CopyOnWriteArrayList</code> 、<code>ConcurrentHashMap</code> （<code>HashSet</code> 用<code>ConcurrentHashMap</code> 的 keySet 可得 Set 視圖）。<code>CopyOnWriteArrayList</code> 會在寫時加鎖並複製集合進行操作；<code>ConcurrentHashMap</code> 在 JDK 1.7 使用分段鎖，在 JDK 1.8 取消分段鎖採用 CAS（樂觀鎖） 和 synchronized（悲觀鎖） 只對鏈表或紅黑二叉樹的節點加鎖。</p>
+<span id="more"></span>
+
+<h2 id="概覽"><a href="#概覽" class="headerlink" title="概覽"></a>概覽</h2><p>集合是相對數組來說，更靈活多樣的容器。Java 的集合框架肇始於兩大接口，Collection 和 Map。Collection 下有 List、Queue 和 Set 等等接口，然後衍生出 ArrayList、LinkedList、HashSet、TreeSet、LinkedHashSet 等等實現；Map 下有 HashMap、TreeMap 等重要子類。</p>
+<p><img src="/2021/02/06/it/java/java-collection/Untitled.png" alt></p>
+<h3 id="List、Set、Map-三者之區別"><a href="#List、Set、Map-三者之區別" class="headerlink" title="List、Set、Map 三者之區別"></a>List、Set、Map 三者之區別</h3><ol>
+<li>List：存儲的元素有序、可重複。</li>
+<li>Set：存儲的元素無序、不可重複。</li>
+<li>Map：使用鍵值對存儲，一鍵一值，Key 無序、不可重複；Value 無序、可重複。</li>
+</ol>
+<h3 id="List、Set、Map-三者之底層數據結構"><a href="#List、Set、Map-三者之底層數據結構" class="headerlink" title="List、Set、Map 三者之底層數據結構"></a>List、Set、Map 三者之底層數據結構</h3><ol>
+<li>List<ul>
+<li>ArrayList：Object 數組</li>
+<li>Vector：Object 數組</li>
+<li>LinkedList：雙向鏈表（JDK 1.6 之前爲循環鏈表）</li>
+</ul>
+</li>
+<li>Set<ul>
+<li>HashSet（無序、唯一）：基於 HashMap</li>
+<li>LinkedHashSet：基於 LinkedHashMap</li>
+<li>TreeSet（有序、唯一）：紅黑樹（自平衡的排序二叉樹）</li>
+</ul>
+</li>
+<li>Map<ul>
+<li>HashMap：數組 + 鏈表 + 紅黑樹（鏈表長於閾值即轉爲紅黑樹以減少搜索時間；閾值默認爲 8；JDK 1.8 之前沒有紅黑樹）</li>
+<li>LinkedHashMap：繼承自 HashMap，但多了一條雙向鏈表</li>
+<li>Hashtable：數組 + 鏈表</li>
+<li>TreeMap：紅黑樹（自平衡的排序二叉樹）</li>
+</ul>
+</li>
+</ol>
+<h3 id="Iterator-迭代器"><a href="#Iterator-迭代器" class="headerlink" title="Iterator 迭代器"></a>Iterator 迭代器</h3><p>迭代器就是 Iterator 接口，它抽象出迭代一個集合需要的方法，<code>hasNext()</code> 和 <code>next()</code> 方法，以便集合類實現該接口，從而方便對集合的遍歷。有了迭代器就可以在迭代集合元素時更改元素而不拋出 <code>ConcurrentModificationException</code> 了。</p>
+<p>爲什麼？因爲非採用 Iterator 進行遍歷時更改元素會修改到 <code>modCount</code> 變量（用於紀錄集合結構性改變的次數）的值，而沒有修改 <code>expectedModCount</code> 的值，基於 fail-fast 機制檢查兩值是否相同時會拋出異常；而使用 Iterator 遍歷時更改元素會同時修改 <code>modCount</code> 和 <code>expectedModCount</code>，兩者相等，不會拋出異常。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Map&lt;Integer, String&gt; map = <span class="keyword">new</span> HashMap();</span><br><span class="line">map.put(<span class="number">1</span>, <span class="string">&quot;Java&quot;</span>);</span><br><span class="line">map.put(<span class="number">2</span>, <span class="string">&quot;Python&quot;</span>);</span><br><span class="line">map.put(<span class="number">2</span>, <span class="string">&quot;Go&quot;</span>);</span><br><span class="line">Iterator&lt;Map.Entry&lt;Integer, String&gt;&gt; iterator = map.entrySet().iterator();</span><br><span class="line"><span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">  Map.Entry&lt;Integer, String&gt; entry = iterator.next();</span><br><span class="line">  System.out.println(entry.getKey() + entry.getValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="有哪些集合是線程不安全的？怎麼解決？"><a href="#有哪些集合是線程不安全的？怎麼解決？" class="headerlink" title="有哪些集合是線程不安全的？怎麼解決？"></a>有哪些集合是線程不安全的？怎麼解決？</h3><p>常用的 <code>ArrayList</code>、<code>LinkedList</code>、<code>HashMap</code>、<code>HashSet</code>、<code>TreeSet</code>、<code>TreeMap</code>、<code>PriorityQueue</code> 都不是線程安全的。解決方法就是用 <code>java.util.concurrent</code> 包提供的線程安全的集合來代替：</p>
+<ol>
+<li><code>ConcurrentHashMap</code> 代替 <code>HashMap</code>；</li>
+<li><code>CopyOnWriteArrayList</code> 代替 <code>ArrayList</code>；</li>
+<li><code>ConcurrentLinkedQueue</code> 代替 <code>LinkedList</code> ；</li>
+<li><code>BlockingQueue</code> 接口下的 <code>PriorityBlockingQueue</code>、<code>LinkedBlockingQueue</code> 等阻塞隊列代替 <code>PriorityQueue</code>  等；</li>
+<li><code>ConcurrentSkipListMap</code>  代替 <code>TreeMap</code> ，實現多線程下保證按 Key 的順序存儲元素。</li>
+</ol>
+<h3 id="length、length-、size-三者用途"><a href="#length、length-、size-三者用途" class="headerlink" title="length、length()、size() 三者用途"></a><code>length</code>、<code>length()</code>、<code>size()</code> 三者用途</h3><ol>
+<li><code>length</code>：用於數組。</li>
+<li><code>length()</code>：用於字符串。</li>
+<li><code>size()</code>：用於集合。</li>
+</ol>
+<h3 id="Collections-工具類的使用"><a href="#Collections-工具類的使用" class="headerlink" title="Collections 工具類的使用"></a>Collections 工具類的使用</h3><ul>
+<li><p>排序</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//反轉</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reverse</span><span class="params">(List list)</span></span></span><br><span class="line"><span class="function"><span class="comment">//隨機排序</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shuffle</span><span class="params">(List list)</span></span></span><br><span class="line"><span class="function"><span class="comment">//按自然排序的升序排序</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(List list)</span></span></span><br><span class="line"><span class="function"><span class="comment">//定制排序，由Comparator控制排序邏輯</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(List list, Comparator c)</span></span></span><br><span class="line"><span class="function"><span class="comment">//交換兩個索引位置的元素</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(List list, <span class="keyword">int</span> i , <span class="keyword">int</span> j)</span></span></span><br><span class="line"><span class="function"><span class="comment">//旋轉。當distance為正數時，將list後distance個元素整體移到前面。當distance為負數時，將 list的前distance個元素整體移到後面</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">(List list, <span class="keyword">int</span> distance)</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查找替換統計</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//對List進行二分查找，返回索引，注意List必須是有序的</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(List list, Object key)</span></span></span><br><span class="line"><span class="function"><span class="comment">//根據元素的自然順序，返回最大的元素。 類比int min(Collection coll)</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(Collection coll)</span></span></span><br><span class="line"><span class="function"><span class="comment">//根據定制排序，返回最大元素，排序規則由Comparatator類控制。類比int min(Collection coll, Comparator c)</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(Collection coll, Comparator c)</span></span></span><br><span class="line"><span class="function"><span class="comment">//用指定的元素代替指定list中的所有元素</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fill</span><span class="params">(List list, Object obj)</span></span></span><br><span class="line"><span class="function"><span class="comment">//用新元素替換舊元素</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">replaceAll</span><span class="params">(List list, Object oldVal, Object newVal)</span> </span></span><br><span class="line"><span class="function"><span class="comment">//統計元素出現次數</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">frequency</span><span class="params">(Collection c, Object o)</span></span></span><br><span class="line"><span class="function"><span class="comment">//統計target在list中第一次出現的索引，找不到則返回-1，類比int lastIndexOfSubList(List source, list target)</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">indexOfSubList</span><span class="params">(List list, List target)</span></span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><h3 id="比較-ArrayList-與-LinkedList"><a href="#比較-ArrayList-與-LinkedList" class="headerlink" title="比較 ArrayList 與 LinkedList"></a>比較 ArrayList 與 LinkedList</h3><p>共同點：</p>
+<ol>
+<li>都實現了 List 接口；</li>
+<li>都是不同步的，不保證線程安全。</li>
+</ol>
+<p>不同點：</p>
+<ol>
+<li><strong>底層數據結構不同</strong>。ArrayList 是對象數組；LinkedList 是雙向鏈表（JDK 1.6 之前爲循環列表）。</li>
+<li><strong>插入和刪除的時間複雜度不同</strong>。ArrayList 追加元素的複雜度爲 O(1)，指定位置 i 插入或刪除元素的複雜度爲 O(n-i)；LinkedList 追加元素和刪除末端元素的時間複雜度爲 O(1)，指定位置 i 插入或刪除元素的時間複雜度近似 O(n)。</li>
+<li><strong>對快速隨機訪問的支持不同</strong>。ArrayList 支持快速隨機訪問；LinkedList 不支持。</li>
+<li><strong>對空間的利用不同</strong>。ArrayList 末尾會預留一定的空間以便元素新增；LinkedList 則是會在每個元素多存儲了指針數據。</li>
+</ol>
+<ul>
+<li><p>比較雙向鏈表與雙向循環鏈表</p>
+<p>  <img src="/2021/02/06/it/java/java-collection/Untitled%201.png" alt></p>
+<p>  <img src="/2021/02/06/it/java/java-collection/Untitled%202.png" alt></p>
+</li>
+</ul>
+<h3 id="ArrayList-擴容機制"><a href="#ArrayList-擴容機制" class="headerlink" title="ArrayList 擴容機制"></a>ArrayList 擴容機制</h3><p>ArrayList 底層是對象數組，其容量可以動態增長。在添加大量元素之前，建議調用 <code>ensureCapacity</code> 方法擴容，以減少遞增式再分配內存的次數，提升程序效率。</p>
+<p>其擴容機制大致是這樣的：ArrayList 提供了默認構造方法，通過默認構造方法構造對象，默認容量值爲 10 ，但此時未分配相應內存空間，而是<strong>等到首次添加元素時才開始初始化</strong>一個空間爲 10 的對象數組。當第 11 個元素加入時會觸發擴容機制，<strong>容量會擴充到原來的 1.5 倍</strong>（<code>newCapacity = oldCapacity + oldCapacity &gt;&gt; 2</code>），即變爲 15。如通過指定相應的容量大小的構造方法構造對象且指定的容量值大於 0 ，則一開始就會分配相應的內存空間。</p>
+<h3 id="快速隨機訪問-RandomAccess"><a href="#快速隨機訪問-RandomAccess" class="headerlink" title="快速隨機訪問 RandomAccess"></a>快速隨機訪問 RandomAccess</h3><p>RandomAccess 接口爲空實現，僅僅標識著實現類具備快速隨機訪問的能力。ArrayList 實現了該接口，而 LinkedList 未實現。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">RandomAccess</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="System-arraycopy-與-Arrays-copyOf-方法"><a href="#System-arraycopy-與-Arrays-copyOf-方法" class="headerlink" title="System.arraycopy() 與 Arrays.copyOf() 方法"></a><code>System.arraycopy()</code> 與 <code>Arrays.copyOf()</code> 方法</h3><ol>
+<li><code>System.arraycopy()</code> 方法用於源數組到目標數組之間的數據拷貝；</li>
+<li><code>Arrays.copyOf()</code> 方法用於給源數組擴容，底層調用<code>System.arraycopy()</code> 。</li>
+</ol>
+<h3 id="CopyOnWriteArrayList-的特點"><a href="#CopyOnWriteArrayList-的特點" class="headerlink" title="CopyOnWriteArrayList 的特點"></a>CopyOnWriteArrayList 的特點</h3><ol>
+<li>寫時會加鎖並複製整個集合；</li>
+<li>讀時可能讀到舊數據。</li>
+</ol>
+<h3 id="如何移除列表中的元素"><a href="#如何移除列表中的元素" class="headerlink" title="如何移除列表中的元素"></a><strong>如何移除列表中的元素</strong></h3><p>首先，不能在 foreach 循環中移除元素，根據 fail-fast（快速失敗） 機制，會拋出 <code>ConcurrentModificationException</code> （並發修改異常）。</p>
+<p>可以採用 <code>iterator</code> 或者 <code>Collection.removeIf()</code> 方法移除列表元素。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String[] arrs = &#123;<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>&#125;;</span><br><span class="line">List&lt;String&gt; list = Arrays.stream(arrs).collect(Collectors.toList());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 採用 iterator</span></span><br><span class="line">Iterator&lt;String&gt; iterator = list.iterator();</span><br><span class="line"><span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="string">&quot;a&quot;</span>.equals(iterator.next())) &#123;</span><br><span class="line">        iterator.remove();</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 採用 removeIf 方法，&quot;a&quot;::equals 等價於 x -&gt; &quot;a&quot;.equals(x)</span></span><br><span class="line">list.removeIf(<span class="string">&quot;a&quot;</span>::equals); </span><br><span class="line"></span><br><span class="line">System.out.println(list);</span><br></pre></td></tr></table></figure>
+
+<h3 id="正確使用-Arrays-asList"><a href="#正確使用-Arrays-asList" class="headerlink" title="正確使用 Arrays.asList"></a><strong>正確使用 Arrays.asList</strong></h3><p>如果非要在 <code>foreach</code> 循環中刪除元素，還可以使用 <code>CopyOnWriteArrayList</code>，此集合是 <code>fail-safe</code> 的。<code>CopyOnWriteArrayList</code> 修改元素時會 copy 一個新列表進行修改，不會改變迭代中的列表，因此是安全的，但會產生新的列表作爲代價。</p>
+<p>Arrays 工具類有一個靜態方法 <code>asList(T... a)</code>，能將<strong>對象</strong>數組包裝成一個 List，底層數據依然是原數組，原數組改變，List 也隨之改變，但 List 本身的 <code>add</code>/<code>remove</code>/<code>clear</code> 並不可用，調用會拋出 <code>UnsupportedOperationException</code>。</p>
+<p>Arrays 類中關於 <code>asList</code> 方法的代碼如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">asList</span><span class="params">(T... a)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 這裏的 ArrayList 是 Arrays 類中定義的私有靜態類，不是 java.util.ArrayList</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ArrayList&lt;&gt;(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>爲什麼 <code>asList</code> 方法傳入的必須是對象數組呢？</p>
+<p>你看上面的代碼，泛型，沒錯泛型只能是對象啊，基本類型是不行的。</p>
+<p>傳入基本類型的數組會怎樣呢？請看下面代碼：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span>[] ints = &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;</span><br><span class="line"><span class="comment">// 此時的泛型是 int[] 對象，而非 int</span></span><br><span class="line">List&lt;<span class="keyword">int</span>[]&gt; list = Arrays.asList(ints);</span><br><span class="line"><span class="comment">// list 的大小爲 1，就是 ints 這個數組對象</span></span><br><span class="line">System.out.println(list.size());</span><br></pre></td></tr></table></figure>
+
+<h3 id="把數組轉爲-java-util-ArrayList"><a href="#把數組轉爲-java-util-ArrayList" class="headerlink" title="把數組轉爲 java.util.ArrayList"></a><strong>把數組轉爲 <code>java.util.ArrayList</code></strong></h3><p>那麼，如何簡便地把一個數組轉爲普遍意義上的 ArrayList 呢？</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1) 使用 ArrayList 的帶參構造方法</span></span><br><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;(Arrays.asList(arrs));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2) 使用 Java 8 的 Stream API</span></span><br><span class="line">List&lt;String&gt; list = Arrays.stream(arrs).collect(Collectors.toList());</span><br><span class="line"><span class="comment">// boxed 方法可以把基本類型轉成包裝類型</span></span><br><span class="line">List&lt;Integer&gt; intList = Arrays.stream(ints).boxed().collect(Collectors.toList());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3) 使用 Guava 包的 API</span></span><br><span class="line">ImmutableList&lt;String[]&gt; list = ImmutableList.of(arrs);</span><br><span class="line">ImmutableList&lt;String&gt; list1 = ImmutableList.copyOf(arrs);</span><br><span class="line">ArrayList&lt;String&gt; list2 = Lists.newArrayList(arrs);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4) 使用 Java 9 的 API</span></span><br><span class="line">List&lt;String&gt; list = List.of(arrs);</span><br></pre></td></tr></table></figure>
+
+<h3 id="將-List-轉爲數組"><a href="#將-List-轉爲數組" class="headerlink" title="將 List 轉爲數組"></a><strong>將 List 轉爲數組</strong></h3><p>使用 List 的 <code>toArray</code> 方法可以將 List 轉爲數組，代碼如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// new String[0] 僅僅爲了告知類型返回數組的類型</span></span><br><span class="line">String[] strings = list.toArray(<span class="keyword">new</span> String[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><h3 id="無序性和不可重複性的含義"><a href="#無序性和不可重複性的含義" class="headerlink" title="無序性和不可重複性的含義"></a>無序性和不可重複性的含義</h3><p>無序性並不等同於隨機性，而是根據數據的哈希值決定其存儲位置，使用者無法指定其存儲順序。</p>
+<p>不可重複性是指添加的元素按 equals 方法判斷結果爲 false。</p>
+<h3 id="比較-HashSet、LinkedHashSet-和-TreeSet"><a href="#比較-HashSet、LinkedHashSet-和-TreeSet" class="headerlink" title="比較 HashSet、LinkedHashSet 和 TreeSet"></a>比較 HashSet、LinkedHashSet 和 TreeSet</h3><p>共同點：</p>
+<ol>
+<li>都實現了 Set 接口；</li>
+<li>元素不可重複；</li>
+<li>都是線程不安全的。</li>
+</ol>
+<p>不同點：</p>
+<ol>
+<li><strong>底層數據接口不同</strong>。HashSet 底層是 HashMap；LinkedHashSet 底層是 LinkedHashMap；TreeSet 底層是紅黑樹。</li>
+<li><strong>有序性不同</strong>。HashSet 無序；LinkedHashSet 和 TreeSet 有序。TreeSet 還可以自定義排序。</li>
+</ol>
+<h3 id="自定義排序的實現"><a href="#自定義排序的實現" class="headerlink" title="自定義排序的實現"></a>自定義排序的實現</h3><p>自定義排序最通用的就是給要排序的類實現一個 Comparable 接口，隨後可以使用 Collection.sort 方法進行排序。又或者不實現 Comparable 接口，而是傳入 Comparator 到 Collection.sort 方法中。</p>
+<h3 id="HashSet-如何檢查重複"><a href="#HashSet-如何檢查重複" class="headerlink" title="HashSet 如何檢查重複"></a>HashSet 如何檢查重複</h3><p>HashSet 集合進行元素重複校驗時先比較 hashcode ，當 hashcode 一樣時再調用 equals，提高了校驗效率。因此，如果只重寫 equals 方法而不重寫 hashcode 方法，會出現 equals 返回 true，而 hashcode 不等的情況，這樣如果要求 HashSet 去重就會失敗。</p>
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><h3 id="比較-HashMap-與-TreeMap"><a href="#比較-HashMap-與-TreeMap" class="headerlink" title="比較 HashMap 與 TreeMap"></a>比較 HashMap 與 TreeMap</h3><p>共同點：</p>
+<ol>
+<li>都繼承自 AbstractMap，間接實現了 Map 接口；</li>
+<li>都是線程不安全的。</li>
+</ol>
+<p>不同點：</p>
+<ol>
+<li><strong>底層數據結構不同</strong>。HashMap 底層是數組 + 鏈表 + 紅黑樹（鏈表長於閾值即轉爲紅黑樹以減少搜索時間；閾值默認爲 8；JDK 1.8 之前沒有紅黑樹）；TreeMap 底層是紅黑樹。</li>
+<li><strong>HashMap 無搜索和排序的能力</strong>。TreeMap 實現了 NavigableMap 接口，使其有對集合內元素搜索的能力；實現了 SortMap 接口，使其有對集合內元素根據鍵排序的能力。</li>
+</ol>
+<h3 id="HashMap-底層實現"><a href="#HashMap-底層實現" class="headerlink" title="HashMap 底層實現"></a>HashMap 底層實現</h3><p>JDK 1.7 或之前，HashMap 的底層實現是數組+鏈表。該數組的定義如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">transient</span> Node&lt;K,V&gt;[] table;</span><br></pre></td></tr></table></figure>
+
+<p>Node 存儲了鍵、值、哈希值和下一個節點，是一個鏈表，也就是說 Node 數組就是一個鏈表數組。</p>
+<p><img src="/2021/02/06/it/java/java-collection/Untitled%203.png" alt></p>
+<p>該數組默認大小是 <code>1 &lt;&lt; 4 = 16</code> 。調用 put 方法增加元素時，通過散列算法（hash方法，也稱之爲擾動函數）算得元素的 hash 值，然後計算其應插入的桶（數組中的一個位置）。如果該位置已有元素，就會產生哈希衝突（或稱碰撞），此時通過<strong>拉鍊法</strong>解決。當 Map 中包含的元素數量大於等於 <code>threshold = loadFactor * capacity</code> （loadFactor 默認爲 0.75f），且新建的元素剛好落在一個非空的桶上時，會觸發擴容機制，將數組容量擴大 2 倍。</p>
+<p>JDK 1.8 開始，HashMap 的底層實現是數組+鏈表+紅黑樹，<strong>當鏈表長度大於閾值（默認爲 8），且當前數組長度大於等於 64 時，該鏈表會轉爲紅黑樹，以減少搜索時間。</strong></p>
+<p><img src="/2021/02/06/it/java/java-collection/Untitled%204.png" alt></p>
+<p><strong>（1）散列算法</strong></p>
+<p>首先獲取 key 的 hash 值，然後將高位的 hash 分散到低位，以便減少哈希衝突。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// JDK 1.7</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(<span class="keyword">int</span> h)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// This function ensures that hashCodes that differ only by</span></span><br><span class="line">  <span class="comment">// constant multiples at each bit position have a bounded</span></span><br><span class="line">  <span class="comment">// number of collisions (approximately 8 at default load factor).</span></span><br><span class="line">  h ^= (h &gt;&gt;&gt; <span class="number">20</span>) ^ (h &gt;&gt;&gt; <span class="number">12</span>);</span><br><span class="line">  <span class="keyword">return</span> h ^ (h &gt;&gt;&gt; <span class="number">7</span>) ^ (h &gt;&gt;&gt; <span class="number">4</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// JDK 1.8</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> h;</span><br><span class="line">  <span class="keyword">return</span> (key == <span class="keyword">null</span>) ? <span class="number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="number">16</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>（2）插入算法</strong></p>
+<p>如何根據散列值確定要插入的數組位置呢？因爲保證了數組長度爲 2 之幂次，所以確定插入位置時的取餘算法 <code>hash % length</code> 等價於 <code>h &amp; (length-1)</code>。簡單起見，假定 hash 爲 0100 1010； length 是 8，其二進制爲 0000 1000，取餘爲 <code>hash % length</code> = 0000 0010 = <code>h &amp; (length-1)</code>。此處 hash 值的高位 0100 並沒有用到，會造成高位不同而低位相同的 hash 值衝突，這也是散列算法要將高位分散到低位的緣故。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* Returns index for hash code h.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">indexFor</span><span class="params">(<span class="keyword">int</span> h, <span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> h &amp; (length-<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>（3）拉鍊法</strong></p>
+<p>將衝突的值加到鏈表中。</p>
+<p><strong>（4）保證數組長度爲 2 之幂次的方法</strong></p>
+<ul>
+<li><p>方法一（JDK 1.8 或以前）：將原數二進制表示的第一個非零位後面的所有零位填滿爲 1，然後再加 1。</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">tableSizeFor</span><span class="params">(<span class="keyword">int</span> cap)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = cap - <span class="number">1</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="number">2</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="number">4</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="number">8</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="number">16</span>;</span><br><span class="line">    <span class="keyword">return</span> (n &lt; <span class="number">0</span>) ? <span class="number">1</span> : (n &gt;= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法二（JDK 15）：計算原數二進制表示的第一個非零位前面零的數量 k，然後將 -1 (其二進制形式全是1)無符號右移 k 位再加 1。</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// HashMap.java</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">tableSizeFor</span><span class="params">(<span class="keyword">int</span> cap)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> n = -<span class="number">1</span> &gt;&gt;&gt; Integer.numberOfLeadingZeros(cap - <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">return</span> (n &lt; <span class="number">0</span>) ? <span class="number">1</span> : (n &gt;= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Integer.java</span></span><br><span class="line"><span class="comment">// 取得整數二進制表示前面的零位數量</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">numberOfLeadingZeros</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// HD, Count leading 0&#x27;s</span></span><br><span class="line">  <span class="keyword">if</span> (i &lt;= <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">return</span> i == <span class="number">0</span> ? <span class="number">32</span> : <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> n = <span class="number">31</span>;</span><br><span class="line">  <span class="keyword">if</span> (i &gt;= <span class="number">1</span> &lt;&lt; <span class="number">16</span>) &#123; n -= <span class="number">16</span>; i &gt;&gt;&gt;= <span class="number">16</span>; &#125;</span><br><span class="line">  <span class="keyword">if</span> (i &gt;= <span class="number">1</span> &lt;&lt;  <span class="number">8</span>) &#123; n -=  <span class="number">8</span>; i &gt;&gt;&gt;=  <span class="number">8</span>; &#125;</span><br><span class="line">  <span class="keyword">if</span> (i &gt;= <span class="number">1</span> &lt;&lt;  <span class="number">4</span>) &#123; n -=  <span class="number">4</span>; i &gt;&gt;&gt;=  <span class="number">4</span>; &#125;</span><br><span class="line">  <span class="keyword">if</span> (i &gt;= <span class="number">1</span> &lt;&lt;  <span class="number">2</span>) &#123; n -=  <span class="number">2</span>; i &gt;&gt;&gt;=  <span class="number">2</span>; &#125;</span><br><span class="line">  <span class="keyword">return</span> n - (i &gt;&gt;&gt; <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法三（不推薦）：將原數以 2 爲底取對數，然後再取其 ceil 值，將其作爲 2 的指數計算即可。</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> n = (<span class="keyword">int</span>) Math.pow(<span class="number">2</span>, (<span class="keyword">int</span>) Math.ceil(Math.log(cap) / Math.log(<span class="number">2</span>)));</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="遍歷-HashMap-的幾種方式"><a href="#遍歷-HashMap-的幾種方式" class="headerlink" title="遍歷 HashMap 的幾種方式"></a>遍歷 HashMap 的幾種方式</h3><p>HashMap 有四大類遍歷方式：iterator、for、lambda 和 stream。性能上 stream 的並行循環最高，其他的差別不大。安全性上在遍歷時應使用 <code>iterator.remove</code>方法刪除元素或者用 stream 的 <code>filter</code> 過濾不需要的數據再進行循環。參見 <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/Zz6mofCtmYpABDL1ap04ow">https://mp.weixin.qq.com/s/Zz6mofCtmYpABDL1ap04ow</a></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Map&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">map.put(<span class="string">&quot;lang&quot;</span>, <span class="string">&quot;java&quot;</span>);</span><br><span class="line">map.put(<span class="string">&quot;sys&quot;</span>, <span class="string">&quot;linux&quot;</span>);</span><br><span class="line"><span class="comment">// iterator</span></span><br><span class="line">Iterator&lt;Map.Entry&lt;String, String&gt;&gt; iterator = map.entrySet().iterator();</span><br><span class="line"><span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">  Map.Entry&lt;String, String&gt; entry = iterator.next();</span><br><span class="line">  System.out.println(entry.getKey() + <span class="string">&quot;:&quot;</span> + entry.getValue());</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// for，增強 for 循環，使用了迭代器</span></span><br><span class="line"><span class="keyword">for</span> (Map.Entry&lt;String, String&gt; entry : map.entrySet()) &#123;</span><br><span class="line">  System.out.println(entry.getKey() + <span class="string">&quot;:&quot;</span> + entry.getValue());</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// lambda</span></span><br><span class="line">map.forEach((key, value) -&gt; &#123;</span><br><span class="line">  System.out.println(key + <span class="string">&quot;:&quot;</span> + value);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// stream</span></span><br><span class="line">map.entrySet().parallelStream().forEach((entry) -&gt; &#123;</span><br><span class="line">  System.out.println(entry.getKey() + <span class="string">&quot;:&quot;</span> + entry.getValue());</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="ConcurrentHashMap-線程安全的原因"><a href="#ConcurrentHashMap-線程安全的原因" class="headerlink" title="ConcurrentHashMap 線程安全的原因"></a>ConcurrentHashMap 線程安全的原因</h3><p>我們知道 HashMap 是線程不安全的，在多線程環境下需要用 ConcurrentHashMap 代替。那麼，ConcurrentHashMap 是怎麼實現線程安全的呢？</p>
+<p>JDK 1.7 時，採用<strong>分段鎖</strong>，主幹是一個 Segment 數組，Segment 裏維護著一個 HashEntry 數組。對同一 Segment 的數據進行操作需要考慮鎖競爭，不同的則不需要。</p>
+<p><img src="/2021/02/06/it/java/java-collection/Untitled%205.png" alt></p>
+<p>JDK 1.8 開始取消了分段鎖，採用 <strong>CAS（樂觀鎖） 和 synchronized（悲觀鎖）</strong> 來保證並發安全。synchronized 只鎖定當前鏈表或紅黑二叉樹的首節點，這樣只要 hash 不衝突，就不會產生並發。</p>
+<p><img src="/2021/02/06/it/java/java-collection/Untitled%206.png" alt></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://tsunhua@github.io/2021/02/06/it/java/java-collection/" data-id="ckpwth6so00194k3q4b8k3anr" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/02/06/it/java/java-concurrent/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          Java 多線程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/02/06/it/java/java-basic/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">Java 基礎</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">貼示</h3>
+    <div class="widget" style="min-height: 50px;">
+        <img src="" height="50px" style="float: left; margin-right: 10px" />
+        <div style="font-size:medium; color:palevioletred;padding-top: 16px;">汝著愛忍耐，愛找覓家己的路來行</div>
+    </div>
+</div>
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">標籤雲</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Go/" style="font-size: 20px;">Go</a> <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/%E5%8D%81%E4%BA%8C%E7%94%9F%E8%82%96/" style="font-size: 10px;">十二生肖</a> <a href="/tags/%E5%B9%B2%E6%94%AF%E7%B4%80%E5%B9%B4%E6%B3%95/" style="font-size: 10px;">干支紀年法</a> <a href="/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/" style="font-size: 10px;">日本語</a> <a href="/tags/%E6%BD%AE%E5%8A%87/" style="font-size: 10px;">潮劇</a> <a href="/tags/%E6%BD%AE%E5%B7%9E%E8%A9%B1/" style="font-size: 15px;">潮州話</a> <a href="/tags/%E7%94%B2%E5%AD%90%E8%A9%B1/" style="font-size: 20px;">甲子話</a> <a href="/tags/%E8%81%86%E8%81%BD%E9%9F%B3%E6%A8%82/" style="font-size: 10px;">聆聽音樂</a> <a href="/tags/%E8%A9%A9%E7%B6%93/" style="font-size: 10px;">詩經</a> <a href="/tags/%E9%96%A9%E5%8D%97%E8%AA%9E/" style="font-size: 20px;">閩南語</a>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">二維碼</h3>
+    <div class="widget">
+        <img src="https://tsunhua.github.io/qrcode.jpg" width="100%" />
+    </div>
+</div>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">彙整</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/06/music/listen-chopin-raindrop/">聆聽音樂：蕭邦之「雨滴」</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/teochew-opera-ghe%CC%82gdengcung/">在潮劇中學之《玉堂春》</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/teochew-kahtsi-vowel/">潮州話與甲子話韻母差異（稿）</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/sige%CC%82ng-giamgia/">詩經·秦風‧蒹葭 (甲子話注音版)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/gahzi-oi-hung-lui-ci-biao/">甲子話分類辭表（2020.12）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="創用 CC 授權條款"
+          style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+      <br />
+      Writed by
+      <a xmlns:cc="http: //creativecommons.org/ns#" target="_blank" href="https://linlshare.github.io/" property="cc:attributionName"
+        rel="cc:attributionURL noopener">Hua
+      </a>
+
+      <br>
+      Powered by
+      <a href="https://github.com/" target="_blank">Github</a>&nbsp;&&nbsp;
+      <a href="https://hexo.io/" target="_blank">Hexo</a>
+      <br />
+
+    </div>
+  </div>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主頁</a>
+  
+    <a target="_blank" rel="noopener" href="https://dicthub.cn/" class="mobile-nav-link">典合網</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">RSS</a>
+  
+</nav>
+    
+
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

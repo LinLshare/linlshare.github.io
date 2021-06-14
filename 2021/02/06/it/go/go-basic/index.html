@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <html lang="en"></html>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-128207704-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>Go 基礎 | 編舟堂</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Go 又稱 Golang，是 Google 公司 2009 年發佈的一款開源編程語言，以簡潔而高效的代碼著稱。Go 目前使用 GOPATH 或 Go modules 管理項目中的第三方依賴，且不支持循環依賴。 Go 的基本數據類型有 16 種(不包含別名)，可謂豐富。要注意的是 string 也是基本數據類型，表示一個 UTF-8 字符串，底層是 byte 數組。單個字符使用一個 int32 的別">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go 基礎">
+<meta property="og:url" content="https://tsunhua@github.io/2021/02/06/it/go/go-basic/index.html">
+<meta property="og:site_name" content="編舟堂">
+<meta property="og:description" content="Go 又稱 Golang，是 Google 公司 2009 年發佈的一款開源編程語言，以簡潔而高效的代碼著稱。Go 目前使用 GOPATH 或 Go modules 管理項目中的第三方依賴，且不支持循環依賴。 Go 的基本數據類型有 16 種(不包含別名)，可謂豐富。要注意的是 string 也是基本數據類型，表示一個 UTF-8 字符串，底層是 byte 數組。單個字符使用一個 int32 的別">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/go/go-basic/Untitled.png">
+<meta property="og:image" content="https://tsunhua@github.io/2021/02/06/it/go/go-basic/Untitled%201.png">
+<meta property="article:published_time" content="2021-02-05T16:21:16.428Z">
+<meta property="article:modified_time" content="2021-02-05T16:21:16.000Z">
+<meta property="article:author" content="Hua">
+<meta property="article:tag" content="Go">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tsunhua@github.io/2021/02/06/it/go/go-basic/Untitled.png">
+  
+  
+    <link rel="shortcut icon" href="favicon.ico" />
+  
+  
+    <link href="//fonts.font.im/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="編舟堂" type="application/atom+xml">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">編舟堂</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="/">主頁</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://dicthub.cn/">典合網</a>
+        
+        <a class="main-nav-link" href="/atom.xml">RSS</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <!-- <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://tsunhua@github.io"></form> -->
+        <form action="//cn.bing.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="搜尋">
+          <button type="submit" class="search-form-submit"></button>
+          <input type="hidden" name="sitesearch" value="url">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-it/go/go-basic" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/02/06/it/go/go-basic/" class="article-date">
+  <time datetime="2021-02-05T16:21:16.428Z" itemprop="datePublished">2021-02-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Go 基礎
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+          <div id="toc" class="toc-article">
+              <strong class="toc-title">目錄</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%B7%E5%8F%B2"><span class="toc-number">1.</span> <span class="toc-text">歷史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A5%E9%96%80"><span class="toc-number">2.</span> <span class="toc-text">入門</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D"><span class="toc-number">2.1.</span> <span class="toc-text">安裝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hello-World"><span class="toc-number">2.2.</span> <span class="toc-text">Hello World</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GOPATH"><span class="toc-number">2.3.</span> <span class="toc-text">GOPATH</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vendor"><span class="toc-number">2.4.</span> <span class="toc-text">Vendor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-modules"><span class="toc-number">2.5.</span> <span class="toc-text">Go modules</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%92%B0%E4%BE%9D%E8%B3%B4"><span class="toc-number">2.6.</span> <span class="toc-text">循環依賴</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AA%9E%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">語法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B8%E6%93%9A%E9%A1%9E%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text">數據類型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%8A%E9%87%8F"><span class="toc-number">3.2.</span> <span class="toc-text">變量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E9%87%8F"><span class="toc-number">3.3.</span> <span class="toc-text">常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%A8%E6%A0%BC"><span class="toc-number">3.4.</span> <span class="toc-text">風格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-number">3.5.</span> <span class="toc-text">流程控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E8%A6%8B%E6%80%A7"><span class="toc-number">3.6.</span> <span class="toc-text">可見性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E9%87%9D"><span class="toc-number">3.7.</span> <span class="toc-text">指針</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B5%90%E6%A7%8B%E9%AB%94"><span class="toc-number">3.8.</span> <span class="toc-text">結構體</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B8%E7%B5%84"><span class="toc-number">3.9.</span> <span class="toc-text">數組</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%87%E7%89%87"><span class="toc-number">3.10.</span> <span class="toc-text">切片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%A0%E5%B0%84"><span class="toc-number">3.11.</span> <span class="toc-text">映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B8-function"><span class="toc-number">3.12.</span> <span class="toc-text">函數(function)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-method"><span class="toc-number">3.13.</span> <span class="toc-text">方法(method)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3"><span class="toc-number">3.14.</span> <span class="toc-text">接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%95%B0%E5%B8%B8%E8%99%95%E7%90%86"><span class="toc-number">3.15.</span> <span class="toc-text">異常處理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-%E7%A8%8B-goroutine"><span class="toc-number">3.16.</span> <span class="toc-text">Go 程(goroutine)</span></a></li></ol></li></ol>
+          </div>
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Go 又稱 Golang，是 Google 公司 2009 年發佈的一款開源編程語言，以簡潔而高效的代碼著稱。Go 目前使用 GOPATH 或 Go modules 管理項目中的第三方依賴，且不支持循環依賴。</p>
+<p>Go 的基本數據類型有 16 種(不包含別名)，可謂豐富。要注意的是 string 也是基本數據類型，表示一個 UTF-8 字符串，底層是 byte 數組。單個字符使用一個 int32 的別名 rune 表示，其值爲 Unicode 字符碼點。</p>
+<p>Go 的變量使用 var 關鍵字聲明，也可以使用短變量聲明；常量則是使用 const 關鍵字聲明。</p>
+<p>Go 有 if 條件語句、for 循環語句、switch 選擇語句和 defer 延遲執行語句。Go 的 for 語句兼具其他語言的 while 語句；switch 語句每個 case 條件都支持運算，且默認自動 break；defer 語句可以立即計算參數值，然後在函數 return 前執行。</p>
+<p>Go 的可見性跟標識符的首字母是否大寫相關，大寫則是導出的，包外可見；小寫則是非導出的，包外不可見。</p>
+<p>Go 有指針，要注意 <code>&amp;</code> 是生成指向操作數的指針，而 <code>*</code> 是獲取指針指向的底層值。</p>
+<p>Go 將一些字段組合成一個結構體(struct) 。結構體支持隱式間接調用，即 p.X 等價於 (*p).X（p 爲結構體指針）。</p>
+<p>Go 支持數組，更重要的是支持一種名爲切片(slice) 的動態數組。切片是一個數組片段的描述，包含指向數組的指針、片段的長度和容量。</p>
+<p>Go 支持映射(map)。</p>
+<p>Go 支持函數(function)的命名返回值、多值返回、作爲值傳遞和閉包。還有一種稱爲方法(method)的特殊函數，其帶有接收者參數，接收者可以是值接收者也可以是指針接收者，指針接收者可以更改接收者的值。</p>
+<p>Go 支持將一些方法簽名組成接口(interface)。接口的實現是隱式的，不需要「implements」。一個結構體作爲接收者定義了接口中的所有方法，那麼該結構體就是實現了該接口。因爲隱式的緣故，建議接口方法盡可能少，以便管理。接口是值，可以傳遞。底層值是 nil 的接口，其方法可以被調用；接口本身爲 nil ，則意味著其不保存值也不保存具體類型；空接口(interface{})是包含零個函數的接口，不是爲 nil 接口。</p>
+<p>Go 的異常處理很簡單，只有 Error，沒有 throws。</p>
+<p>Go 支持 Go 程，一種 Go運行時管理的輕量級線程。Go 程之間可以通過信道(channel) 通信，通過 Mutex 或 RWMutex 共享互斥變量，通過 WaitGroup 等待執行完成。 </p>
+<p>Go 中的信道還支持通過 for-range 循環讀取數據，當信道關閉時該循環自動退出。記住，只有發送方可以關閉信道，接收方不能。信道還支持 select 語句，其會<strong>阻塞到某一分支可以執行爲止</strong>，如沒有分支可以執行且設定了default 語句，會一直執行 default 語句。</p>
+<span id="more"></span>
+
+<p>以下內容多來自<a target="_blank" rel="noopener" href="https://tour.go-zh.org/">《Go 指南》</a>，內容有所改動。</p>
+<h2 id="歷史"><a href="#歷史" class="headerlink" title="歷史"></a>歷史</h2><p>Go 又稱 Golang，是 Google 公司開發的一款靜態強類型、編譯型、並發型，並具有垃圾回收功能的編程語言。</p>
+<ol>
+<li>2007.9.21 罗伯特·格瑞史莫(Robert Griesemer)、罗勃·派克(Rob Pike)和肯·汤普逊(Ken Thompson) 開始設計 Go。</li>
+<li>2009.11 Google 發佈 Go 語言。</li>
+<li>2012.3 Go 1.0 發佈。</li>
+<li>2018.8 Go 1.11 發佈，預支持 modules 進行依賴管理。</li>
+</ol>
+<h2 id="入門"><a href="#入門" class="headerlink" title="入門"></a>入門</h2><h3 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h3><p>按照<a target="_blank" rel="noopener" href="https://golang.org/doc/install">官方教程</a>安裝即可。</p>
+<h3 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h3><p>直接在系統 Home 目錄，新建一一個 hello.go 文件，寫入代碼如下：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main <span class="comment">//程序從 main 包的 main 函數開始運行</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span> <span class="comment">//導入 fmt 包</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123; <span class="comment">//main函數</span></span><br><span class="line">    fmt.Println(<span class="string">&quot;Hello, World!&quot;</span>) <span class="comment">//打印日誌</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然後執行 <code>go run hello.go</code> 即可。</p>
+<h3 id="GOPATH"><a href="#GOPATH" class="headerlink" title="GOPATH"></a>GOPATH</h3><p>當項目未啟用 Go modules 時，Go 使用 <code>GOPATH</code> 環境變量解析 import 語句。<code>GOPATH</code> 的值默認爲 <code>$HOME/go</code> ， <code>GOPATH</code> 目錄結構如下：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">GOPATH=/home/user/<span class="keyword">go</span></span><br><span class="line"></span><br><span class="line">src/</span><br><span class="line">    foo/</span><br><span class="line">        bar/               (<span class="keyword">go</span> code in <span class="keyword">package</span> bar)</span><br><span class="line">            x.<span class="keyword">go</span></span><br><span class="line">        quux/              (<span class="keyword">go</span> code in <span class="keyword">package</span> main)</span><br><span class="line">            y.<span class="keyword">go</span></span><br><span class="line">bin/</span><br><span class="line">    quux                   (installed command)</span><br><span class="line">pkg/</span><br><span class="line">    linux_amd64/</span><br><span class="line">        foo/</span><br><span class="line">            bar.a          (installed <span class="keyword">package</span> object)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>src：存放依賴的源代碼</li>
+<li>bin：存放安裝的命令</li>
+<li>pkg：存法安裝的包對象</li>
+</ul>
+<p>啟用 Go modules 後雖然不通過 <code>GOPATH</code> 解析 import 語句，但下載的源代碼和安裝的命令都會存在<code>GOPATH</code>目錄下。</p>
+<h3 id="Vendor"><a href="#Vendor" class="headerlink" title="Vendor"></a>Vendor</h3><p>Vendor 就是使用本地依賴包的模式，Go 1.5 作爲實驗特性，Go 1.6 正式支持，Go 1.14 正式終結。命名爲 vender(小商販) 是一種比喻，並將 GOPATH 隱喻爲有固定地址的商舖。啟用 Vendor 模式很簡單，在項目中創建一個名爲 vendor 的文件夾然後拷貝依賴的源代碼進入其中即可。比如有如下的項目使用了 Vendor：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">$GOPATH</span><br><span class="line">|	src/</span><br><span class="line">|	|	github.com/constabulary/example-gsftp/</span><br><span class="line">|	|	|	cmd/</span><br><span class="line">|	|	|	|	gsftp/</span><br><span class="line">|	|	|	|	|	main.<span class="keyword">go</span></span><br><span class="line">|	|	|	vendor/</span><br><span class="line">|	|	|	|	github.com/pkg/sftp/</span><br><span class="line">|	|	|	|	golang.org/x/crypto/ssh/</span><br><span class="line">|	|	|	|	|	agent/</span><br></pre></td></tr></table></figure>
+
+<p>在文件 <code>github.com/constabulary/example-gsftp/cmd/gsftp/main.go</code> 中應這樣 import 依賴（不需要加入 vendor 前綴）：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  ...</span><br><span class="line">  <span class="string">&quot;golang.org/x/crypto/ssh&quot;</span></span><br><span class="line">  <span class="string">&quot;golang.org/x/crypto/ssh/agent&quot;</span></span><br><span class="line">  <span class="string">&quot;github.com/pkg/sftp&quot;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>這種方式顯然會帶來代碼膨脹，特別是N個庫同時用 Vendor 模式依賴一個通用庫時，那麼該通用庫的代碼將會出現N次。</p>
+<h3 id="Go-modules"><a href="#Go-modules" class="headerlink" title="Go modules"></a>Go modules</h3><p>Go 官方推出的依賴管理系統，在 Go 1.11 和 1.12中已經有初步支持，但默認關閉；從 1.13 開始默認啟用，1.14 開始可用於生產。</p>
+<p><strong>（1）使用 Go modules</strong></p>
+<p>使用 Go modules 很簡單，只需要在項目根路徑(不可以在 <code>$GOPATH/src</code> 裏面)執行 <code>go mod init example.com/m</code> 即可初始化一個名爲 <code>example.com/m</code> 的模塊，之後會在項目根路徑生成一個名爲 <code>go.mod</code> 的依賴文件，其內容結構如下：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">module example.com/hello <span class="comment">//模塊名</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="number">1.12</span> <span class="comment">//使用的 Go 版本</span></span><br><span class="line"></span><br><span class="line">require rsc.io/quote v1<span class="number">.5</span><span class="number">.2</span> <span class="comment">//依賴項</span></span><br></pre></td></tr></table></figure>
+
+<p>此外，Go modules 還生成和維護著一個名爲 <code>go.sum</code> 的文件，該文件包含了期望的指定模塊版本的內容的加密哈希。</p>
+<p>爲保證依賴的一致性，需要同時將 <code>go.mod</code> 和 <code>go.sum</code> 加入版本管理。</p>
+<p><strong>（2）更新依賴</strong></p>
+<p>更新小版本很簡單，一個 <code>go get</code> 命令就完了。更新大版本比更新小版本複雜，因爲大版本通常會帶來 API 的變化，Go 要求更改大版本號後，模塊名也要加上版本號。例如原本是 <code>rsc.io/quote</code> 的依賴，升級到 v3 後依賴要改成 <code>rsc.io/quote/v3</code> ，因此代碼中的 import 語句要改成 <code>rsc.io/quote/v3</code> ，然後清理掉舊版本的依賴，有點麻煩。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 列出當前項目的模塊和依賴項</span></span><br><span class="line">go list -m all</span><br><span class="line"><span class="comment"># 直接更新到最新的小版本</span></span><br><span class="line">go get rsc.io/sampler</span><br><span class="line"><span class="comment"># 列出所有小版本</span></span><br><span class="line">go list -m -versions rsc.io/sampler</span><br><span class="line"><span class="comment"># 更新到指定版本</span></span><br><span class="line">go get rsc.io/sampler@v1.3.1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看模塊的所有版本</span></span><br><span class="line">go list -m rsc.io/q...</span><br><span class="line"><span class="comment"># 清除未使用的依賴</span></span><br><span class="line">go mod tidy</span><br></pre></td></tr></table></figure>
+
+<h3 id="循環依賴"><a href="#循環依賴" class="headerlink" title="循環依賴"></a>循環依賴</h3><p>Go 不支持循環依賴，Go設計者Rob Pike認爲如果出現兩個包循環依賴，那麼是你的設計問題。</p>
+<p>筆者就出現過一次循環依賴，場景是：封裝了一個打印日誌的庫A和一個解析配置的庫B，庫A需要通過庫B配置，庫B需要用庫A打印日誌。最後選擇在庫B使用原始的日誌打印。</p>
+<h2 id="語法"><a href="#語法" class="headerlink" title="語法"></a>語法</h2><h3 id="數據類型"><a href="#數據類型" class="headerlink" title="數據類型"></a>數據類型</h3><p><strong>（1）基本類型</strong></p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">bool</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">string</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span>  <span class="keyword">int8</span>  <span class="keyword">int16</span>  <span class="keyword">int32</span>  <span class="keyword">int64</span></span><br><span class="line"><span class="keyword">uint</span> <span class="keyword">uint8</span> <span class="keyword">uint16</span> <span class="keyword">uint32</span> <span class="keyword">uint64</span> <span class="keyword">uintptr</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">byte</span> <span class="comment">// uint8 的别名</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">rune</span> <span class="comment">// int32 的別名</span></span><br><span class="line">    <span class="comment">// 表示一個 Unicode 碼點</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">float32</span> <span class="keyword">float64</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">complex64</span> <span class="keyword">complex128</span></span><br></pre></td></tr></table></figure>
+
+<p>其中 int, uint 和 uintptr 在 32 位系統上通常為 32 位寬，在 64 位系統上則為 64 位寬。</p>
+<p>string 表示一個 UTF-8 類型的字符串，底層是一個字節數組。</p>
+<p>rune 表示一個 Unicode 碼點，是 int32 的別名。讀取 string 中的每個字符，只需要將 string 轉爲 rune 數組即可</p>
+<p>Java 中的 char 類型，每個字符對應一個 Unicode 碼點，可以表示BMP範圍內（即[U+0000, U+FFFF]之間）的Unicode字符。String 是 UTF-8 類型。</p>
+<p><strong>（2）零值</strong></p>
+<p>没有明确初始值的变量声明会被赋予它们的 <strong>零值</strong>。</p>
+<p>零值是：</p>
+<ul>
+<li>数值类型为 <code>0</code>，</li>
+<li>布尔类型为 <code>false</code>，</li>
+<li>字符串为 <code>&quot;&quot;</code>（空字符串）。</li>
+</ul>
+<p><strong>（3）類型轉換</strong></p>
+<p>數值之間可以通過表達式 T(v) 將值 v 轉換為類型 T，如：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">i := <span class="number">42</span></span><br><span class="line">f := <span class="keyword">float64</span>(i)</span><br><span class="line">u := <span class="keyword">uint</span>(f)</span><br></pre></td></tr></table></figure>
+
+<p><strong>（4）类型推导</strong></p>
+<p>在聲明一個變量而不指定其類型時（即使用不帶類型的 := 語法或 var = 表達式語法），變量的類型由右值推導得出。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">i := <span class="number">42</span>           <span class="comment">// int</span></span><br><span class="line">f := <span class="number">3.142</span>        <span class="comment">// float64</span></span><br><span class="line">g := <span class="number">0.867</span> + <span class="number">0.5i</span> <span class="comment">// complex128</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="變量"><a href="#變量" class="headerlink" title="變量"></a>變量</h3><p><strong>（1）聲明語句</strong></p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// var 開頭，逗號(,)分割變量名，最後寫數據類型 </span></span><br><span class="line"><span class="keyword">var</span> c, python, java <span class="keyword">bool</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>（2）賦值語句</strong></p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> c, python, java = <span class="literal">true</span>,<span class="literal">false</span>,<span class="string">&quot;no&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>或直接使用<strong>短變量聲明</strong>，注意短變量聲明只能在函數內使用，因爲函數外的每個語句要求必須以關鍵字開始。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">c, python, java := <span class="literal">true</span>,<span class="literal">false</span>,<span class="string">&quot;no&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p>常量聲明使用 const 關鍵字。常量可以是字符、字符串、布尔值或数值。常量不能用 <code>:=</code> 语法声明。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> Pi = <span class="number">3.14</span></span><br></pre></td></tr></table></figure>
+
+<p><code>iota</code> 可以用來創建順序遞增的常量。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> (</span><br><span class="line">  Low = <span class="literal">iota</span> <span class="comment">//0</span></span><br><span class="line">  Medium     <span class="comment">//1</span></span><br><span class="line">  High       <span class="comment">//2</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="風格"><a href="#風格" class="headerlink" title="風格"></a>風格</h3><ol>
+<li>每行程序結束後不需要撰寫分號（;）。</li>
+<li>大括號（{）不能夠換行放置。</li>
+<li>if判斷式和for循環不需要以小括號包覆起來。</li>
+<li>使用 tab 做排版</li>
+</ol>
+<h3 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h3><p><strong>（1）if-else</strong></p>
+<p>不需要小括號，可以使用簡短語句。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">_,ok := sendMsg();</span><br><span class="line"><span class="keyword">if</span> ok &#123;</span><br><span class="line">  <span class="comment">// do something</span></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  <span class="comment">// do other thing</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 等價於以下簡短語句</span></span><br><span class="line"><span class="keyword">if</span> _,ok := sendMsg(); ok &#123;</span><br><span class="line">  <span class="comment">// do something</span></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  <span class="comment">// do other thing</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>（2）for</strong></p>
+<p>Go 中的 for 語句，還包含了其他語言的 while 的功能。特別的不用括號包裹。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 功能：遍歷 10 次</span></span><br><span class="line"><span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 功能：類似於其他語言 while 的功能</span></span><br><span class="line"><span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i&lt;<span class="number">10</span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 功能：無限循環，類似於其他語言中的 while(true)</span></span><br><span class="line"><span class="keyword">for</span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 功能：for range 循環，返回當前元素的下標及副本</span></span><br><span class="line"><span class="comment">// 可通過 _ 忽略其中的某個值</span></span><br><span class="line">pow := []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">8</span>&#125;</span><br><span class="line"><span class="keyword">for</span> i, v := <span class="keyword">range</span> pow &#123;</span><br><span class="line">  fmt.Printf(<span class="string">&quot;%d,%d\n&quot;</span>, i, v)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> _,v := <span class="keyword">range</span> pow &#123;</span><br><span class="line">  fmt.Printf(<span class="string">&quot;%d\n&quot;</span>, v)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> i := <span class="keyword">range</span> pow &#123;</span><br><span class="line">  fmt.Printf(<span class="string">&quot;%d\n&quot;</span>, i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>（3）switch</strong></p>
+<p>Go 中的 switch 語句是自動 break 的。如果不想要break，需要在 case 後面協商 fallthrough。</p>
+<p>Go 中的 switch 的 case 無需為常量，且取值不必為整數。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 功能：選擇顏色</span></span><br><span class="line"><span class="keyword">switch</span> color &#123;</span><br><span class="line">    <span class="keyword">case</span> Red:</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">    <span class="keyword">case</span> Green:</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 功能：替代 if-then-else，更整齊</span></span><br><span class="line">result := request()</span><br><span class="line"><span class="keyword">switch</span> &#123;</span><br><span class="line">    <span class="keyword">case</span> result &gt; <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">case</span> result &lt;<span class="number">0</span>:</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"><span class="keyword">switch</span> result := request(); &#123;</span><br><span class="line">    <span class="keyword">case</span> result &gt; <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">case</span> result &lt;<span class="number">0</span>:</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>（4）defer</strong></p>
+<p>defer 語句會將函數推遲到外層函數返回之後執行。</p>
+<p>推遲調用的函數其參數會立即求值，但直到外層函數返回前該函數都不會被調用。</p>
+<p>推遲的函數調用會被壓入一個棧中。當外層函數返回時，被推遲的函數會按照後進先出的順序調用。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  <span class="keyword">defer</span> fmt.Println(<span class="string">&quot;world&quot;</span>)</span><br><span class="line"></span><br><span class="line">  fmt.Println(<span class="string">&quot;hello&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>defer 並不是免費的。defer 底層會調用 <code>runtime.deferproc</code> 去設置要延遲調用的函數，調用 <code>runtime.deferreturn</code> 會依次執行先前延遲調用的函數。參考：<a target="_blank" rel="noopener" href="https://medium.com/i0exception/runtime-overhead-of-using-defer-in-go-7140d5c40e32">https://medium.com/i0exception/runtime-overhead-of-using-defer-in-go-7140d5c40e32</a></p>
+<h3 id="可見性"><a href="#可見性" class="headerlink" title="可見性"></a>可見性</h3><ul>
+<li>導出：大寫字母開頭的標識符，包外可訪問。</li>
+<li>未導出：非大寫字母開頭的標識符，包外不可訪問。</li>
+</ul>
+<h3 id="指針"><a href="#指針" class="headerlink" title="指針"></a>指針</h3><p>Go 擁有指針。指針保存了值的內存地址。</p>
+<ul>
+<li>類型 <code>*T</code> 是指向 <code>T</code> 類型值的指針。其零值為 <code>nil</code>。</li>
+<li><code>&amp;</code> 操作符會<strong>生成一個指向其操作數的指針</strong>。（注意：把<code>&amp;</code> 理解爲取地址符號是錯誤的）</li>
+<li><code>*</code> 操作符<strong>表示指針指向的底層值</strong>。（注意：把<code>*</code> 理解爲取值符號是錯誤的）</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  i, j := <span class="number">42</span>, <span class="number">2701</span></span><br><span class="line"></span><br><span class="line">  p := &amp;i         <span class="comment">// 指向 i</span></span><br><span class="line">  fmt.Println(*p) <span class="comment">// 通過指針讀取 i 的值</span></span><br><span class="line">  *p = <span class="number">21</span>         <span class="comment">// 通過指針設置 i 的值</span></span><br><span class="line">  fmt.Println(i)  <span class="comment">// 查看 i 的值</span></span><br><span class="line"></span><br><span class="line">  p = &amp;j         <span class="comment">// 重定向到 j</span></span><br><span class="line">  *p = *p / <span class="number">37</span>   <span class="comment">// 通過指針對 j 進行除法運算</span></span><br><span class="line">  fmt.Println(j) <span class="comment">// 查看 j 的值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="結構體"><a href="#結構體" class="headerlink" title="結構體"></a>結構體</h3><p>一個結構體（struct）就是一組字段（field）。外界使用點號來訪問結構體字段。</p>
+<p>結構體字段可以通過結構體指針來訪問。如果我們有一個指向結構體的指針 p，那麼可以通過 <code>(*p).X</code> 來訪問其字段 X。不過這麼寫太囉嗦了，所以語言也允許我們使用<strong>隱式間接引用</strong>，直接寫 <code>p.X</code> 就可以。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> Vertex <span class="keyword">struct</span> &#123;</span><br><span class="line">  X, Y <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  v := Vertex&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</span><br><span class="line">  v.X = <span class="number">4</span></span><br><span class="line">  fmt.Println(v.X)</span><br><span class="line">  </span><br><span class="line">  p := &amp;v</span><br><span class="line">  p.X = <span class="number">1e9</span></span><br><span class="line">  fmt.Println(v)</span><br><span class="line"></span><br><span class="line">  v2 = Vertex&#123;X: <span class="number">1</span>&#125;  <span class="comment">// Y:0 被隱式地賦予</span></span><br><span class="line">  v3 = Vertex&#123;&#125;      <span class="comment">// X:0 Y:0</span></span><br><span class="line">  p  = &amp;Vertex&#123;<span class="number">1</span>, <span class="number">2</span>&#125; <span class="comment">// 創建一個 *Vertex 類型的結構體（指針）</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="數組"><a href="#數組" class="headerlink" title="數組"></a>數組</h3><p>類型 [n]T 表示擁有 n 個 T 類型的值的數組。</p>
+<p>表达式</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a [<span class="number">10</span>]<span class="keyword">int</span></span><br></pre></td></tr></table></figure>
+
+<p>會將變量 <code>a</code> 聲明為擁有 10 個整數的數組。</p>
+<h3 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h3><p><strong>（1）定義</strong></p>
+<p>類型 []T 表示一個元素類型為 T 的切片。T 可以是任何類型，包括切片本身。</p>
+<p>切片通過兩個下標來界定，即一個上界和一個下界，二者以冒號分隔：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">a[low : high]</span><br></pre></td></tr></table></figure>
+
+<p>它會選擇一個半開區間，包括第一個元素，但排除最後一個元素。</p>
+<p>切片下界的默認值爲 0，上界則是其底層數組的長度。</p>
+<p>對於數組 <code>var a [10]int</code> 來說，以下切片是等價的：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">a[<span class="number">0</span>:<span class="number">10</span>]</span><br><span class="line">a[:<span class="number">10</span>]</span><br><span class="line">a[<span class="number">0</span>:]</span><br><span class="line">a[:]</span><br></pre></td></tr></table></figure>
+
+<p><strong>（2）切片的本質</strong></p>
+<p>一個切片是一個數組片段的描述，包含指向數組的指針、片段的長度和容量，其結構如下：</p>
+<p><img src="/2021/02/06/it/go/go-basic/Untitled.png" alt></p>
+<p><img src="/2021/02/06/it/go/go-basic/Untitled%201.png" alt></p>
+<p>切片的長度就是它所包含的元素個數。<br>切片的容量是從它的第一個元素開始數，到其底層數組元素末尾的個數。<br>切片 s 的長度和容量可通過表達式 <code>len(s)</code> 和 <code>cap(s)</code> 來獲取。</p>
+<p>更改切片的元素會修改其底層數組中對應的元素。與它共享底層數組的切片都會觀測到這些修改。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  names := [<span class="number">4</span>]<span class="keyword">string</span>&#123;</span><br><span class="line">    <span class="string">&quot;John&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Paul&quot;</span>,</span><br><span class="line">    <span class="string">&quot;George&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Ringo&quot;</span>,</span><br><span class="line">  &#125;</span><br><span class="line">  fmt.Println(names)</span><br><span class="line"></span><br><span class="line">  a := names[<span class="number">0</span>:<span class="number">2</span>]</span><br><span class="line">  b := names[<span class="number">1</span>:<span class="number">3</span>]</span><br><span class="line">  fmt.Println(a, b)</span><br><span class="line"></span><br><span class="line">  b[<span class="number">0</span>] = <span class="string">&quot;XXX&quot;</span></span><br><span class="line">  fmt.Println(a, b)</span><br><span class="line">  fmt.Println(names)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：切片的零值爲 nil，其長度和容量爲 0 且沒有底層數組。</p>
+<p><strong>（3）通過 make 創建切片</strong></p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">a := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">5</span>)  <span class="comment">// len(a)=5</span></span><br><span class="line">b := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">0</span>, <span class="number">5</span>) <span class="comment">// len(b)=0, cap(b)=5</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>（4）通過 append 追加元素</strong></p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">append</span><span class="params">(s []T, vs ...T)</span> []<span class="title">T</span></span></span><br></pre></td></tr></table></figure>
+
+<p><code>append</code> 的第一個參數 <code>s</code> 是一個元素類型為 <code>T</code> 的切片，其餘類型為 <code>T</code>的值將會追加到該切片的末尾。</p>
+<p><code>append</code> 的結果是一個包含原切片所有元素加上新添加元素的切片。</p>
+<p>當 <code>s</code> 的底層數組太小，不足以容納所有給定的值時，它就會分配一個更大的數組。返回的切片會指向這個新分配的數組。</p>
+<p>當引用一個原始數組時，GC不會釋放該數組的空間，即使只用到其中一小部分數據。因此函數返回切片的時候要特別注意，最好拷貝需要數據到新的切片再返回。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 使用 copy 函數</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CopyDigits</span><span class="params">(filename <span class="keyword">string</span>)</span> []<span class="title">byte</span></span> &#123;</span><br><span class="line">    b, _ := ioutil.ReadFile(filename)</span><br><span class="line">    b = digitRegexp.Find(b)</span><br><span class="line">    c := <span class="built_in">make</span>([]<span class="keyword">byte</span>, <span class="built_in">len</span>(b))</span><br><span class="line">    <span class="built_in">copy</span>(c, b)</span><br><span class="line">    <span class="keyword">return</span> c</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 或使用 append 函數</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CopyDigits</span><span class="params">(filename <span class="keyword">string</span>)</span> []<span class="title">byte</span></span> &#123;</span><br><span class="line">    b, _ := ioutil.ReadFile(filename)</span><br><span class="line">    b = digitRegexp.Find(b)</span><br><span class="line">    <span class="keyword">var</span> c []<span class="keyword">byte</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">append</span>(c, b...)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><p>映射將鍵映射到值。</p>
+<p>映射的零值為 <code>nil</code> 。<code>nil</code> 映射既沒有鍵，也不能添加鍵。</p>
+<p><code>make</code> 函數會返回給定類型的映射，並將其初始化備用。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> Vertex <span class="keyword">struct</span> &#123;</span><br><span class="line">  Lat, Long <span class="keyword">float64</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> m = <span class="keyword">map</span>[<span class="keyword">string</span>]Vertex&#123;</span><br><span class="line">  <span class="string">&quot;Bell Labs&quot;</span>: &#123;<span class="number">40.68433</span>, <span class="number">-74.39967</span>&#125;,</span><br><span class="line">  <span class="string">&quot;Google&quot;</span>:    &#123;<span class="number">37.42202</span>, <span class="number">-122.08408</span>&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 常用操作：</p>
+<ol>
+<li>插入或修改元素：<code>m[key] = elem</code></li>
+<li>獲取元素：<code>elem = m[key]</code></li>
+<li>通過雙賦值檢測某個鍵是否存在：<code>elem, ok := m[key]</code></li>
+<li>刪除元素：<code>delete(m, key)</code></li>
+</ol>
+<h3 id="函數-function"><a href="#函數-function" class="headerlink" title="函數(function)"></a>函數(function)</h3><p><strong>（1）概述</strong></p>
+<p>函數可以沒有參數或接受多個參數。當連續兩個或多個函數的已命名形參類型相同時，除最後一個類型以外，其它都可以省略。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(x, y <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">  <span class="keyword">return</span> x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  fmt.Println(add(<span class="number">42</span>, <span class="number">13</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>（2）命名返回值</strong></p>
+<p>Go 的返回值可被命名，它們會被視作<strong>定義在函數頂部的變量</strong>。返回值的名稱應當具有一定的意義，它可以作為文檔使用。沒有參數的 <code>return</code> 語句返回已命名的返回值。也就是 <code>直接</code> 返回。直接返回語句應當僅用在下面這樣的短函數中。在長的函數中它們會影響代碼的可讀性。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">split</span><span class="params">(sum <span class="keyword">int</span>)</span> <span class="params">(x, y <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">  x = sum * <span class="number">4</span> / <span class="number">9</span></span><br><span class="line">  y = sum - x</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  fmt.Println(split(<span class="number">17</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>（3）多值返回</strong></p>
+<p>函數可以返回任意數量的返回值。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">swap</span><span class="params">(x, y <span class="keyword">string</span>)</span> <span class="params">(<span class="keyword">string</span>, <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">  <span class="keyword">return</span> y, x</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  a, b := swap(<span class="string">&quot;hello&quot;</span>, <span class="string">&quot;world&quot;</span>)</span><br><span class="line">  fmt.Println(a, b)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>（4）函數值</strong></p>
+<p>函數也是值，可以作爲函數的參數或返回值。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">compute</span><span class="params">(fn <span class="keyword">func</span>(<span class="keyword">float64</span>, <span class="keyword">float64</span>)</span> <span class="title">float64</span>) <span class="title">float64</span></span> &#123;</span><br><span class="line">  <span class="keyword">return</span> fn(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">&#125;</span><br><span class="line">fmt.Println(compute(math.Pow))</span><br></pre></td></tr></table></figure>
+
+<p><strong>（5）閉包(closure)</strong></p>
+<p>閉包是指一個函數引用了其函數體之外的變量，該函數可以訪問並賦予其引用的變量的值。換句話說就是該函數跟函數體之外的變量綑綁在一起了。每次調用閉包中的函數可以改變閉包中變量的值。例如斐波那契閉包：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">fibonacci</span><span class="params">()</span> <span class="title">func</span><span class="params">()</span> <span class="title">int</span></span> &#123;</span><br><span class="line">  x,y := <span class="number">0</span>,<span class="number">1</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">func</span><span class="params">()</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    res := x</span><br><span class="line">    x,y = y,x+y</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  f := fibonacci()</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">    fmt.Println(f())</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法-method"><a href="#方法-method" class="headerlink" title="方法(method)"></a>方法(method)</h3><p>方法就是一類帶特殊的<strong>接收者參數</strong>的函數。方法接收者在它自己的參數列表內，<strong>位於 func 關鍵字和方法名之間</strong>。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> Vertex <span class="keyword">struct</span> &#123;</span><br><span class="line">  X, Y <span class="keyword">float64</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 這就是方法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v Vertex)</span> <span class="title">Abs</span><span class="params">()</span> <span class="title">float64</span></span> &#123;</span><br><span class="line">  <span class="keyword">return</span> math.Sqrt(v.X*v.X + v.Y*v.Y)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  v := Vertex&#123;<span class="number">3</span>, <span class="number">4</span>&#125;</span><br><span class="line">  fmt.Println(v.Abs())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>值得注意的是：接收者的類型定義和方法聲明必須在同一包內；不能爲內建類型聲明方法。</p>
+<p>接收者除了是<strong>值接收者</strong>外，還支持<strong>指針接收者</strong>，使用 <code>*T</code> (不能是 <code>*int</code> 之類的) 的文法即可。指針接收者可以修改接收者指向的值。如下：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> Vertex <span class="keyword">struct</span> &#123;</span><br><span class="line">  X, Y <span class="keyword">float64</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v Vertex)</span> <span class="title">Abs</span><span class="params">()</span> <span class="title">float64</span></span> &#123;</span><br><span class="line">  <span class="keyword">return</span> math.Sqrt(v.X*v.X + v.Y*v.Y)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v *Vertex)</span> <span class="title">Scale</span><span class="params">(f <span class="keyword">float64</span>)</span></span> &#123;</span><br><span class="line">  v.X = v.X * f</span><br><span class="line">  v.Y = v.Y * f</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  v := Vertex&#123;<span class="number">3</span>, <span class="number">4</span>&#125;</span><br><span class="line">  v.Scale(<span class="number">10</span>) <span class="comment">// 此時 Go 會解釋爲 (&amp;v).Scale(10)，這就是指針重定向</span></span><br><span class="line">  fmt.Println(v.Abs())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用指針接收者的好處：</p>
+<ol>
+<li>方法能夠修改其接收者指向的值。</li>
+<li>避免在每次調用方法時複製該值。該值佔用的空間越大，則越顯得高效。</li>
+</ol>
+<p>注意：一個結構體採用值接收者的方式實現了接口的方法，則隱含著採用指針接收者的方式實現了接口的方法。（接收者是指針類型的方法，很可能在方法中會對接收者的屬性進行更改操作，從而影響接收者；而對於接收者是值類型的方法，在方法中不會對接收者本身產生影響）</p>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><p><strong>（1）定義</strong></p>
+<p>接口類型是<strong>由一組方法簽名定義的集合</strong>。接口類型的變量可以保存<strong>任何</strong>實現了這些方法的值。</p>
+<p><strong>（2）隱式實現</strong></p>
+<p>類型通過實現一個接口的所有方法來實現該接口。既然無需專門顯式聲明，也就沒有「implements」關鍵字。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> Animal <span class="keyword">interface</span> &#123;</span><br><span class="line">  eat()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> John <span class="keyword">struct</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(j *John)</span> <span class="title">eat</span><span class="params">()</span></span> &#123;</span><br><span class="line">  fmt.Println(<span class="string">&quot;eat...&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Person <span class="keyword">interface</span> &#123;</span><br><span class="line">  eat()</span><br><span class="line">  talk()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(j *John)</span> <span class="title">talk</span><span class="params">()</span></span> &#123;</span><br><span class="line">  fmt.Println(<span class="string">&quot;talk...&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  <span class="keyword">var</span> a Animal = &amp;John&#123;&#125;</span><br><span class="line">  a.eat()</span><br><span class="line">  <span class="keyword">var</span> b Person = &amp;John&#123;&#125;</span><br><span class="line">  b.eat()</span><br><span class="line">  b.talk()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>（4）接口值</strong></p>
+<p>接口也是值，可以作爲函數的參數或返回值。在內部，接口值可以看做包含值和具體類型的元組：<code>(value, type)</code> 。接口值保存了一個具體底層類型的具體值。接口值調用方法時會執行其底層類型的同名方法。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Animal、John 見上面的代碼</span></span><br><span class="line">j := John&#123;&#125;</span><br><span class="line">describe(j)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">describe</span><span class="params">(i Animal)</span></span>&#123;</span><br><span class="line">  fmt.Printf(<span class="string">&quot;(%v, %T)\n&quot;</span>, i, i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>（5）底層值爲 nil 的接口值</strong></p>
+<p>即便接口內的具體值為 nil，方法仍然會被 nil 接收者調用。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 改造上面的代碼</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(j *John)</span> <span class="title">talk</span><span class="params">()</span></span> &#123;</span><br><span class="line">  <span class="keyword">if</span> j == <span class="literal">nil</span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;j is &lt;nil&gt;&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  fmt.Println(<span class="string">&quot;talk...&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  <span class="keyword">var</span> x Person</span><br><span class="line">  <span class="keyword">var</span> y John</span><br><span class="line">  x = &amp;y</span><br><span class="line">  describe(x)</span><br><span class="line">  x.talk() <span class="comment">// 正常調用</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>判斷接口的底層值是否爲 nil 的方法：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 接上</span></span><br><span class="line"><span class="built_in">println</span>( x == <span class="literal">nil</span> || reflect.ValueOf(x).IsNil())</span><br></pre></td></tr></table></figure>
+
+<p><strong>（6）nil 接口值</strong></p>
+<p>nil 接口值既不保存值也不保存具體類型。</p>
+<p>為 nil 接口調用方法會產生運行時錯誤，因為接口的元組內並未包含能夠指明該調用哪個 <strong>具體</strong> 方法的類型。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> I <span class="keyword">interface</span> &#123;</span><br><span class="line">  M()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  <span class="keyword">var</span> i I</span><br><span class="line">  describe(i)</span><br><span class="line">  i.M() <span class="comment">// 此處拋出 panic: runtime error: invalid memory address or nil pointer dereference</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">describe</span><span class="params">(i I)</span></span> &#123;</span><br><span class="line">  fmt.Printf(<span class="string">&quot;(%v, %T)\n&quot;</span>, i, i) <span class="comment">// (&lt;nil&gt;, &lt;nil&gt;)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>（7）空接口</strong></p>
+<p>指定了<strong>零個方法</strong>的接口值被稱為空接口，即 <code>interface&#123;&#125;</code> 。空接口可保存任何類型的值。（因為每個類型都至少實現了零個方法。）空接口被用來處理未知類型的值。例如，<code>fmt.Print</code> 可接受類型為 <code>interface&#123;&#125;</code> 的任意數量的參數。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  <span class="keyword">var</span> i <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">  describe(i)</span><br><span class="line"></span><br><span class="line">  i = <span class="number">42</span> <span class="comment">// 保存 int值</span></span><br><span class="line">  describe(i)</span><br><span class="line"></span><br><span class="line">  i = <span class="string">&quot;hello&quot;</span> <span class="comment">// 保存 string值</span></span><br><span class="line">  describe(i)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">describe</span><span class="params">(i <span class="keyword">interface</span>&#123;&#125;)</span></span> &#123;</span><br><span class="line">  fmt.Printf(<span class="string">&quot;(%v, %T)\n&quot;</span>, i, i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>（8）類型斷言</strong></p>
+<p>類型斷言提供了訪問<strong>接口值底層具體值</strong>的方式。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 判斷接口i的底層值類型是否爲T，如是返回其底層值和true，否則返回T類型的零值和false</span></span><br><span class="line">t, ok := i.(T)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> i <span class="keyword">interface</span>&#123;&#125; = <span class="string">&quot;hello&quot;</span></span><br><span class="line">s, ok := i.(<span class="keyword">string</span>)</span><br><span class="line">fmt.Println(s, ok)</span><br><span class="line">f, ok := i.(<span class="keyword">int</span>)</span><br><span class="line">fmt.Println(f, ok)</span><br><span class="line"><span class="comment">// 支持類型選擇</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">do</span><span class="params">(i <span class="keyword">interface</span>&#123;&#125;)</span></span> &#123;</span><br><span class="line">  <span class="keyword">switch</span> v := i.(<span class="keyword">type</span>) &#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="keyword">int</span>:</span><br><span class="line">    fmt.Printf(<span class="string">&quot;Twice %v is %v\n&quot;</span>, v, v*<span class="number">2</span>)</span><br><span class="line">  <span class="keyword">case</span> <span class="keyword">string</span>:</span><br><span class="line">    fmt.Printf(<span class="string">&quot;%q is %v bytes long\n&quot;</span>, v, <span class="built_in">len</span>(v))</span><br><span class="line">  <span class="keyword">default</span>:</span><br><span class="line">    fmt.Printf(<span class="string">&quot;I don&#x27;t know about type %T!\n&quot;</span>, v)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="異常處理"><a href="#異常處理" class="headerlink" title="異常處理"></a>異常處理</h3><p>Go 程序使用 <code>error</code> 值來表示錯誤狀態。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> error <span class="keyword">interface</span> &#123;</span><br><span class="line">    Error() <span class="keyword">string</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通常函數會返回一個 <code>error</code> 值，調用的它的代碼應當判斷這個錯誤是否等於 <code>nil</code> 來進行錯誤處理。<code>error</code> 為 nil 時表示成功；非 nil 的 <code>error</code> 表示失敗。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> i, err := strconv.Atoi(<span class="string">&quot;42&quot;</span>); err == <span class="literal">nil</span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;Converted integer:&quot;</span>, i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Go-程-goroutine"><a href="#Go-程-goroutine" class="headerlink" title="Go 程(goroutine)"></a>Go 程(goroutine)</h3><p><strong>（1）定義</strong></p>
+<p><strong>Go 程（goroutine）是由 Go 運行時管理的輕量級線程</strong>。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// x,y,z 的求值發生在當前 Go 程中，f 的執行則是在新的 Go 程中</span></span><br><span class="line"><span class="keyword">go</span> f(x, y, z)</span><br></pre></td></tr></table></figure>
+
+<p>（<strong>2）信道</strong></p>
+<p><strong>信道是帶有類型的管道</strong>，你可以通過它用<strong>信道操作符</strong> <code>&lt;-</code> (箭頭就是數據流的方向)來發送或者接收值。</p>
+<p>默認情況下，發送和接收操作在另一端準備好之前都會阻塞。這使得 Go 程可以在沒有顯式的鎖或競態變量的情況下進行同步。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 創建信道</span></span><br><span class="line">ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line"><span class="comment">// 將 v 發送至信道 ch。</span></span><br><span class="line">ch &lt;- v</span><br><span class="line"><span class="comment">// 從 ch 接收值並賦予 v。</span></span><br><span class="line">v := &lt;-ch</span><br></pre></td></tr></table></figure>
+
+<p><strong>信道可以是帶緩衝，</strong>將緩衝長度作為第二個參數提供給 <code>make</code> 來初始化一個帶緩衝的信道。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>僅當信道的緩衝區填滿後，向其發送數據時才會阻塞。當緩衝區為空時，接受方會阻塞。</strong></p>
+<p><strong>（3）range 和 close</strong></p>
+<p>有且僅有發送者可以通過 close 方法關閉一個信道。接收者讀取值的時候可以通過 <code>v, ok := &lt;-ch</code>  的 ok 值判斷是否信道關閉了。更簡單的是使用 for-range 不斷從信道接收值，直到信道關閉，循環自動退出。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">fibonacci</span><span class="params">(n <span class="keyword">int</span>, c <span class="keyword">chan</span> <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">  x, y := <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; n; i++ &#123;</span><br><span class="line">    c &lt;- x</span><br><span class="line">    x, y = y, x+y</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">close</span>(c)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">10</span>)</span><br><span class="line">  <span class="keyword">go</span> fibonacci(<span class="built_in">cap</span>(c), c)</span><br><span class="line">  <span class="keyword">for</span> i := <span class="keyword">range</span> c &#123;</span><br><span class="line">    fmt.Println(i)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>（4）select</strong></p>
+<p>select 語句使一個 Go 程可以等待多個通信操作。select 會阻塞到某個分支可以繼續執行為止，這時就會執行該分支。當多個分支都準備好時會隨機選擇一個執行。當 select 中的其它分支都沒有準備好時，default 分支就會執行。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">fibonacci</span><span class="params">(c, quit <span class="keyword">chan</span> <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">  x, y := <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> &#123;</span><br><span class="line">    <span class="keyword">select</span> &#123;</span><br><span class="line">    <span class="keyword">case</span> c &lt;- x:</span><br><span class="line">      x, y = y, x+y</span><br><span class="line">    <span class="keyword">case</span> &lt;-quit:</span><br><span class="line">      fmt.Println(<span class="string">&quot;quit&quot;</span>)</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="comment">// 當 c 和 quit 阻塞時會執行到此處</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">  quit := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">  <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">      fmt.Println(&lt;-c)</span><br><span class="line">    &#125;</span><br><span class="line">    quit &lt;- <span class="number">0</span></span><br><span class="line">  &#125;()</span><br><span class="line">  fibonacci(c, quit)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>練習：等價二叉查找樹</p>
+<p>  函數 tree.New(k) 用於構造一個隨機結構的已排序二叉查找樹，它保存了值 k, 2k, 3k, …, 10k。</p>
+<p>  Walk 步進 tree t 將所有的值從 tree 發送到 channel ch。</p>
+<p>  用 Walk 實現 Same 函數來檢測 t1 和 t2 是否存儲了相同的值。</p>
+  <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;golang.org/x/tour/tree&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Walk</span><span class="params">(t *tree.Tree, ch <span class="keyword">chan</span> <span class="keyword">int</span>)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> t.Left != <span class="literal">nil</span>&#123;</span><br><span class="line">    Walk(t.Left, ch)</span><br><span class="line">  &#125;</span><br><span class="line">  ch &lt;- t.Value</span><br><span class="line">  <span class="keyword">if</span> t.Right != <span class="literal">nil</span>&#123;</span><br><span class="line">    Walk(t.Right, ch)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Same 检测树 t1 和 t2 是否含有相同的值。</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Same</span><span class="params">(t1, t2 *tree.Tree)</span> <span class="title">bool</span></span>&#123;</span><br><span class="line">  ch1,ch2 := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>),<span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">  <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Walk(t1, ch1)</span><br><span class="line">    <span class="built_in">close</span>(ch1)</span><br><span class="line">  &#125;()</span><br><span class="line">  <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Walk(t2, ch2)</span><br><span class="line">    <span class="built_in">close</span>(ch2)</span><br><span class="line">  &#125;()</span><br><span class="line">  <span class="keyword">for</span> i := <span class="keyword">range</span> ch1&#123;</span><br><span class="line">    <span class="keyword">if</span> i != &lt;-ch2 &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  <span class="built_in">println</span>(Same(tree.New(<span class="number">1</span>),tree.New(<span class="number">1</span>)))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><strong>（5）sync.Mutex</strong></p>
+<p>互斥鎖可以保證每次只有一個 Go 程訪問一個共享變量。</p>
+<p>Go 標準庫中的 <strong>Mutex</strong> 就是一個互斥鎖，可以創建為其他結構體的字段；零值為解鎖狀態。Mutex類型的鎖和線程無關，可以由不同的線程加鎖和解鎖。在代碼前調用 Lock 方法，並在代碼後調用 Unlock 方法來保證一段代碼互斥執行。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> SafeCounter <span class="keyword">struct</span> &#123;</span><br><span class="line">  v   <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span></span><br><span class="line">  mux sync.Mutex</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *SafeCounter)</span> <span class="title">Increase</span><span class="params">(key <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">  c.mux.Lock()</span><br><span class="line">  c.v[key]++</span><br><span class="line">  c.mux.Unlock()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *SafeCounter)</span> <span class="title">Value</span><span class="params">(key <span class="keyword">string</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">  c.mux.Lock()</span><br><span class="line">  <span class="keyword">defer</span> c.mux.Unlock()</span><br><span class="line">  <span class="keyword">return</span> c.v[key]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  c := SafeCounter&#123;v: <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span>)&#125;</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++ &#123;</span><br><span class="line">    <span class="keyword">go</span> c.Increase(<span class="string">&quot;somekey&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  time.Sleep(time.Second)</span><br><span class="line">  fmt.Println(c.Value(<span class="string">&quot;somekey&quot;</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>爲了提升讀寫性能，常用 <strong>RWMutex</strong> 代替 <strong>Mutex。</strong>RWMutex是讀寫互斥鎖。該鎖可以被同時多個讀取者持有或唯一個寫入者持有。RWMutex可以創建為其他結構體的字段；零值為解鎖狀態。RWMutex類型的鎖也和線程無關，可以由不同的線程加讀取鎖/寫入和解讀取鎖/寫入鎖。</p>
+<p>下面的代碼效果不明顯，因爲讀的次數不多。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> SafeCounter <span class="keyword">struct</span> &#123;</span><br><span class="line">  v   <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span></span><br><span class="line">  mux sync.RWMutex</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *SafeCounter)</span> <span class="title">Increase</span><span class="params">(key <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">  c.mux.Lock()</span><br><span class="line">  c.v[key]++</span><br><span class="line">  c.mux.Unlock()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *SafeCounter)</span> <span class="title">Value</span><span class="params">(key <span class="keyword">string</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">  c.mux.RLock()</span><br><span class="line">  <span class="keyword">defer</span> c.mux.RUnlock()</span><br><span class="line">  <span class="keyword">return</span> c.v[key]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  now := time.Now()</span><br><span class="line">  c := SafeCounter&#123;v: <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span>)&#125;</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++ &#123;</span><br><span class="line">    <span class="keyword">go</span> c.Increase(<span class="string">&quot;somekey&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  time.Sleep(time.Second)</span><br><span class="line">  fmt.Println(c.Value(<span class="string">&quot;somekey&quot;</span>))</span><br><span class="line">  <span class="built_in">print</span>(time.Now().Sub(now))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>（6）WaitGroup</strong></p>
+<p>WaitGroup 可以等待一組 Go 程結束。通過調用 Add 方法設定要等待的 Go 程數量。然後各個 Go 程通過調用 Done 方法結束等待。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> SafeCounter <span class="keyword">struct</span> &#123;</span><br><span class="line">  v   <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span></span><br><span class="line">  mux sync.RWMutex</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *SafeCounter)</span> <span class="title">Increase</span><span class="params">(key <span class="keyword">string</span>, wg *sync.WaitGroup)</span></span> &#123;</span><br><span class="line">  c.mux.Lock()</span><br><span class="line">  c.v[key]++</span><br><span class="line">  wg.Done()</span><br><span class="line">  c.mux.Unlock()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *SafeCounter)</span> <span class="title">Value</span><span class="params">(key <span class="keyword">string</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">  c.mux.RLock()</span><br><span class="line">  <span class="keyword">defer</span> c.mux.RUnlock()</span><br><span class="line">  <span class="keyword">return</span> c.v[key]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  wg := sync.WaitGroup&#123;&#125;</span><br><span class="line">  wg.Add(<span class="number">1000</span>)</span><br><span class="line">  c := SafeCounter&#123;v: <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span>)&#125;</span><br><span class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++ &#123;</span><br><span class="line">    <span class="keyword">go</span> c.Increase(<span class="string">&quot;somekey&quot;</span>, &amp;wg)</span><br><span class="line">  &#125;</span><br><span class="line">  wg.Wait()</span><br><span class="line">  fmt.Println(c.Value(<span class="string">&quot;somekey&quot;</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://tsunhua@github.io/2021/02/06/it/go/go-basic/" data-id="ckpwth6ss001d4k3q70rihig9" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Go/" rel="tag">Go</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/02/06/it/go/go-design-and-implementation-01/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          《Go 設計與實現》筆記之第一章 準備工作
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/01/Hello/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">貼示</h3>
+    <div class="widget" style="min-height: 50px;">
+        <img src="" height="50px" style="float: left; margin-right: 10px" />
+        <div style="font-size:medium; color:palevioletred;padding-top: 16px;">汝著愛忍耐，愛找覓家己的路來行</div>
+    </div>
+</div>
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">標籤雲</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Go/" style="font-size: 20px;">Go</a> <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/%E5%8D%81%E4%BA%8C%E7%94%9F%E8%82%96/" style="font-size: 10px;">十二生肖</a> <a href="/tags/%E5%B9%B2%E6%94%AF%E7%B4%80%E5%B9%B4%E6%B3%95/" style="font-size: 10px;">干支紀年法</a> <a href="/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/" style="font-size: 10px;">日本語</a> <a href="/tags/%E6%BD%AE%E5%8A%87/" style="font-size: 10px;">潮劇</a> <a href="/tags/%E6%BD%AE%E5%B7%9E%E8%A9%B1/" style="font-size: 15px;">潮州話</a> <a href="/tags/%E7%94%B2%E5%AD%90%E8%A9%B1/" style="font-size: 20px;">甲子話</a> <a href="/tags/%E8%81%86%E8%81%BD%E9%9F%B3%E6%A8%82/" style="font-size: 10px;">聆聽音樂</a> <a href="/tags/%E8%A9%A9%E7%B6%93/" style="font-size: 10px;">詩經</a> <a href="/tags/%E9%96%A9%E5%8D%97%E8%AA%9E/" style="font-size: 20px;">閩南語</a>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">二維碼</h3>
+    <div class="widget">
+        <img src="https://tsunhua.github.io/qrcode.jpg" width="100%" />
+    </div>
+</div>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">彙整</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/06/music/listen-chopin-raindrop/">聆聽音樂：蕭邦之「雨滴」</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/teochew-opera-ghe%CC%82gdengcung/">在潮劇中學之《玉堂春》</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/teochew-kahtsi-vowel/">潮州話與甲子話韻母差異（稿）</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/sige%CC%82ng-giamgia/">詩經·秦風‧蒹葭 (甲子話注音版)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/language/min/gahzi-oi-hung-lui-ci-biao/">甲子話分類辭表（2020.12）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="創用 CC 授權條款"
+          style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+      <br />
+      Writed by
+      <a xmlns:cc="http: //creativecommons.org/ns#" target="_blank" href="https://linlshare.github.io/" property="cc:attributionName"
+        rel="cc:attributionURL noopener">Hua
+      </a>
+
+      <br>
+      Powered by
+      <a href="https://github.com/" target="_blank">Github</a>&nbsp;&&nbsp;
+      <a href="https://hexo.io/" target="_blank">Hexo</a>
+      <br />
+
+    </div>
+  </div>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主頁</a>
+  
+    <a target="_blank" rel="noopener" href="https://dicthub.cn/" class="mobile-nav-link">典合網</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">RSS</a>
+  
+</nav>
+    
+
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
